@@ -16,7 +16,9 @@ const Projects = () => {
 
   return (
     <section id="projects" className="py-12 px-4 text-white relative">
-      <h1 className="text-center text-4xl sm:text-5xl py-12">Projects</h1>
+      <h2 className="text-2xl font-light text-center mb-16">
+        <span className="text-gray-400">My</span> Projects
+      </h2>
 
       <div className="flex items-center justify-center w-full relative">
         {/* Carousel Controls */}
@@ -37,7 +39,7 @@ const Projects = () => {
           }}
         >
           <div className="absolute top-0 left-0 w-full h-full bg-black bg-opacity-40 flex justify-center items-center">
-            <div className="bg-gray-800 p-6 rounded-lg shadow-lg max-w-xs text-center">
+            <div className="bg-slate-900/80 p-6 rounded-lg shadow-lg max-w-xs text-justify">
               <h2 className="text-xl font-semibold mb-4">
                 {projects[currentIndex].title}
               </h2>
