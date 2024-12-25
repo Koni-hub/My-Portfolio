@@ -16,8 +16,9 @@ const Projects = () => {
 
   return (
     <section id="projects" className="py-12 px-4 text-white relative">
-      <h2 className="text-2xl font-light text-center mb-16">
-        <span className="text-gray-400">My</span> Projects
+      {/* Header */}
+      <h2 className="text-2xl font-light text-center mb-16 mt-16">
+        <span className="text-gray-400">my</span> Projects
       </h2>
 
       <div className="flex items-center justify-center w-full relative">
