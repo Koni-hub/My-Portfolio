@@ -90,7 +90,7 @@ const Navbar = () => {
               <a
                 key={link.href}
                 href={link.href}
-                className="text-gray-600 hover:text-white transition-colors duration-200 text-sm font-medium"
+                className="text-gray-600 hover:text-gray-600 transition-colors duration-200 text-sm font-medium"
               >
                 {link.label}
               </a>
@@ -132,7 +132,7 @@ const Navbar = () => {
                 const nextTheme = theme === "light" ? "dark" : "light";
                 handleThemeChange(nextTheme);
               }}
-              className="p-2 text-gray-300 hover:text-white"
+              className="p-2 text-gray-300 hover:text-gray-300"
             >
               {theme === "light" && <Sun size={20} />}
               {theme === "dark" && <Moon size={20} />}
@@ -141,7 +141,7 @@ const Navbar = () => {
 
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="text-gray-300 hover:text-white p-2"
+              className="text-gray-300 hover:text-gray-300 p-2"
               aria-label="Toggle menu"
             >
               {isOpen ? <X size={24} /> : <Menu size={24} />}
