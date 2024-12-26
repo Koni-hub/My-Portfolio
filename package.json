@@ -1,6 +1,6 @@
 {
-  "name": "my-portfolio",
   "homepage": "https://koni-hub.github.io/My-Minimalist-Portfolio",
+  "name": "my-portfolio",
   "private": true,
   "version": "0.0.0",
   "type": "module",
