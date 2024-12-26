@@ -65,7 +65,6 @@ const Navbar = () => {
   const themeOptions = [
     { value: "light", icon: <Sun size={16} />, label: "Light" },
     { value: "dark", icon: <Moon size={16} />, label: "Dark" },
-    // { value: "system", icon: <Monitor size={16} />, label: "System" },
   ];
 
   return (
@@ -102,7 +101,6 @@ const Navbar = () => {
               <button className="flex items-center gap-2 px-3 py-1.5 rounded-lg shadow-lg text-gray-600 dark:bg-gray-800/50 hover:text-gray-600 transition-colors">
                 {theme === "light" && <Sun size={16} />}
                 {theme === "dark" && <Moon size={16} />}
-                {theme === "system" && <Monitor size={16} />}
                 <span className="text-sm">
                   {theme.charAt(0).toUpperCase() + theme.slice(1)}
                 </span>
@@ -131,12 +129,7 @@ const Navbar = () => {
             {/* Mobile Theme Button */}
             <button
               onClick={() => {
-                const nextTheme =
-                  theme === "light"
-                    ? "dark"
-                    : theme === "dark"
-                    ? "system"
-                    : "light";
+                const nextTheme = theme === "light" ? "dark" : "light";
                 handleThemeChange(nextTheme);
               }}
               className="p-2 text-gray-300 hover:text-white"
