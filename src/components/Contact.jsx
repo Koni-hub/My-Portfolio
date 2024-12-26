@@ -5,7 +5,7 @@ const Contact = () => {
   return (
     <section
       id="contact"
-      className="py-12 sm:py-16 lg:py-24 px-4 sm:px-6 min-h-screen flex flex-col items-center justify-center bg-gray-50 dark:bg-gray-900 transition-colors duration-300"
+      className="py-24 sm:py-16 lg:py-24 px-4 sm:px-6 min-h-screen flex flex-col items-center justify-center bg-gray-50 dark:bg-gray-900 transition-colors duration-300"
     >
       <div className="w-full max-w-6xl mx-auto">
         {/* Header */}

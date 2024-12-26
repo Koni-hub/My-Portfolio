@@ -17,7 +17,7 @@ const AboutMe = () => {
   return (
     <section
       id="about"
-      className="py-12 sm:py-16 lg:py-24 px-4 sm:px-6 min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-white transition-colors duration-300"
+      className="py-24 sm:py-16 lg:py-24 px-4 sm:px-6 min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-white transition-colors duration-300"
     >
       <div
         className={`max-w-6xl w-full transition-all duration-1000 ${
