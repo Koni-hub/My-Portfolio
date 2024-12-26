@@ -22,7 +22,7 @@ export const aboutData = {
   experience: 3,
   exp_freelance: "1+",
   work: "Full Stack Developer",
-  age: "∞",
+  age: "18",
   quote:
     "Code with passions, debug with patience, and celebrate every successful build",
 };
