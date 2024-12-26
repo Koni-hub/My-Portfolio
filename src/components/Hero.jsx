@@ -12,7 +12,7 @@ const Hero = () => {
   return (
     <section
       id="home"
-      className={`w-full min-h-screen flex items-center justify-center text-white transition-all duration-1000 ease-out ${
+      className={`dark:bg-gray-900 w-full min-h-screen flex items-center justify-center text-white transition-all duration-1000 ease-out pb-3 ${
         inView ? "opacity-100" : "opacity-0"
       }`}
     >
@@ -52,7 +52,7 @@ const Hero = () => {
               inView ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
             }`}
           >
-            <h1 className="text-4xl sm:text-5xl font-bold tracking-tight">
+            <h1 className="text-4xl sm:text-5xl font-bold tracking-tight text-cyan-400">
               {heroData.fullName}
             </h1>
             <p className="text-xl sm:text-2xl text-gray-400 font-light">
@@ -81,7 +81,7 @@ const Hero = () => {
             }`}
           >
             <button
-              className="group flex items-center gap-2 px-6 py-2 rounded-full bg-white/10 hover:bg-white/20 transition-all duration-300"
+              className="shadow-lg text-gray-500 group flex items-center gap-2 px-6 py-2 rounded-full bg-white/10 hover:bg-white/20 transition-all duration-300"
               onClick={() =>
                 window.open("/resume/Argie-Delgado_Resume.pdf", "_blank")
               }
