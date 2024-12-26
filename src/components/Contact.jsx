@@ -1,210 +1,105 @@
-import { useState, useEffect } from "react";
-import { Send } from "lucide-react";
-import Swal from "sweetalert2";
+import { Mail, MapPin, Phone } from "lucide-react";
+import { contactInfo } from "../constants/index.js";
 
 const Contact = () => {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    message: "",
-  });
-
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [userIP, setUserIP] = useState("");
-
-  // Fetch IP address when component mounts
-  useEffect(() => {
-    const fetchIP = async () => {
-      try {
-        const response = await fetch("https://api.ipify.org?format=json");
-        const data = await response.json();
-        setUserIP(data.ip);
-      } catch (error) {
-        console.error("Error fetching IP:", error);
-      }
-    };
-
-    fetchIP();
-  }, []);
-
-  const validateForm = () => {
-    if (!formData.name.trim()) {
-      return "Please enter your name";
-    }
-    if (!formData.email.trim()) {
-      return "Please enter your email";
-    }
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
-      return "Please enter a valid email address";
-    }
-    if (!formData.message.trim()) {
-      return "Please enter a message";
-    }
-    return null;
-  };
-
-  const clearForm = () => {
-    setFormData({
-      name: "",
-      email: "",
-      message: "",
-    });
-  };
-
-  const showNotification = (title, text, icon) => {
-    return Swal.fire({
-      title,
-      text,
-      icon,
-      toast: true,
-      position: "top-end",
-      showConfirmButton: false,
-      timer: 3000,
-      timerProgressBar: true,
-      background: "#1a1a1a",
-      color: "#fff",
-      customClass: {
-        popup: "colored-toast",
-      },
-    });
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    const error = validateForm();
-    if (error) {
-      showNotification("Error", error, "error");
-      return;
-    }
-
-    if (isSubmitting) return;
-    setIsSubmitting(true);
-
-    try {
-      const { name, email, message } = formData;
-
-      // Show loading state
-      Swal.fire({
-        title: "Sending...",
-        text: "Please wait while we process your message",
-        allowOutsideClick: false,
-        showConfirmButton: false,
-        willOpen: () => {
-          Swal.showLoading();
-        },
-        background: "#1a1a1a",
-        color: "#fff",
-      });
-
-      // Construct the mailto link with IP address
-      const mailtoLink = `mailto:delgadoargie04z@gmail.com?subject=Message from ${encodeURIComponent(
-        name
-      )}&body=${encodeURIComponent(
-        `Name: ${name}\nEmail: ${email}\nMessage: ${message}\n\nIP Address: ${userIP}`
-      )}`;
-
-      // Close loading dialog
-      Swal.close();
-
-      window.location.href = mailtoLink;
-      showNotification("Success!", "Opening your mail client...", "success");
-      clearForm();
-    } catch (error) {
-      console.error("Error sending message:", error);
-      showNotification(
-        "Error",
-        "Failed to send message. Please try again.",
-        "error"
-      );
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
-
   return (
-    <>
-      <section
-        id="contact"
-        className="py-24 px-6 min-h-screen flex flex-col items-center justify-center text-white"
-      >
-        <div className="w-full max-w-6xl mx-auto">
-          <h2 className="text-2xl font-light text-center mb-16">
-            <span className="text-gray-400">get in</span> touch
+    <section
+      id="contact"
+      className="py-24 px-6 min-h-screen flex flex-col items-center justify-center bg-gray-50 dark:bg-gray-900 transition-colors duration-300"
+    >
+      <div className="w-full max-w-6xl mx-auto">
+        {/* Header */}
+        <div className="text-center mb-16">
+          <h2 className="text-2xl font-light">
+            <span className="text-gray-500 dark:text-gray-400">get in</span>{" "}
+            <span className="text-gray-900 dark:text-white">touch</span>
           </h2>
+          <p className="text-gray-600 dark:text-gray-400 mt-2">
+            Feel free to reach out. I&apos;m always open to discussing new
+            projects, creative ideas, or opportunities to be part of your
+            visions.
+          </p>
+        </div>
 
-          <div className="grid lg:grid-cols-2 gap-12 items-start">
-            <div className="w-full h-[400px] rounded-lg overflow-hidden ring-1 ring-white/10">
+        <div className="grid lg:grid-cols-2 gap-12 items-start">
+          {/* Map */}
+          <div className="space-y-8">
+            <div className="w-full h-[400px] rounded-xl overflow-hidden ring-1 ring-gray-200 dark:ring-white/10 shadow-lg dark:shadow-none bg-white dark:bg-gray-800">
               <iframe
                 title="location"
-                className="w-full h-full grayscale opacity-80 hover:opacity-100 hover:grayscale-0 hover:opacity-100 transition-opacity duration-300"
+                className="w-full h-full grayscale opacity-80 hover:opacity-100 hover:grayscale-0 transition-all duration-300"
                 src="https://www.openstreetmap.org/export/embed.html?bbox=121.0403%2C14.4909%2C121.1304%2C14.6704&amp;layer=mapnik&amp;marker=14.6077%2C121.1054"
               ></iframe>
             </div>
+          </div>
 
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div className="space-y-1">
-                <input
-                  type="text"
-                  placeholder="Name"
-                  value={formData.name}
-                  onChange={(e) =>
-                    setFormData({ ...formData, name: e.target.value })
-                  }
-                  className="w-full px-4 py-3 bg-white/5 rounded-lg border border-white/10 
-                          placeholder:text-gray-500 focus:outline-none focus:border-cyan-500/50
-                          focus:ring-1 focus:ring-cyan-500/50 transition-all duration-300"
-                />
-              </div>
-
-              <div className="space-y-1">
-                <input
-                  type="email"
-                  placeholder="Email"
-                  value={formData.email}
-                  onChange={(e) =>
-                    setFormData({ ...formData, email: e.target.value })
-                  }
-                  className="w-full px-4 py-3 bg-white/5 rounded-lg border border-white/10 
-                          placeholder:text-gray-500 focus:outline-none focus:border-cyan-500/50
-                          focus:ring-1 focus:ring-cyan-500/50 transition-all duration-300"
-                />
-              </div>
-
-              <div className="space-y-1">
-                <textarea
-                  placeholder="Message"
-                  value={formData.message}
-                  onChange={(e) =>
-                    setFormData({ ...formData, message: e.target.value })
-                  }
-                  rows="4"
-                  className="w-full px-4 py-3 bg-white/5 rounded-lg border border-white/10 
-                          placeholder:text-gray-500 focus:outline-none focus:border-cyan-500/50
-                          focus:ring-1 focus:ring-cyan-500/50 transition-all duration-300 resize-none"
-                ></textarea>
-              </div>
-
-              <button
-                type="submit"
-                disabled={isSubmitting}
-                className="group flex items-center justify-center w-full px-4 py-3 
-                       bg-white/5 hover:bg-white/10 rounded-lg border border-white/10 
-                       transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+          {/* Contact Information */}
+          <div className="space-y-8">
+            {/* Contact Cards */}
+            <div className="grid gap-6">
+              {/* Email */}
+              <a
+                href={`mailto:${contactInfo.email}`}
+                className="group flex items-start gap-4 p-6 bg-white dark:bg-gray-800/30 shadow-lg dark:shadow-none rounded-xl hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-all duration-300"
               >
-                <span className="mr-2">
-                  {isSubmitting ? "Sending..." : "Send Message"}
-                </span>
-                <Send
-                  size={16}
-                  className="transform group-hover:translate-x-1 transition-transform duration-300"
-                />
-              </button>
-            </form>
+                <div className="p-3 bg-cyan-50 dark:bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 rounded-lg">
+                  <Mail size={24} />
+                </div>
+                <div>
+                  <h3 className="font-medium mb-1 text-gray-900 dark:text-white">
+                    Email
+                  </h3>
+                  <p className="text-gray-600 dark:text-gray-400 group-hover:text-cyan-600 dark:group-hover:text-cyan-400 transition-colors">
+                    {contactInfo.email}
+                  </p>
+                </div>
+              </a>
+
+              {/* Phone */}
+              <a
+                href={`tel:${contactInfo.phone}`}
+                className="group flex items-start gap-4 p-6 bg-white dark:bg-gray-800/30 shadow-lg dark:shadow-none rounded-xl hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-all duration-300"
+              >
+                <div className="p-3 bg-cyan-50 dark:bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 rounded-lg">
+                  <Phone size={24} />
+                </div>
+                <div>
+                  <h3 className="font-medium mb-1 text-gray-900 dark:text-white">
+                    Phone
+                  </h3>
+                  <p className="text-gray-600 dark:text-gray-400 group-hover:text-cyan-600 dark:group-hover:text-cyan-400 transition-colors">
+                    {contactInfo.phone}
+                  </p>
+                </div>
+              </a>
+
+              {/* Location */}
+              <div className="flex items-start gap-4 p-6 bg-white dark:bg-gray-800/30 shadow-lg dark:shadow-none rounded-xl">
+                <div className="p-3 bg-cyan-50 dark:bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 rounded-lg">
+                  <MapPin size={24} />
+                </div>
+                <div>
+                  <h3 className="font-medium mb-1 text-gray-900 dark:text-white">
+                    Location
+                  </h3>
+                  <p className="text-gray-600 dark:text-gray-400">
+                    {contactInfo.location}
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Additional Contact Message */}
+            <div className="p-6 bg-cyan-50 dark:bg-cyan-500/10 rounded-xl">
+              <p className="text-cyan-600 dark:text-cyan-400 text-sm">
+                Prefer email? Send me a message and I&apos;ll get back to you
+                within 24 hours.
+              </p>
+            </div>
           </div>
         </div>
-      </section>
-    </>
+      </div>
+    </section>
   );
 };
 
