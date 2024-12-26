@@ -65,7 +65,7 @@ const Hero = () => {
 
           {/* Tagline */}
           <p
-            className={`text-lg sm:text-xl font-light max-w-2xl mx-auto transition-all duration-1000 delay-700 transform ${
+            className={`text-lg sm:text-xl text-gray-600 font-light max-w-2xl mx-auto transition-all duration-1000 delay-700 transform ${
               inView ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
             }`}
           >
