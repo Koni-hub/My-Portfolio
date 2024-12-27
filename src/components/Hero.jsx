@@ -1,6 +1,7 @@
 import { Github, Linkedin, Mail, FileDown } from "lucide-react";
 import { useState, useEffect } from "react";
 import { heroData } from "../constants";
+import Resume from "../assets/resume/Argie-Delgado_Resume.pdf";
 
 const Hero = () => {
   const [inView, setInView] = useState(false);
@@ -82,9 +83,7 @@ const Hero = () => {
           >
             <button
               className="shadow-lg text-gray-500 group flex items-center gap-2 px-6 py-2 rounded-full bg-white/10 hover:bg-white/20 transition-all duration-300"
-              onClick={() =>
-                window.open("/resume/Argie-Delgado_Resume.pdf", "_blank")
-              }
+              onClick={() => window.open(Resume, "_blank")}
             >
               <FileDown size={20} className="text-cyan-400" />
               <span>Resume</span>
