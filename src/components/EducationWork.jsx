@@ -32,9 +32,9 @@ const EducationWork = () => {
         {/* Section Header with Filter Tabs */}
         <div className="text-center mb-8 sm:mb-12 lg:mb-16">
           <h2 className="text-xl sm:text-2xl font-light text-center">
-            <span className="text-gray-500 dark:text-gray-400">Experience</span>{" "}
-            &{" "}
-            <span className="text-gray-500 dark:text-gray-400">Education</span>
+            <span className="text-gray-500 dark:text-gray-400">
+              Experience & Education
+            </span>
           </h2>
           <p className="text-sm sm:text-base font-light text-center mb-6 text-gray-600 dark:text-gray-300">
             Explore my professional journey and educational background,

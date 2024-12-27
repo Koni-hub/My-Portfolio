@@ -11,8 +11,9 @@ const Contact = () => {
         {/* Header */}
         <div className="text-center mb-8 sm:mb-12 lg:mb-16">
           <h2 className="text-xl sm:text-2xl font-light">
-            <span className="text-gray-500 dark:text-gray-400">get in</span>{" "}
-            <span className="text-gray-900 dark:text-white">touch</span>
+            <span className="text-gray-500 dark:text-gray-400">
+              Get In Touch
+            </span>{" "}
           </h2>
           <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 mt-2 max-w-2xl mx-auto">
             Feel free to reach out. I&apos;m always open to discussing new

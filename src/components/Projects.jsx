@@ -83,8 +83,9 @@ const Projects = () => {
         {/* Header */}
         <div className="text-center mb-16">
           <h2 className="text-2xl font-light">
-            <span className="text-gray-500 dark:text-gray-400">my</span>{" "}
-            <span className="text-gray-900 dark:text-white">Projects</span>
+            <span className="text-gray-500 dark:text-gray-400">
+              My Projects
+            </span>{" "}
           </h2>
           <p className="text-gray-600 dark:text-gray-400 mt-2">
             Explore some of my recent work and side projects
