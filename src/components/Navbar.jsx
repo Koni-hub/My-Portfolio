@@ -52,10 +52,11 @@ const Navbar = () => {
 
   const navLinks = [
     { href: "#home", label: "Home" },
-    { href: "#workeducation", label: "Work & Education" },
+    { href: "#workeducation", label: "Career" },
     { href: "#about", label: "About" },
     { href: "#projects", label: "Projects" },
     { href: "#contact", label: "Contact" },
+    { href: "#newyear", label: "NY Countdown" },
   ];
 
   const handleNavClick = (e, href) => {
@@ -94,7 +95,7 @@ const Navbar = () => {
             {/* Logo */}
             <div className="flex-shrink-0">
               <span className="text-cyan-500 text-2xl font-bold dark:text-white">
-                My Portfolio
+                AD
               </span>
             </div>
 
