@@ -138,7 +138,10 @@ const NewYearCountdown = () => {
   const content = getDisplayContent();
 
   return (
-    <div className="py-24 min-h-screen bg-white dark:bg-gray-900 flex items-center justify-center p-4 overflow-hidden relative">
+    <div
+      id="newyear"
+      className="py-24 min-h-screen bg-white dark:bg-gray-900 flex items-center justify-center p-4 overflow-hidden relative"
+    >
       <div className="fireworks-container fixed inset-0 pointer-events-none" />
       <div
         className="bg-white/10 backdrop-blur-md rounded-lg p-6 sm:p-12 w-full max-w-3xl shadow-2xl relative z-10"
