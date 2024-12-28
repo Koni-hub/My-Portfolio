@@ -1,7 +1,10 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 /* eslint-disable react/no-unknown-property */
 import { useState, useEffect } from "react";
 import { Clock } from "lucide-react";
 import { Fireworks } from "fireworks-js";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const NewYearCountdown = () => {
   const [timeLeft, setTimeLeft] = useState({
@@ -158,6 +161,20 @@ const NewYearCountdown = () => {
     };
   }, [showingFireworks]);
 
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+    AOS.init({
+      duration: 1000,
+      offset: 100,
+      once: true,
+      easing: "ease-out-cubic",
+    });
+  }, []);
+
+  if (!mounted) return null;
+
   return (
     <div
       id="newyear"
@@ -165,7 +182,12 @@ const NewYearCountdown = () => {
     >
       <div className="fireworks-container fixed inset-0 pointer-events-none" />
 
-      <div className="bg-white/10 backdrop-blur-md rounded-lg p-6 sm:p-12 w-full max-w-3xl shadow-2xl relative z-10">
+      <div
+        className="bg-white/10 backdrop-blur-md rounded-lg p-6 sm:p-12 w-full max-w-3xl shadow-2xl relative z-10"
+        data-aos="fade-up"
+        data-aos-duration="1000"
+        data-aos-delay="200"
+      >
         <div className="text-center space-y-8 sm:space-y-10">
           <div>
             <p className="text-cyan-500 text-sm tracking-widest uppercase mb-2">

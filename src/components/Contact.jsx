@@ -28,7 +28,7 @@ const Contact = () => {
         {/* Header */}
         <div
           className="text-center mb-8 sm:mb-12 lg:mb-16"
-          data-aos="fade-down"
+          data-aos="fade-up"
           data-aos-delay="200"
         >
           <h2 className="text-xl sm:text-2xl font-light">

@@ -63,7 +63,7 @@ const Home = () => {
         {/* Contact Section */}
         <Contact />
 
-        {/* New Year Count Down */}
+        {/* New Year Count */}
         <NewYearCountdown />
 
         {/* Footer Section */}
