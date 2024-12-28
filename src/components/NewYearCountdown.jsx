@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/rules-of-hooks */
 /* eslint-disable react/no-unknown-property */
 import { useState, useEffect } from "react";
 import { Clock } from "lucide-react";
@@ -13,80 +12,56 @@ const NewYearCountdown = () => {
     minutes: "00",
     seconds: "00",
   });
-  const [isNewYear, setIsNewYear] = useState(false);
-  const [showingFireworks, setShowingFireworks] = useState(false);
-  const comingYear = new Date().getFullYear() + 1;
+  const [celebrationState, setCelebrationState] = useState("countdown"); // countdown, celebrating, or finished
   const [targetDate, setTargetDate] = useState(
-    new Date(`January 1, ${comingYear} 00:00:00`)
+    new Date(`January 1, ${new Date().getFullYear() + 1} 00:00:00`)
   );
 
-  // Helper function to format numbers
-  const getTrueNumber = (num) => {
-    return num < 10 ? "0" + num : num.toString();
-  };
-
-  // Function to set the next year's target date
-  const setNextYearTarget = () => {
-    const currentTarget = new Date(targetDate);
-    currentTarget.setFullYear(currentTarget.getFullYear() + 1);
-    setTargetDate(currentTarget);
-  };
+  const getTrueNumber = (num) => (num < 10 ? `0${num}` : num.toString());
 
   const calculateRemainingTime = () => {
     const now = new Date();
     const remainingTime = targetDate.getTime() - now.getTime();
 
-    const days = Math.floor(remainingTime / (1000 * 60 * 60 * 24));
-    const hours = Math.floor(
-      (remainingTime % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
-    );
-    const mins = Math.floor((remainingTime % (1000 * 60 * 60)) / (1000 * 60));
-    const secs = Math.floor((remainingTime % (1000 * 60)) / 1000);
+    if (remainingTime <= 1000) {
+      setCelebrationState("celebrating");
+      setTimeout(() => {
+        setCelebrationState("finished");
+        setTimeout(() => {
+          setCelebrationState("countdown");
+          setTargetDate(
+            new Date(`January 1, ${targetDate.getFullYear() + 1} 00:00:00`)
+          );
+        }, 60000); // Reset after welcome message
+      }, 60000); // Switch to welcome message after fireworks
+      return;
+    }
 
     setTimeLeft({
-      days: getTrueNumber(days),
-      hours: getTrueNumber(hours),
-      minutes: getTrueNumber(mins),
-      seconds: getTrueNumber(secs),
+      days: getTrueNumber(Math.floor(remainingTime / (1000 * 60 * 60 * 24))),
+      hours: getTrueNumber(
+        Math.floor((remainingTime % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
+      ),
+      minutes: getTrueNumber(
+        Math.floor((remainingTime % (1000 * 60 * 60)) / (1000 * 60))
+      ),
+      seconds: getTrueNumber(Math.floor((remainingTime % (1000 * 60)) / 1000)),
     });
-
-    return remainingTime;
   };
 
   useEffect(() => {
-    const updateCountdown = () => {
-      const remainingTimeInMs = calculateRemainingTime();
-      if (remainingTimeInMs <= 1000) {
-        setIsNewYear(true);
-        setShowingFireworks(true);
-
-        // Schedule the welcome message duration and reset
-        setTimeout(() => {
-          setShowingFireworks(false);
-
-          // Show welcome message for 1 minute
-          setTimeout(() => {
-            setIsNewYear(false);
-            setNextYearTarget();
-          }, 60000); // 1 minute welcome message
-        }, 60000); // 1 minute fireworks
-      }
-    };
-
-    updateCountdown();
-    const interval = setInterval(updateCountdown, 1000);
-
+    const interval = setInterval(calculateRemainingTime, 1000);
     return () => clearInterval(interval);
   }, [targetDate]);
 
   useEffect(() => {
-    let fireworksBoom;
+    let fireworksInstance;
 
-    if (showingFireworks && typeof window !== "undefined") {
+    if (celebrationState === "celebrating" && typeof window !== "undefined") {
       const container = document.querySelector(".fireworks-container");
       if (container) {
         try {
-          fireworksBoom = new Fireworks(container, {
+          fireworksInstance = new Fireworks(container, {
             opacity: 0.5,
             acceleration: 1.05,
             friction: 0.97,
@@ -105,66 +80,30 @@ const NewYearCountdown = () => {
                 "https://fireworks.js.org/sounds/explosion1.mp3",
                 "https://fireworks.js.org/sounds/explosion2.mp3",
               ],
-              volume: {
-                min: 10,
-                max: 20,
-              },
+              volume: { min: 10, max: 20 },
             },
-            hue: {
-              min: 0,
-              max: 360,
-            },
-            delay: {
-              min: 30,
-              max: 60,
-            },
-            rocketsPoint: {
-              min: 50,
-              max: 50,
-            },
+            hue: { min: 0, max: 360 },
+            delay: { min: 30, max: 60 },
+            rocketsPoint: { min: 50, max: 50 },
             lineWidth: {
-              explosion: {
-                min: 1,
-                max: 3,
-              },
-              trace: {
-                min: 1,
-                max: 2,
-              },
+              explosion: { min: 1, max: 3 },
+              trace: { min: 1, max: 2 },
             },
-            brightness: {
-              min: 50,
-              max: 80,
-            },
-            decay: {
-              min: 0.015,
-              max: 0.03,
-            },
-            mouse: {
-              click: false,
-              move: false,
-              max: 1,
-            },
+            brightness: { min: 50, max: 80 },
+            decay: { min: 0.015, max: 0.03 },
+            mouse: { click: false, move: false, max: 1 },
           });
-
-          fireworksBoom.start();
+          fireworksInstance.start();
         } catch (error) {
           console.error("Error initializing fireworks:", error);
         }
       }
     }
 
-    return () => {
-      if (fireworksBoom) {
-        fireworksBoom.stop();
-      }
-    };
-  }, [showingFireworks]);
-
-  const [mounted, setMounted] = useState(false);
+    return () => fireworksInstance?.stop();
+  }, [celebrationState]);
 
   useEffect(() => {
-    setMounted(true);
     AOS.init({
       duration: 1000,
       offset: 100,
@@ -173,15 +112,34 @@ const NewYearCountdown = () => {
     });
   }, []);
 
-  if (!mounted) return null;
+  const getDisplayContent = () => {
+    switch (celebrationState) {
+      case "celebrating":
+        return {
+          status: "Celebrating the New Year!",
+          title: `🎆 Happy New Year ${targetDate.getFullYear()}! 🎆`,
+          message: `Celebrating the arrival of ${targetDate.getFullYear()}!`,
+        };
+      case "finished":
+        return {
+          status: `Welcome to ${targetDate.getFullYear()}!`,
+          title: "Welcome to an amazing new year ahead!",
+          message: `Welcome to ${targetDate.getFullYear()}! Happy Coding </>`,
+        };
+      default:
+        return {
+          status: "Come and welcome the new year",
+          title: "New Year Countdown",
+          message: `Time Remaining Until January 1st, ${targetDate.getFullYear()}`,
+        };
+    }
+  };
+
+  const content = getDisplayContent();
 
   return (
-    <div
-      id="newyear"
-      className="py-24 min-h-screen bg-white dark:bg-gray-900 flex items-center justify-center p-4 overflow-hidden relative"
-    >
+    <div className="py-24 min-h-screen bg-white dark:bg-gray-900 flex items-center justify-center p-4 overflow-hidden relative">
       <div className="fireworks-container fixed inset-0 pointer-events-none" />
-
       <div
         className="bg-white/10 backdrop-blur-md rounded-lg p-6 sm:p-12 w-full max-w-3xl shadow-2xl relative z-10"
         data-aos="fade-up"
@@ -191,22 +149,14 @@ const NewYearCountdown = () => {
         <div className="text-center space-y-8 sm:space-y-10">
           <div>
             <p className="text-cyan-500 text-sm tracking-widest uppercase mb-2">
-              {isNewYear
-                ? showingFireworks
-                  ? "Celebrating the New Year!"
-                  : "Welcome to " + targetDate.getFullYear() + "!"
-                : "Come and welcome the new year"}
+              {content.status}
             </p>
             <h1 className="text-2xl sm:text-4xl font-light text-cyan-500 dark:text-white tracking-wide">
-              {isNewYear
-                ? showingFireworks
-                  ? `🎆 Happy New Year ${targetDate.getFullYear()}! 🎆`
-                  : `Welcome to ${targetDate.getFullYear()}! Happy Coding </>`
-                : "New Year Countdown"}
+              {content.title}
             </h1>
           </div>
 
-          {!isNewYear && (
+          {celebrationState === "countdown" && (
             <div className="grid grid-cols-1 sm:grid-cols-4 gap-4 sm:gap-6">
               {[
                 { label: "Days", value: timeLeft.days },
@@ -229,13 +179,7 @@ const NewYearCountdown = () => {
           <div className="pt-4 border-t border-dark/10 dark:border-white/10">
             <div className="flex items-center justify-center text-cyan-900">
               <Clock className="w-4 h-4 mr-2" />
-              <p className="text-sm tracking-wide">
-                {isNewYear
-                  ? showingFireworks
-                    ? `Celebrating the arrival of ${targetDate.getFullYear()}!`
-                    : `Welcome to an amazing new year ahead!`
-                  : `Time Remaining Until January 1st, ${targetDate.getFullYear()}`}
-              </p>
+              <p className="text-sm tracking-wide">{content.message}</p>
             </div>
           </div>
         </div>
