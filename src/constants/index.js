@@ -137,7 +137,7 @@ export const timelineData = [
   {
     type: "work",
     period: "2024 - Present",
-    title: "Freelance Web Developer",
+    title: "Freelancer",
     organization: "Independent / Freelance",
     description:
       "Working on full-stack development projects for various clients",
@@ -147,7 +147,8 @@ export const timelineData = [
   {
     type: "education",
     period: "2024 - Present",
-    institution: "STI College - Marikina Campus",
+    title: "Student",
+    organization: "STI College - Marikina Campus",
     degree: "Pursuing Associate Degree in Computer Science",
     logo: stiCollegeMarikina,
     achievements: [
@@ -170,7 +171,8 @@ export const timelineData = [
   {
     type: "education",
     period: "2023 - 2024",
-    institution: "STI College - Marikina Campus",
+    title: "Student",
+    organization: "STI College - Marikina Campus",
     degree: "Associate Degree in Mobile App & Web Development",
     logo: stiCollegeMarikina,
     achievements: [
@@ -184,8 +186,8 @@ export const timelineData = [
       "Created interactive web features with JavaScript, HTML, and CSS",
     ],
     relevantSkills: [
-      "Web Development (HTML, CSS, JavaScript, Node.js)",
-      "Mobile App Development (React)",
+      "Web Development (HTML, CSS, JavaScript, React.js, Node.js)",
+      "Mobile App Development (Java)",
       "Database Management (MySQL)",
       "Project Management (ClickUp)",
     ],
@@ -193,7 +195,8 @@ export const timelineData = [
   {
     type: "education",
     period: "2018 - 2023",
-    institution: "Fortune High School",
+    title: "Student",
+    organization: "Fortune High School",
     degree: "High School Diploma",
     logo: fortuneHighSchool,
     achievements: [
