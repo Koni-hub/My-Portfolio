@@ -83,7 +83,7 @@ const Hero = () => {
             <div
               className="flex items-center gap-6"
               data-aos="fade-up"
-              data-aos-delay="800"
+              data-aos-delay="600"
             >
               <a
                 href={heroData.linkedin}
