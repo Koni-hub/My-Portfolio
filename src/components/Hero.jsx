@@ -69,22 +69,20 @@ const Hero = () => {
           </div>
 
           {/* Actions */}
-          <div className="flex flex-wrap justify-center items-center gap-6">
+          <div
+            className="flex flex-wrap justify-center items-center gap-6"
+            data-aos="fade-up"
+            data-aos-delay="600"
+          >
             <button
               className="shadow-lg text-gray-500 group flex items-center gap-2 px-6 py-2 rounded-full bg-white/10 hover:bg-white/20 transition-all duration-300"
               onClick={() => window.open(Resume, "_blank")}
-              data-aos="fade-up"
-              data-aos-delay="600"
             >
               <FileDown size={20} className="text-cyan-400" />
               <span>Resume</span>
             </button>
 
-            <div
-              className="flex items-center gap-6"
-              data-aos="fade-up"
-              data-aos-delay="600"
-            >
+            <div className="flex items-center gap-6">
               <a
                 href={heroData.linkedin}
                 target="_blank"
