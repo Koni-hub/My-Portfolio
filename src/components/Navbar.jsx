@@ -58,7 +58,19 @@ const Navbar = () => {
     { href: "#contact", label: "Contact" },
   ];
 
-  const handleNavClick = () => {
+  const handleNavClick = (e, href) => {
+    e.preventDefault();
+
+    const targetElement = document.querySelector(href);
+
+    if (targetElement) {
+      // Scroll to the target element with smooth behavior
+      targetElement.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }
+
     setIsOpen(false);
   };
 
@@ -93,6 +105,7 @@ const Navbar = () => {
                   key={link.href}
                   href={link.href}
                   className="text-gray-600 hover:text-gray-600 transition-colors duration-200 text-sm font-medium"
+                  onClick={(e) => handleNavClick(e, link.href)}
                 >
                   {link.label}
                 </a>
@@ -164,8 +177,8 @@ const Navbar = () => {
                 <a
                   key={link.href}
                   href={link.href}
-                  onClick={handleNavClick}
-                  className="text-gray-300 hover:text-cyan-500 text-lg font-medium transition-colors duration-200 text-center"
+                  onClick={(e) => handleNavClick(e, link.href)}
+                  className="text-gray-300 hover:text-cyan-500 text-lg font-medium transition-colors duration-200 text-center animate-fade-left"
                 >
                   {link.label}
                 </a>
