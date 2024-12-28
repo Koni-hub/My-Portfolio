@@ -1,9 +1,24 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { GraduationCap, Briefcase, Award, Code, UserCheck } from "lucide-react";
 import { timelineData } from "../constants/index.js";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const EducationWork = () => {
   const [filter, setFilter] = useState("all");
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+    AOS.init({
+      duration: 1000,
+      offset: 100,
+      once: true,
+      easing: "ease-out-cubic",
+    });
+  }, []);
+
+  if (!mounted) return null;
 
   // eslint-disable-next-line react/prop-types
   const TimelineIcon = ({ type }) =>
@@ -31,18 +46,33 @@ const EducationWork = () => {
       <div className="max-w-6xl mx-auto">
         {/* Section Header with Filter Tabs */}
         <div className="text-center mb-8 sm:mb-12 lg:mb-16">
-          <h2 className="text-xl sm:text-2xl font-light text-center">
+          <h2
+            className="text-xl sm:text-2xl font-light text-center"
+            data-aos="fade-up"
+            data-aos-duration="1000"
+            data-aos-delay="200"
+          >
             <span className="text-gray-500 dark:text-gray-400">
               Experience & Education
             </span>
           </h2>
-          <p className="text-sm sm:text-base font-light text-center mb-6 text-gray-600 dark:text-gray-300">
+          <p
+            className="text-sm sm:text-base font-light text-center mb-6 text-gray-600 dark:text-gray-300"
+            data-aos="fade-up"
+            data-aos-duration="1000"
+            data-aos-delay="200"
+          >
             Explore my professional journey and educational background,
             showcasing my skills and experiences.
           </p>
 
           {/* Filter Buttons */}
-          <div className="flex justify-center gap-2 sm:gap-4 mb-6 sm:mb-8">
+          <div
+            className="flex justify-center gap-2 sm:gap-4 mb-6 sm:mb-8"
+            data-aos="fade-up"
+            data-aos-duration="1000"
+            data-aos-delay="400"
+          >
             <button
               onClick={() => setFilter("work")}
               className={`px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg flex items-center gap-1.5 sm:gap-2 transition-all duration-300 text-sm sm:text-base ${
@@ -87,6 +117,9 @@ const EducationWork = () => {
           {filteredData.map((item, index) => (
             <div
               key={index}
+              data-aos={index % 2 === 0 ? "fade-right" : "fade-left"}
+              data-aos-duration="1000"
+              data-aos-delay={index * 200}
               className={`relative mb-8 sm:mb-12 md:w-1/2 ${
                 index % 2 === 0
                   ? "md:pr-8 lg:pr-12 ml-8 sm:ml-12 md:ml-auto"

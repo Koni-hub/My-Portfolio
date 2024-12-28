@@ -1,10 +1,17 @@
 /* eslint-disable react/prop-types */
 import { Globe, Github, ChevronDown } from "lucide-react";
 import { projects } from "../constants/index.js";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
-const ProjectCard = ({ project }) => (
-  <div className="bg-white dark:bg-gray-800/30 shadow-lg dark:shadow-none rounded-xl p-6 flex flex-col gap-4 hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors">
+const ProjectCard = ({ project, index }) => (
+  <div
+    className="bg-white dark:bg-gray-800/30 shadow-lg dark:shadow-none rounded-xl p-6 flex flex-col gap-4 hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors"
+    data-aos="fade-up"
+    data-aos-duration="1000"
+    data-aos-delay={200 + (index % 2) * 200}
+  >
     {/* Project Image */}
     <div className="relative aspect-video overflow-hidden rounded-lg">
       <img
@@ -69,6 +76,19 @@ const ProjectCard = ({ project }) => (
 const Projects = () => {
   const [displayCount, setDisplayCount] = useState(4);
   const hasMore = displayCount < projects.length;
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+    AOS.init({
+      duration: 1000,
+      offset: 100,
+      once: true,
+      easing: "ease-out-cubic",
+    });
+  }, []);
+
+  if (!mounted) return null;
 
   const loadMore = () => {
     setDisplayCount((prev) => Math.min(prev + 4, projects.length));
@@ -81,7 +101,11 @@ const Projects = () => {
     >
       <div className="max-w-6xl mx-auto">
         {/* Header */}
-        <div className="text-center mb-16">
+        <div
+          className="text-center mb-16"
+          data-aos="fade-up"
+          data-aos-duration="1000"
+        >
           <h2 className="text-2xl font-light">
             <span className="text-gray-500 dark:text-gray-400">
               My Projects
@@ -95,13 +119,18 @@ const Projects = () => {
         {/* Projects Grid */}
         <div className="grid sm:grid-cols-1 md:grid-cols-2 gap-6 mb-12">
           {projects.slice(0, displayCount).map((project, index) => (
-            <ProjectCard key={index} project={project} />
+            <ProjectCard key={index} project={project} index={index} />
           ))}
         </div>
 
         {/* Load More Button */}
         {hasMore && (
-          <div className="flex justify-center">
+          <div
+            className="flex justify-center"
+            data-aos="fade-up"
+            data-aos-duration="1000"
+            data-aos-delay="400"
+          >
             <button
               onClick={loadMore}
               className="group flex items-center gap-2 px-6 py-3 bg-cyan-50 hover:bg-cyan-100 dark:bg-cyan-500/10 dark:hover:bg-cyan-500/20 text-cyan-600 dark:text-cyan-400 rounded-xl transition-colors duration-300"
@@ -116,7 +145,12 @@ const Projects = () => {
         )}
 
         {/* Project Count */}
-        <div className="text-center mt-6 text-sm text-gray-500 dark:text-gray-400">
+        <div
+          className="text-center mt-6 text-sm text-gray-500 dark:text-gray-400"
+          data-aos="fade-up"
+          data-aos-duration="1000"
+          data-aos-delay="600"
+        >
           Showing {displayCount} of {projects.length} projects
         </div>
       </div>

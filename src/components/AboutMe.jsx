@@ -6,13 +6,23 @@ import {
   services,
   stats,
 } from "../constants/index.js";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const AboutMe = () => {
-  const [isVisible, setIsVisible] = useState(false);
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    setIsVisible(true);
+    setMounted(true);
+    AOS.init({
+      duration: 1000,
+      offset: 100,
+      once: true,
+      easing: "ease-out-cubic",
+    });
   }, []);
+
+  if (!mounted) return null;
 
   return (
     <section
@@ -20,12 +30,17 @@ const AboutMe = () => {
       className="py-24 sm:py-16 lg:py-24 px-4 sm:px-6 min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-white transition-colors duration-300"
     >
       <div
-        className={`max-w-6xl w-full transition-all duration-1000 ${
-          isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-        }`}
+        className="max-w-6xl w-full"
+        data-aos="fade-up"
+        data-aos-duration="1000"
       >
         {/* Header */}
-        <div className="text-center mb-8 sm:mb-12 lg:mb-16">
+        <div
+          className="text-center mb-8 sm:mb-12 lg:mb-16"
+          data-aos="fade-up"
+          data-aos-duration="1000"
+          data-aos-delay="200"
+        >
           <h2 className="text-xl sm:text-2xl font-light">
             <span className="text-gray-500 dark:text-gray-400">About Me</span>
           </h2>
@@ -37,7 +52,12 @@ const AboutMe = () => {
         {/* Main Content Grid */}
         <div className="grid lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 mb-8 sm:mb-12 lg:mb-16">
           {/* Left Column - Introduction */}
-          <div className="space-y-6 sm:space-y-8">
+          <div
+            className="space-y-6 sm:space-y-8"
+            data-aos="fade-right"
+            data-aos-duration="1000"
+            data-aos-delay="400"
+          >
             {/* Profile Info */}
             <div className="space-y-4">
               {/* Quick Facts */}
@@ -76,13 +96,25 @@ const AboutMe = () => {
 
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
-              <a href="#contact" className="w-full sm:w-auto">
+              <a
+                href="#contact"
+                className="w-full sm:w-auto"
+                data-aos="fade-right"
+                data-aos-duration="1000"
+                data-aos-delay="800"
+              >
                 <button className="w-full sm:w-auto flex items-center justify-center gap-2 bg-cyan-600 dark:bg-cyan-500 hover:bg-cyan-700 dark:hover:bg-cyan-600 text-white px-4 sm:px-6 py-2.5 sm:py-3 rounded-xl transition-colors text-sm sm:text-base">
                   <Mail size={18} className="sm:w-5 sm:h-5" />
                   Get in Touch
                 </button>
               </a>
-              <a href="#projects" className="w-full sm:w-auto">
+              <a
+                href="#projects"
+                className="w-full sm:w-auto"
+                data-aos="fade-left"
+                data-aos-duration="1000"
+                data-aos-delay="800"
+              >
                 <button className="w-full sm:w-auto flex items-center justify-center gap-2 border border-cyan-600 dark:border-cyan-500 text-cyan-600 dark:text-cyan-500 hover:bg-cyan-50 dark:hover:bg-cyan-500/10 px-4 sm:px-6 py-2.5 sm:py-3 rounded-xl transition-colors text-sm sm:text-base">
                   <FolderGit2 size={18} className="sm:w-5 sm:h-5" />
                   View Projects
@@ -92,7 +124,12 @@ const AboutMe = () => {
           </div>
 
           {/* Right Column - Skills & Services */}
-          <div className="space-y-6 sm:space-y-8">
+          <div
+            className="space-y-6 sm:space-y-8"
+            data-aos="fade-left"
+            data-aos-duration="1000"
+            data-aos-delay="600"
+          >
             {/* Skills */}
             <div className="space-y-4 sm:space-y-6">
               <h2 className="text-lg sm:text-xl font-semibold">
@@ -132,7 +169,12 @@ const AboutMe = () => {
         </div>
 
         {/* Stats Grid */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+        <div
+          className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6"
+          data-aos="fade-up"
+          data-aos-duration="1000"
+          data-aos-delay="800"
+        >
           {stats.map((stat) => (
             <div
               key={stat.label}

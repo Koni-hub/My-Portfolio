@@ -1,7 +1,24 @@
 import { Mail, MapPin, Phone } from "lucide-react";
 import { contactInfo } from "../constants/index.js";
+import AOS from "aos";
+import "aos/dist/aos.css";
+import { useEffect, useState } from "react";
 
 const Contact = () => {
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+    AOS.init({
+      duration: 1000,
+      offset: 100,
+      once: true,
+      easing: "ease-out-cubic",
+    });
+  }, []);
+
+  if (!mounted) return null;
+
   return (
     <section
       id="contact"
@@ -9,7 +26,11 @@ const Contact = () => {
     >
       <div className="w-full max-w-6xl mx-auto">
         {/* Header */}
-        <div className="text-center mb-8 sm:mb-12 lg:mb-16">
+        <div
+          className="text-center mb-8 sm:mb-12 lg:mb-16"
+          data-aos="fade-down"
+          data-aos-delay="200"
+        >
           <h2 className="text-xl sm:text-2xl font-light">
             <span className="text-gray-500 dark:text-gray-400">
               Get In Touch
@@ -24,7 +45,11 @@ const Contact = () => {
 
         <div className="grid lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 items-start">
           {/* Map */}
-          <div className="space-y-6 sm:space-y-8 order-2 lg:order-1">
+          <div
+            className="space-y-6 sm:space-y-8 order-2 lg:order-1"
+            data-aos="fade-right"
+            data-aos-delay="400"
+          >
             <div className="w-full h-[300px] sm:h-[400px] rounded-xl overflow-hidden ring-1 ring-gray-200 dark:ring-white/10 shadow-lg dark:shadow-none bg-white dark:bg-gray-800">
               <iframe
                 title="location"
@@ -42,6 +67,8 @@ const Contact = () => {
               <a
                 href={`mailto:${contactInfo.email}`}
                 className="group flex items-start gap-3 sm:gap-4 p-4 sm:p-6 bg-white dark:bg-gray-800/30 shadow-lg dark:shadow-none rounded-xl hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-all duration-300"
+                data-aos="fade-left"
+                data-aos-delay="400"
               >
                 <div className="p-2 sm:p-3 bg-cyan-50 dark:bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 rounded-lg">
                   <Mail size={20} className="sm:w-6 sm:h-6" />
@@ -60,6 +87,8 @@ const Contact = () => {
               <a
                 href={`tel:${contactInfo.phone}`}
                 className="group flex items-start gap-3 sm:gap-4 p-4 sm:p-6 bg-white dark:bg-gray-800/30 shadow-lg dark:shadow-none rounded-xl hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-all duration-300"
+                data-aos="fade-left"
+                data-aos-delay="500"
               >
                 <div className="p-2 sm:p-3 bg-cyan-50 dark:bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 rounded-lg">
                   <Phone size={20} className="sm:w-6 sm:h-6" />
@@ -75,7 +104,11 @@ const Contact = () => {
               </a>
 
               {/* Location */}
-              <div className="flex items-start gap-3 sm:gap-4 p-4 sm:p-6 bg-white dark:bg-gray-800/30 shadow-lg dark:shadow-none rounded-xl">
+              <div
+                className="flex items-start gap-3 sm:gap-4 p-4 sm:p-6 bg-white dark:bg-gray-800/30 shadow-lg dark:shadow-none rounded-xl"
+                data-aos="fade-left"
+                data-aos-delay="600"
+              >
                 <div className="p-2 sm:p-3 bg-cyan-50 dark:bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 rounded-lg">
                   <MapPin size={20} className="sm:w-6 sm:h-6" />
                 </div>
@@ -91,7 +124,11 @@ const Contact = () => {
             </div>
 
             {/* Additional Contact Message */}
-            <div className="p-4 sm:p-6 bg-cyan-50 dark:bg-cyan-500/10 rounded-xl">
+            <div
+              className="p-4 sm:p-6 bg-cyan-50 dark:bg-cyan-500/10 rounded-xl"
+              data-aos="fade-up"
+              data-aos-delay="700"
+            >
               <p className="text-xs sm:text-sm text-cyan-600 dark:text-cyan-400">
                 Prefer email? Send me a message and I&apos;ll get back to you
                 within 24 hours.
