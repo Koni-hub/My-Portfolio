@@ -47,7 +47,7 @@ const Contact = () => {
           {/* Map */}
           <div
             className="space-y-6 sm:space-y-8 order-2 lg:order-1"
-            data-aos="fade-right"
+            data-aos="fade-up"
             data-aos-delay="400"
           >
             <div className="w-full h-[300px] sm:h-[400px] rounded-xl overflow-hidden ring-1 ring-gray-200 dark:ring-white/10 shadow-lg dark:shadow-none bg-white dark:bg-gray-800">
@@ -67,7 +67,7 @@ const Contact = () => {
               <a
                 href={`mailto:${contactInfo.email}`}
                 className="group flex items-start gap-3 sm:gap-4 p-4 sm:p-6 bg-white dark:bg-gray-800/30 shadow-lg dark:shadow-none rounded-xl hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-all duration-300"
-                data-aos="fade-left"
+                data-aos="fade-up"
                 data-aos-delay="400"
               >
                 <div className="p-2 sm:p-3 bg-cyan-50 dark:bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 rounded-lg">
@@ -87,7 +87,7 @@ const Contact = () => {
               <a
                 href={`tel:${contactInfo.phone}`}
                 className="group flex items-start gap-3 sm:gap-4 p-4 sm:p-6 bg-white dark:bg-gray-800/30 shadow-lg dark:shadow-none rounded-xl hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-all duration-300"
-                data-aos="fade-left"
+                data-aos="fade-up"
                 data-aos-delay="500"
               >
                 <div className="p-2 sm:p-3 bg-cyan-50 dark:bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 rounded-lg">
@@ -106,7 +106,7 @@ const Contact = () => {
               {/* Location */}
               <div
                 className="flex items-start gap-3 sm:gap-4 p-4 sm:p-6 bg-white dark:bg-gray-800/30 shadow-lg dark:shadow-none rounded-xl"
-                data-aos="fade-left"
+                data-aos="fade-up"
                 data-aos-delay="600"
               >
                 <div className="p-2 sm:p-3 bg-cyan-50 dark:bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 rounded-lg">

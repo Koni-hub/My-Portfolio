@@ -54,7 +54,7 @@ const AboutMe = () => {
           {/* Left Column - Introduction */}
           <div
             className="space-y-6 sm:space-y-8"
-            data-aos="fade-right"
+            data-aos="fade-up"
             data-aos-duration="1000"
             data-aos-delay="400"
           >
@@ -99,7 +99,7 @@ const AboutMe = () => {
               <a
                 href="#contact"
                 className="w-full sm:w-auto"
-                data-aos="fade-right"
+                data-aos="fade-up"
                 data-aos-duration="1000"
                 data-aos-delay="800"
               >
@@ -111,7 +111,7 @@ const AboutMe = () => {
               <a
                 href="#projects"
                 className="w-full sm:w-auto"
-                data-aos="fade-left"
+                data-aos="fade-up"
                 data-aos-duration="1000"
                 data-aos-delay="800"
               >
@@ -126,7 +126,7 @@ const AboutMe = () => {
           {/* Right Column - Skills & Services */}
           <div
             className="space-y-6 sm:space-y-8"
-            data-aos="fade-left"
+            data-aos="fade-up"
             data-aos-duration="1000"
             data-aos-delay="600"
           >

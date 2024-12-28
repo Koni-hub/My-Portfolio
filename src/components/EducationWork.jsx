@@ -117,7 +117,7 @@ const EducationWork = () => {
           {filteredData.map((item, index) => (
             <div
               key={index}
-              data-aos={index % 2 === 0 ? "fade-right" : "fade-left"}
+              data-aos={index % 2 === 0 ? "fade-up" : "fade-down"}
               data-aos-duration="1000"
               data-aos-delay={index * 200}
               className={`relative mb-8 sm:mb-12 md:w-1/2 ${
