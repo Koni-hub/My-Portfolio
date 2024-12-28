@@ -2,7 +2,7 @@ import { Heart } from "lucide-react";
 
 const Footer = () => {
   return (
-    <footer className="py-8 px-6 bg-white text dark:bg-gray-900 border-t border-white/10">
+    <footer className="py-8 px-6 bg-white text dark:bg-gray-900 border-t border-dark/10 dark:border-white/10">
       <div className="max-w-6xl mx-auto">
         <div className="flex flex-col items-center justify-center gap-4">
           {/* Made by Badge */}
