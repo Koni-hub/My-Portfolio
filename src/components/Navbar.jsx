@@ -179,7 +179,7 @@ const Navbar = () => {
                   key={link.href}
                   href={link.href}
                   onClick={(e) => handleNavClick(e, link.href)}
-                  className="text-gray-300 hover:text-cyan-500 text-lg font-medium transition-colors duration-200 text-center animate-fade-up"
+                  className="text-gray-300 hover:text-cyan-500 text-lg font-medium transition-colors duration-200 text-center animate-fade-left"
                 >
                   {link.label}
                 </a>
