@@ -7,6 +7,7 @@ import Projects from "../components/Projects.jsx";
 import Contact from "../components/Contact.jsx";
 import Footer from "../components/Footer.jsx";
 import EducationWork from "../components/EducationWork.jsx";
+import NewYearCountdown from "../components/NewYearCountdown.jsx";
 
 const Home = () => {
   const [showScrollButton, setShowScrollButton] = useState(false);
@@ -61,6 +62,9 @@ const Home = () => {
 
         {/* Contact Section */}
         <Contact />
+
+        {/* New Year Count Down */}
+        <NewYearCountdown />
 
         {/* Footer Section */}
         <Footer />
