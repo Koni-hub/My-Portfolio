@@ -1,4 +1,4 @@
-import { Mail, MapPin, Phone } from "lucide-react";
+import { Mail, MapPin } from "lucide-react";
 import { contactInfo } from "../constants/index.js";
 import AOS from "aos";
 import "aos/dist/aos.css";
@@ -79,26 +79,6 @@ const Contact = () => {
                   </h3>
                   <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 group-hover:text-cyan-600 dark:group-hover:text-cyan-400 transition-colors break-all">
                     {contactInfo.email}
-                  </p>
-                </div>
-              </a>
-
-              {/* Phone */}
-              <a
-                href={`tel:${contactInfo.phone}`}
-                className="group flex items-start gap-3 sm:gap-4 p-4 sm:p-6 bg-white dark:bg-gray-800/30 shadow-lg dark:shadow-none rounded-xl hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-all duration-300"
-                data-aos="fade-up"
-                data-aos-delay="500"
-              >
-                <div className="p-2 sm:p-3 bg-cyan-50 dark:bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 rounded-lg">
-                  <Phone size={20} className="sm:w-6 sm:h-6" />
-                </div>
-                <div>
-                  <h3 className="font-medium mb-0.5 sm:mb-1 text-sm sm:text-base text-gray-900 dark:text-white">
-                    Phone
-                  </h3>
-                  <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 group-hover:text-cyan-600 dark:group-hover:text-cyan-400 transition-colors">
-                    {contactInfo.phone}
                   </p>
                 </div>
               </a>
