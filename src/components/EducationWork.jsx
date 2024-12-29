@@ -170,8 +170,77 @@ const EducationWork = () => {
                   </div>
                 </div>
 
-                {/* Content sections for education entries */}
+                {/* Content sections for education and work entries */}
                 {item.type === "education" && (
+                  <div className="space-y-3 sm:space-y-4">
+                    {item.achievements && (
+                      <div className="space-y-2">
+                        <h4 className="text-sm sm:text-base font-medium flex items-center gap-2">
+                          <Award
+                            size={14}
+                            className="sm:w-4 sm:h-4 text-cyan-600 dark:text-cyan-400"
+                          />
+                          Achievements
+                        </h4>
+                        <ul className="text-gray-600 dark:text-gray-300 space-y-1 ml-4 sm:ml-5">
+                          {item.achievements.map((achievement, i) => (
+                            <li
+                              key={i}
+                              className="list-disc text-xs sm:text-sm"
+                            >
+                              {achievement}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
+
+                    {item.projects && (
+                      <div className="space-y-2">
+                        <h4 className="text-sm sm:text-base font-medium flex items-center gap-2">
+                          <Code
+                            size={14}
+                            className="sm:w-4 sm:h-4 text-cyan-600 dark:text-cyan-400"
+                          />
+                          Projects
+                        </h4>
+                        <ul className="text-gray-600 dark:text-gray-300 space-y-1 ml-4 sm:ml-5">
+                          {item.projects.map((project, i) => (
+                            <li
+                              key={i}
+                              className="list-disc text-xs sm:text-sm"
+                            >
+                              {project}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
+
+                    {item.relevantSkills && (
+                      <div className="space-y-2">
+                        <h4 className="text-sm sm:text-base font-medium flex items-center gap-2">
+                          <UserCheck
+                            size={14}
+                            className="sm:w-4 sm:h-4 text-cyan-600 dark:text-cyan-400"
+                          />
+                          Relevant Skills
+                        </h4>
+                        <div className="flex flex-wrap gap-1.5 sm:gap-2">
+                          {item.relevantSkills.map((skill, i) => (
+                            <span
+                              key={i}
+                              className="text-[10px] sm:text-xs px-2 sm:px-3 py-1 bg-cyan-50 dark:bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 rounded-full"
+                            >
+                              {skill}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                )}
+                {item.type === "work" && (
                   <div className="space-y-3 sm:space-y-4">
                     {item.achievements && (
                       <div className="space-y-2">
