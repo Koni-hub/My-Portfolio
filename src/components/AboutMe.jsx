@@ -24,6 +24,16 @@ const AboutMe = () => {
 
   if (!mounted) return null;
 
+  const handleScroll = (elementId) => {
+    const element = document.getElementById(elementId);
+    if (element) {
+      element.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }
+  };
+
   return (
     <section
       id="about"
@@ -95,31 +105,28 @@ const AboutMe = () => {
             </blockquote>
 
             {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
-              <a
-                href="#contact"
-                className="w-full sm:w-auto"
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 scroll-smooth">
+              <button
+                onClick={() => handleScroll("contact")}
+                className="w-full sm:w-auto flex items-center justify-center gap-2 bg-cyan-600 dark:bg-cyan-500 hover:bg-cyan-700 dark:hover:bg-cyan-600 text-white px-4 sm:px-6 py-2.5 sm:py-3 rounded-xl transition-colors text-sm sm:text-base"
                 data-aos="fade-up"
                 data-aos-duration="1000"
                 data-aos-delay="800"
               >
-                <button className="w-full sm:w-auto flex items-center justify-center gap-2 bg-cyan-600 dark:bg-cyan-500 hover:bg-cyan-700 dark:hover:bg-cyan-600 text-white px-4 sm:px-6 py-2.5 sm:py-3 rounded-xl transition-colors text-sm sm:text-base">
-                  <Mail size={18} className="sm:w-5 sm:h-5" />
-                  Get in Touch
-                </button>
-              </a>
-              <a
-                href="#projects"
-                className="w-full sm:w-auto"
+                <Mail size={18} className="sm:w-5 sm:h-5" />
+                Get in Touch
+              </button>
+
+              <button
+                onClick={() => handleScroll("projects")}
+                className="w-full sm:w-auto flex items-center justify-center gap-2 border border-cyan-600 dark:border-cyan-500 text-cyan-600 dark:text-cyan-500 hover:bg-cyan-50 dark:hover:bg-cyan-500/10 px-4 sm:px-6 py-2.5 sm:py-3 rounded-xl transition-colors text-sm sm:text-base"
                 data-aos="fade-up"
                 data-aos-duration="1000"
                 data-aos-delay="800"
               >
-                <button className="w-full sm:w-auto flex items-center justify-center gap-2 border border-cyan-600 dark:border-cyan-500 text-cyan-600 dark:text-cyan-500 hover:bg-cyan-50 dark:hover:bg-cyan-500/10 px-4 sm:px-6 py-2.5 sm:py-3 rounded-xl transition-colors text-sm sm:text-base">
-                  <FolderGit2 size={18} className="sm:w-5 sm:h-5" />
-                  View Projects
-                </button>
-              </a>
+                <FolderGit2 size={18} className="sm:w-5 sm:h-5" />
+                View Projects
+              </button>
             </div>
           </div>
 
