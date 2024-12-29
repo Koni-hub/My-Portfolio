@@ -71,7 +71,7 @@ export const timelineData = [
     ],
     projects: [
       "Developed a Document Control System with automated workflow tracking, version control, and search functionality using React.js and Node.js",
-      "Engineered a Human Information System featuring employee data management, attendance tracking, and performance analytics using MERN stack",
+      "Engineered a Human Information System featuring employee data management, attendance tracking, and performance analytics using Laravel PHP",
       "Created a Fitness Gym Management Platform with membership tracking, workout planning, and progress monitoring functionality",
       "Built an Apartment Management System to streamline tenant management, maintenance requests, and payment processing",
     ],
@@ -269,6 +269,5 @@ export const projects = [
 // Contact Data
 export const contactInfo = {
   email: "delgadoargie04z@gmail.com",
-  phone: "+63 916 123 4567",
   location: "Metro Manila, Philippines",
 };
