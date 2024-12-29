@@ -49,99 +49,38 @@ export const stats = [
 ];
 
 // -----------------
-// Education Data
+// Timeline Data
 import fortuneHighSchool from "../assets/education/fortune-high-school.jpg";
 import stiCollegeMarikina from "../assets/education/sti-college-marikina.png";
 
-export const educationData = [
-  {
-    period: "2024 - Present",
-    institution: "STI College - Marikina Campus",
-    degree: "Pursuing Associate Degree in Computer Science",
-    logo: stiCollegeMarikina,
-    achievements: [
-      "Active participant in coding events",
-      "Collaborated in multi-disciplinary tech teams on real-world projects",
-      "Gained hands-on experience in problem-solving and algorithm design",
-    ],
-    projects: [
-      "Developed a mobile app for student services",
-      "Designed and implemented a database management system for a mock business",
-      "Contributed to the creation of an open source library platform as part of a team project",
-    ],
-    relevantSkills: [
-      "Mobile App Development (Android Studio, Java)",
-      "Database Management (SQL, Firebase)",
-      "Team Collaboration (Git, Agile Methodologies)",
-      "Problem Solving and Algorithm Design",
-    ],
-  },
-  {
-    period: "2023 - 2024",
-    institution: "STI College - Marikina Campus",
-    degree: "Associate Degree in Mobile App & Web Development",
-    logo: stiCollegeMarikina,
-    achievements: [
-      "Mastered front-end and back-end technologies in web development",
-      "Demonstrated strong project management and leadership skills in group projects",
-      "Gained proficiency in building responsive websites and mobile applications",
-    ],
-    projects: [
-      "Developed and deployed a fully functional website for a local business",
-      "Collaborated in creating a system",
-      "Created interactive web features with JavaScript, HTML, and CSS",
-    ],
-    relevantSkills: [
-      "Web Development (HTML, CSS, JavaScript, Node.js)",
-      "Mobile App Development (React)",
-      "Database Management (MySQL)",
-      "Project Management (ClickUp)",
-    ],
-  },
-  {
-    period: "2018 - 2023",
-    institution: "Fortune High School",
-    degree: "High School Diploma",
-    logo: fortuneHighSchool,
-    achievements: [
-      "Active involvement in school clubs",
-      "Consistent academic performance",
-      "Developed critical thinking and research skills",
-    ],
-    relevantSkills: [
-      "Research and Analytical Skills",
-      "Public Speaking and Presentation",
-      "Team Leadership and Collaboration",
-    ],
-  },
-];
-
-// -----------------
-// Work Experience Data
-export const workData = [
+export const timelineData = [
+  // Work Experience
   {
     type: "work",
     period: "2024 - Present",
     title: "Freelance Web Developer",
     organization: "Independent / Freelance",
     description:
-      "Working on full-stack development projects for various clients",
+      "Full-stack developer specializing in business process automation and management systems using modern web technologies.",
     logo: "https://via.placeholder.com/64",
-  },
-];
-
-// -----------------
-// Timeline Data
-export const timelineData = [
-  // Work Experience
-  {
-    type: "work",
-    period: "2024 - Present",
-    title: "Freelancer",
-    organization: "Independent / Freelance",
-    description:
-      "Working on full-stack development projects for various clients",
-    logo: "https://via.placeholder.com/64",
+    achievements: [
+      "Delivered 4 full-stack applications that improved client operational efficiency",
+      "Maintained 95% client satisfaction rate through effective requirement gathering and implementation",
+      "Reduced system response times by 40% through performance optimization",
+      "Implemented secure authentication and data protection measures across all projects",
+    ],
+    projects: [
+      "Developed a Document Control System with automated workflow tracking, version control, and search functionality using React.js and Node.js",
+      "Engineered a Human Information System featuring employee data management, attendance tracking, and performance analytics using MERN stack",
+      "Created a Fitness Gym Management Platform with membership tracking, workout planning, and progress monitoring functionality",
+      "Built an Apartment Management System to streamline tenant management, maintenance requests, and payment processing",
+    ],
+    relevantSkills: [
+      "MERN Stack (MongoDB, Express.js, React.js, Node.js)",
+      "PHP Development (Laravel Framework)",
+      "Database Management (MySQL, MongoDB, phpMyAdmin)",
+      "RESTful API Development",
+    ],
   },
   // Education
   {
@@ -216,6 +155,7 @@ export const timelineData = [
 // Projects Data
 import onlineOrderingSystemImg from "../assets/projects/online-ordering-system.png";
 import documentControllerSystemImg from "../assets/projects/online-document-controller-system.png";
+import apartmentManagementSystemImg from "../assets/projects/apartment-management-system.png";
 import fitnessGymSystemImg from "../assets/projects/online-fitness-system.png";
 import humanInformationSystemImg from "../assets/projects/online-human-information-system.png";
 import bookManagementSystemImg from "../assets/projects/online-book-management-system.png";
@@ -232,6 +172,7 @@ export const projects = [
     imageUrl: onlineOrderingSystemImg,
     links: {
       source: "#",
+      website: "#",
     },
   },
   {
@@ -242,6 +183,18 @@ export const projects = [
     imageUrl: documentControllerSystemImg,
     links: {
       source: "#",
+      website: "#",
+    },
+  },
+  {
+    title: "Apartment Management System",
+    description:
+      "A system designed to organize, track, and manage payments, allowing tenants to rent rooms and receive updates seamlessly.",
+    technologies: "PHP, PhpMyAdmin, JavaScript",
+    imageUrl: apartmentManagementSystemImg,
+    links: {
+      source: "#",
+      website: "#",
     },
   },
   {
@@ -252,16 +205,18 @@ export const projects = [
     imageUrl: fitnessGymSystemImg,
     links: {
       source: "#",
+      website: "#",
     },
   },
   {
     title: "Human Information System",
     description:
-      "A system for managing personal information, schedules, and health data for gym members.",
+      "A system designed to manage and organize personal information efficiently and securely.",
     technologies: "Laravel, Vue JS, PHP",
     imageUrl: humanInformationSystemImg,
     links: {
       source: "#",
+      website: "#",
     },
   },
   {
@@ -272,6 +227,7 @@ export const projects = [
     imageUrl: bookManagementSystemImg,
     links: {
       source: "#",
+      website: "#",
     },
   },
   {
@@ -282,6 +238,7 @@ export const projects = [
     imageUrl: bookSummaryImg,
     links: {
       source: "#",
+      website: "#",
     },
   },
   {
@@ -292,6 +249,7 @@ export const projects = [
     imageUrl: nexProxyImg,
     links: {
       source: "#",
+      website: "#",
     },
   },
   {
@@ -302,6 +260,7 @@ export const projects = [
     imageUrl: cakeStoreImg,
     links: {
       source: "#",
+      website: "#",
     },
   },
 ];

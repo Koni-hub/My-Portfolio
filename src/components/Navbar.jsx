@@ -52,7 +52,7 @@ const Navbar = () => {
 
   const navLinks = [
     { href: "#home", label: "Home" },
-    { href: "#workeducation", label: "Career" },
+    { href: "#workeducation", label: "Timeline" },
     { href: "#about", label: "About" },
     { href: "#projects", label: "Projects" },
     { href: "#contact", label: "Contact" },
