@@ -1,6 +1,6 @@
 import { Github, Linkedin, Mail, FileDown } from "lucide-react";
 import { useState, useEffect } from "react";
-import { heroData } from "../constants";
+import { heroData } from "../constants/index.js";
 import Resume from "../assets/resume/Argie-Delgado_Resume.pdf";
 import AOS from "aos";
 import "aos/dist/aos.css";
@@ -87,7 +87,7 @@ const Hero = () => {
                 href={heroData.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-gray-400 hover:text-cyan-400 transition-colors hover:rotate-6 duration-300"
+                className="text-gray-400 hover:text-cyan-400 transition-transform hover:rotate-6 duration-300 ease-in-out"
               >
                 <Linkedin size={24} />
               </a>
@@ -95,7 +95,7 @@ const Hero = () => {
                 href={heroData.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-gray-400 hover:text-white transition-colors hover:rotate-6 duration-300"
+                className="text-gray-400 hover:text-gray-400 dark:hover:text-white transition-transform hover:rotate-6 duration-300 ease-in-out"
               >
                 <Github size={24} />
               </a>
@@ -103,7 +103,7 @@ const Hero = () => {
                 href={`mailto:${heroData.email}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-gray-400 hover:text-red-400 transition-colors hover:rotate-6 duration-300"
+                className="text-gray-400 hover:text-red-400 transition-transform hover:rotate-6 duration-300 ease-in-out"
               >
                 <Mail size={24} />
               </a>
