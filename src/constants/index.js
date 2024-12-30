@@ -28,12 +28,12 @@ export const aboutData = {
 };
 
 export const programming_lang = [
-  "Node.js",
-  "C#",
-  "C++",
   "Java",
-  "JavaScript",
+  "C++",
+  "Node.js",
   "PHP",
+  "C#",
+  "JavaScript",
 ];
 
 export const services = [
@@ -52,17 +52,19 @@ export const stats = [
 // Timeline Data
 import fortuneHighSchool from "../assets/education/fortune-high-school.jpg";
 import stiCollegeMarikina from "../assets/education/sti-college-marikina.png";
+import freelancer_logo from "../assets/education/freelancer.jpg";
+import nbi_logo from "../assets/education/nbi.jpg";
 
 export const timelineData = [
   // Work Experience
   {
     type: "work",
-    period: "2024 - Present",
-    title: "Freelance Web Developer",
-    organization: "Independent / Freelance",
+    period: "January 2024 - Present",
+    degree: "Freelance Web Developer",
+    organization: "Freelance",
     description:
       "Full-stack developer specializing in business process automation and management systems using modern web technologies.",
-    logo: "https://via.placeholder.com/64",
+    logo: freelancer_logo,
     achievements: [
       "Delivered 4 full-stack applications that improved client operational efficiency",
       "Maintained 95% client satisfaction rate through effective requirement gathering and implementation",
@@ -82,13 +84,36 @@ export const timelineData = [
       "RESTful API Development",
     ],
   },
+  {
+    type: "work",
+    period: "February 2024 - June 2024",
+    degree: "Work Immersion - Data Encoder",
+    organization: "NBI Riverbanks Satellite Office",
+    description:
+      "Gaining hands-on experience in data encoding and management as part of a work immersion program at the National Bureau of Investigation's Riverbanks Satellite Office in Marikina City, NCR.",
+    logo: nbi_logo,
+    achievements: [
+      "Accurately encoded and organized over 500 records during the immersion period",
+      "Supported data management and retrieval processes, improving overall office efficiency",
+      "Adhered to data privacy standards, ensuring the confidentiality of sensitive information",
+    ],
+    projects: [
+      "Contributed to the digitization of case files and other records into the office's database system",
+      "Collaborated with the team to implement data validation processes for improved accuracy",
+    ],
+    relevantSkills: [
+      "Data Entry and Encoding",
+      "Attention to Detail",
+      "Database Management",
+      "Data Privacy and Confidentiality",
+    ],
+  },
   // Education
   {
     type: "education",
-    period: "2024 - Present",
-    title: "Student",
+    period: "August 2024 - Present",
+    degree: "Bachelor of Science in Computer Science",
     organization: "STI College - Marikina Campus",
-    degree: "Pursuing Associate Degree in Computer Science",
     logo: stiCollegeMarikina,
     achievements: [
       "Active participant in coding events",
@@ -109,10 +134,9 @@ export const timelineData = [
   },
   {
     type: "education",
-    period: "2023 - 2024",
-    title: "Student",
+    period: "November 2022 - July 2024",
+    degree: "IT in Mobile App and Web Development",
     organization: "STI College - Marikina Campus",
-    degree: "Associate Degree in Mobile App & Web Development",
     logo: stiCollegeMarikina,
     achievements: [
       "Mastered front-end and back-end technologies in web development",
@@ -133,15 +157,19 @@ export const timelineData = [
   },
   {
     type: "education",
-    period: "2018 - 2023",
-    title: "Student",
-    organization: "Fortune High School",
+    period: "January 2017 - June 2022",
     degree: "High School Diploma",
+    organization: "Fortune High School",
     logo: fortuneHighSchool,
     achievements: [
       "Active involvement in school clubs",
       "Consistent academic performance",
       "Developed critical thinking and research skills",
+    ],
+    projects: [
+      "Participated in the Science Fair and conducted an experiment on plant growth.",
+      "Organized a Recycling Campaign in the community, collecting over 500 pounds of recyclables.",
+      "Delivered a Public Presentation on environmental conservation to the school assembly.",
     ],
     relevantSkills: [
       "Research and Analytical Skills",
