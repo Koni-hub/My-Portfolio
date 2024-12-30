@@ -165,7 +165,7 @@ const EducationWork = () => {
                           : "text-purple-600 dark:text-purple-400"
                       }`}
                     >
-                      {item.title}
+                      {item.degree}
                     </div>
                   </div>
                 </div>
