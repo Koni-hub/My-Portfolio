@@ -1,12 +1,115 @@
+/* eslint-disable react/prop-types */
 import { useEffect, useState } from "react";
-import { GraduationCap, Briefcase, Award, Code, UserCheck } from "lucide-react";
+import {
+  GraduationCap,
+  Briefcase,
+  Award,
+  Code,
+  UserCheck,
+  ChevronDown,
+  ChevronUp,
+} from "lucide-react";
 import { timelineData } from "../constants/index.js";
 import AOS from "aos";
 import "aos/dist/aos.css";
 
+const TimelineContent = ({ item }) => {
+  const [isExpanded, setIsExpanded] = useState(false);
+  const iconColor =
+    item.type === "education"
+      ? "text-cyan-600 dark:text-cyan-400"
+      : "text-purple-600 dark:text-purple-400";
+  const bgColor =
+    item.type === "education"
+      ? "bg-cyan-50 dark:bg-cyan-500/10"
+      : "bg-purple-50 dark:bg-purple-500/10";
+
+  return (
+    <div className="space-y-3">
+      <p className="text-sm text-gray-600 dark:text-gray-300">
+        {item.description}
+      </p>
+
+      <div
+        className={`space-y-4 transition-all duration-300 ${
+          isExpanded ? "block" : "hidden"
+        }`}
+      >
+        {item.achievements && (
+          <div className="space-y-2">
+            <h4 className="text-sm sm:text-base font-medium flex items-center gap-2">
+              <Award size={14} className={`sm:w-4 sm:h-4 ${iconColor}`} />
+              Achievements
+            </h4>
+            <ul className="text-gray-600 dark:text-gray-300 space-y-1 ml-4 sm:ml-5">
+              {item.achievements.map((achievement, i) => (
+                <li key={i} className="list-disc text-xs sm:text-sm">
+                  {achievement}
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+
+        {item.technicalDetails && (
+          <div className="space-y-2">
+            <h4 className="text-sm sm:text-base font-medium flex items-center gap-2">
+              <Code size={14} className={`sm:w-4 sm:h-4 ${iconColor}`} />
+              Technical Details
+            </h4>
+            <ul className="text-gray-600 dark:text-gray-300 space-y-1 ml-4 sm:ml-5">
+              {item.technicalDetails.map((technical, i) => (
+                <li key={i} className="list-disc text-xs sm:text-sm">
+                  {technical}
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+
+        {item.relevantSkills && (
+          <div className="space-y-2">
+            <h4 className="text-sm sm:text-base font-medium flex items-center gap-2">
+              <UserCheck size={14} className={`sm:w-4 sm:h-4 ${iconColor}`} />
+              Relevant Skills
+            </h4>
+            <div className="flex flex-wrap gap-1.5 sm:gap-2">
+              {item.relevantSkills.map((skill, i) => (
+                <span
+                  key={i}
+                  className={`text-[10px] sm:text-xs px-2 sm:px-3 py-1 ${bgColor} ${iconColor} rounded-full`}
+                >
+                  {skill}
+                </span>
+              ))}
+            </div>
+          </div>
+        )}
+      </div>
+
+      <button
+        onClick={() => setIsExpanded(!isExpanded)}
+        className={`flex items-center gap-1 text-xs ${iconColor} hover:underline mt-2`}
+      >
+        {isExpanded ? (
+          <>
+            View Less <ChevronUp size={14} />
+          </>
+        ) : (
+          <>
+            View More <ChevronDown size={14} />
+          </>
+        )}
+      </button>
+    </div>
+  );
+};
+
 const EducationWork = () => {
   const [filter, setFilter] = useState("all");
   const [mounted, setMounted] = useState(false);
+  const [visibleCount, setVisibleCount] = useState(3);
+  const [showMoreButton, setShowMoreButton] = useState(true);
 
   useEffect(() => {
     setMounted(true);
@@ -18,9 +121,14 @@ const EducationWork = () => {
     });
   }, []);
 
+  useEffect(() => {
+    // Reset visible count when filter changes
+    setVisibleCount(3);
+    setShowMoreButton(true);
+  }, [filter]);
+
   if (!mounted) return null;
 
-  // eslint-disable-next-line react/prop-types
   const TimelineIcon = ({ type }) =>
     type === "education" ? (
       <GraduationCap
@@ -37,6 +145,16 @@ const EducationWork = () => {
   const filteredData = timelineData.filter((item) =>
     filter === "all" ? true : item.type === filter
   );
+
+  const visibleData = filteredData.slice(0, visibleCount);
+
+  const handleViewMore = () => {
+    const newCount = visibleCount + 3;
+    setVisibleCount(newCount);
+    if (newCount >= filteredData.length) {
+      setShowMoreButton(false);
+    }
+  };
 
   return (
     <section
@@ -111,10 +229,9 @@ const EducationWork = () => {
 
         {/* Timeline */}
         <div className="relative">
-          {/* Timeline line */}
           <div className="absolute left-4 md:left-1/2 h-full w-0.5 bg-gradient-to-b from-purple-500/30 to-cyan-500/30" />
 
-          {filteredData.map((item, index) => (
+          {visibleData.map((item, index) => (
             <div
               key={index}
               data-aos={index % 2 === 0 ? "fade-up" : "fade-down"}
@@ -126,7 +243,6 @@ const EducationWork = () => {
                   : "md:pl-8 lg:pl-12 ml-8 sm:ml-12 md:ml-0"
               }`}
             >
-              {/* Timeline dot */}
               <div
                 className={`absolute top-0 ${
                   index % 2 === 0
@@ -139,9 +255,7 @@ const EducationWork = () => {
                 } rounded-full transform -translate-y-1/2`}
               />
 
-              {/* Content card */}
               <div className="bg-white dark:bg-gray-800/30 shadow-lg dark:shadow-none rounded-lg p-4 sm:p-6 hover:bg-gray-50 dark:hover:bg-gray-800/40 transition-all duration-300">
-                {/* Header */}
                 <div className="flex items-start sm:items-center gap-3 sm:gap-4 mb-4">
                   <img
                     src={item.logo}
@@ -156,7 +270,7 @@ const EducationWork = () => {
                       </span>
                     </div>
                     <h3 className="text-lg sm:text-xl font-semibold">
-                      {item.organization}
+                      {item.title}
                     </h3>
                     <div
                       className={`text-xs sm:text-sm ${
@@ -165,154 +279,28 @@ const EducationWork = () => {
                           : "text-purple-600 dark:text-purple-400"
                       }`}
                     >
-                      {item.degree}
+                      {item.organization}
                     </div>
                   </div>
                 </div>
 
-                {/* Content sections for education and work entries */}
-                {item.type === "education" && (
-                  <div className="space-y-3 sm:space-y-4">
-                    {item.achievements && (
-                      <div className="space-y-2">
-                        <h4 className="text-sm sm:text-base font-medium flex items-center gap-2">
-                          <Award
-                            size={14}
-                            className="sm:w-4 sm:h-4 text-cyan-600 dark:text-cyan-400"
-                          />
-                          Achievements
-                        </h4>
-                        <ul className="text-gray-600 dark:text-gray-300 space-y-1 ml-4 sm:ml-5">
-                          {item.achievements.map((achievement, i) => (
-                            <li
-                              key={i}
-                              className="list-disc text-xs sm:text-sm"
-                            >
-                              {achievement}
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    )}
-
-                    {item.projects && (
-                      <div className="space-y-2">
-                        <h4 className="text-sm sm:text-base font-medium flex items-center gap-2">
-                          <Code
-                            size={14}
-                            className="sm:w-4 sm:h-4 text-cyan-600 dark:text-cyan-400"
-                          />
-                          Projects
-                        </h4>
-                        <ul className="text-gray-600 dark:text-gray-300 space-y-1 ml-4 sm:ml-5">
-                          {item.projects.map((project, i) => (
-                            <li
-                              key={i}
-                              className="list-disc text-xs sm:text-sm"
-                            >
-                              {project}
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    )}
-
-                    {item.relevantSkills && (
-                      <div className="space-y-2">
-                        <h4 className="text-sm sm:text-base font-medium flex items-center gap-2">
-                          <UserCheck
-                            size={14}
-                            className="sm:w-4 sm:h-4 text-cyan-600 dark:text-cyan-400"
-                          />
-                          Relevant Skills
-                        </h4>
-                        <div className="flex flex-wrap gap-1.5 sm:gap-2">
-                          {item.relevantSkills.map((skill, i) => (
-                            <span
-                              key={i}
-                              className="text-[10px] sm:text-xs px-2 sm:px-3 py-1 bg-cyan-50 dark:bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 rounded-full"
-                            >
-                              {skill}
-                            </span>
-                          ))}
-                        </div>
-                      </div>
-                    )}
-                  </div>
-                )}
-                {item.type === "work" && (
-                  <div className="space-y-3 sm:space-y-4">
-                    {item.achievements && (
-                      <div className="space-y-2">
-                        <h4 className="text-sm sm:text-base font-medium flex items-center gap-2">
-                          <Award
-                            size={14}
-                            className="sm:w-4 sm:h-4 text-cyan-600 dark:text-cyan-400"
-                          />
-                          Achievements
-                        </h4>
-                        <ul className="text-gray-600 dark:text-gray-300 space-y-1 ml-4 sm:ml-5">
-                          {item.achievements.map((achievement, i) => (
-                            <li
-                              key={i}
-                              className="list-disc text-xs sm:text-sm"
-                            >
-                              {achievement}
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    )}
-
-                    {item.projects && (
-                      <div className="space-y-2">
-                        <h4 className="text-sm sm:text-base font-medium flex items-center gap-2">
-                          <Code
-                            size={14}
-                            className="sm:w-4 sm:h-4 text-cyan-600 dark:text-cyan-400"
-                          />
-                          Projects
-                        </h4>
-                        <ul className="text-gray-600 dark:text-gray-300 space-y-1 ml-4 sm:ml-5">
-                          {item.projects.map((project, i) => (
-                            <li
-                              key={i}
-                              className="list-disc text-xs sm:text-sm"
-                            >
-                              {project}
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    )}
-
-                    {item.relevantSkills && (
-                      <div className="space-y-2">
-                        <h4 className="text-sm sm:text-base font-medium flex items-center gap-2">
-                          <UserCheck
-                            size={14}
-                            className="sm:w-4 sm:h-4 text-cyan-600 dark:text-cyan-400"
-                          />
-                          Relevant Skills
-                        </h4>
-                        <div className="flex flex-wrap gap-1.5 sm:gap-2">
-                          {item.relevantSkills.map((skill, i) => (
-                            <span
-                              key={i}
-                              className="text-[10px] sm:text-xs px-2 sm:px-3 py-1 bg-cyan-50 dark:bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 rounded-full"
-                            >
-                              {skill}
-                            </span>
-                          ))}
-                        </div>
-                      </div>
-                    )}
-                  </div>
-                )}
+                <TimelineContent item={item} />
               </div>
             </div>
           ))}
         </div>
+
+        {/* View More Button */}
+        {showMoreButton && filteredData.length > visibleCount && (
+          <div className="text-center mt-8">
+            <button
+              onClick={handleViewMore}
+              className="inline-flex items-center gap-2 px-4 py-2 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-300"
+            >
+              View More <ChevronDown size={16} />
+            </button>
+          </div>
+        )}
       </div>
     </section>
   );
