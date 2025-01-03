@@ -52,130 +52,200 @@ export const stats = [
 // Timeline Data
 import fortuneHighSchool from "../assets/education/fortune-high-school.jpg";
 import stiCollegeMarikina from "../assets/education/sti-college-marikina.png";
-import freelancer_logo from "../assets/education/freelancer.jpg";
+// import freelancer_logo from "../assets/education/freelancer.jpg";
 import nbi_logo from "../assets/education/nbi.jpg";
+import tesda_region_logo from "../assets/project-logo/tesda-reg-III.png";
+import gym_system_logo from "../assets/project-logo/gym-system.png";
+import shermelle_logo from "../assets/project-logo/sharlogs.png";
+import human_information_logo from "../assets/project-logo/human-info-system.jpg";
 
 export const timelineData = [
-  // Work Experience
+  // Document Controller System
   {
     type: "work",
-    period: "January 2024 - Present",
-    degree: "Freelance Web Developer",
-    organization: "Freelance",
+    period: "July 2024 - Dec 2024",
+    title: "Document Controller System",
+    organization: "TESDA Region 3",
     description:
-      "Full-stack developer specializing in business process automation and management systems using modern web technologies.",
-    logo: freelancer_logo,
+      "Developed a document controller system to streamline TESDA Region 3's document processing workflow",
+    logo: tesda_region_logo,
     achievements: [
-      "Delivered 4 full-stack applications that improved client operational efficiency",
-      "Maintained 95% client satisfaction rate through effective requirement gathering and implementation",
-      "Reduced system response times by 40% through performance optimization",
-      "Implemented secure authentication and data protection measures across all projects",
+      "Developed and implemented a document tracking system with role-based access control, improving document processing workflow efficiency.",
+      "Create an audit logging system to track user actions and maintain document history.",
+      "Developed dashboard analytics for monitoring documents status (completed, pending, rejected).",
+      "Built user-friendly interfaces for document creation, updating, and status management.",
     ],
-    projects: [
-      "Developed a Document Control System with automated workflow tracking, version control, and search functionality using React.js and Node.js",
-      "Engineered a Human Information System featuring employee data management, attendance tracking, and performance analytics using Laravel PHP",
-      "Created a Fitness Gym Management Platform with membership tracking, workout planning, and progress monitoring functionality",
-      "Built an Apartment Management System to streamline tenant management, maintenance requests, and payment processing",
+    technicalDetails: [
+      "Frontend: React.js with custom components for document management interface.",
+      "Backend: Node.js and Express.js for RESTful API Development.",
+      "Database: MySQL for document and audit log storage",
     ],
     relevantSkills: [
-      "MERN Stack (MongoDB, Express.js, React.js, Node.js)",
-      "PHP Development (Laravel Framework)",
-      "Database Management (MySQL, MongoDB, phpMyAdmin)",
-      "RESTful API Development",
+      "React.js",
+      "Node.js",
+      "MySQL",
+      "API Development",
+      "User Authentication",
     ],
   },
+  // Human Information System
+  {
+    type: "work",
+    period: "August 2024 - November 2024",
+    title: "Human Information System",
+    organization: "HR Management Solutions",
+    description:
+      "Developed HR Management Solutions, a human information system designed to enhance efficiency, accuracy, and automation across various human resource processes",
+    logo: human_information_logo,
+    achievements: [
+      "Implemented dynamic personnel tracking system with unique identifier generation",
+      "Built multi-role access system supporting Admin, Principal, and Personnel user types.",
+      "Implemented automated PDF generation for Personnel Data Form (PDF) and Personal Data Sheet (PDS).",
+      "Built secure employee data management system",
+    ],
+    technicalDetails: [
+      "Frontend: Tailwind CSS for responsive design optimized for mobile users.",
+      "Database: MySQL with optimized queries",
+      "Backend: Laravel PHP framework for robust system architecture.",
+      "Database: MySQL for efficient personnel data management.",
+    ],
+    relevantSkills: [
+      "Laravel PHP",
+      "MySQL",
+      "Bootstrap",
+      "jQuery",
+      "API Development",
+    ],
+  },
+  // Gym Management System
+  {
+    type: "work",
+    period: "September 2024 - December 2024",
+    title: "Gym Management System",
+    organization: "Fitness Center Management",
+    description:
+      "Developed comprehensive gym management system handling membership and workout tracking for JMNID Gym.",
+    logo: gym_system_logo,
+    achievements: [
+      "Built multi-role access system supporting Admin, Principal, and Personnel user types",
+      "Implemented dynamic personnel tracking system with unique identifier generation.",
+    ],
+    technicalDetails: [
+      "Full Stack: MERN (MongoDB, Express.js, React.js, Node.js)",
+      "Styling: Tailwind CSS for responsive design",
+    ],
+    relevantSkills: ["MERN Stack", "Tailwind CSS", "UX/UI Design"],
+  },
+  // Apartment Management System
+  {
+    type: "work",
+    period: "August 2024 - September 2024",
+    title: "Apartment Management System",
+    organization: "Shermelle Properties",
+    description:
+      "Developed an Apartment Management System for Shermelle Properties to efficiently handle apartment operations and management tasks.",
+    logo: shermelle_logo,
+    achievements: [
+      "Developed an intuitive and responsive user interface using Tailwind CSS, enabling seamless navigation and interaction for users.",
+      "Built a secure and scalable backend with PHP and MySQL, ensuring reliable storage and efficient retrieval of property and tenant data.",
+    ],
+    technicalDetails: [
+      "Frontend: Tailwind CSS for responsive, mobile-friendly design.",
+      "Backend: PHP for server-side logic",
+      "Database: MySQL for data management",
+    ],
+    relevantSkills: ["PHP", "MySQL"],
+  },
+  // Work Immersion
   {
     type: "work",
     period: "February 2024 - June 2024",
-    degree: "Work Immersion - Data Encoder",
+    title: "Work Immersion - Data Encoder",
     organization: "NBI Riverbanks Satellite Office",
     description:
-      "Gaining hands-on experience in data encoding and management as part of a work immersion program at the National Bureau of Investigation's Riverbanks Satellite Office in Marikina City, NCR.",
+      "Handled data encoding and management at the NBI Riverbanks Satellite Office in Marikina City",
     logo: nbi_logo,
     achievements: [
-      "Accurately encoded and organized over 500 records during the immersion period",
-      "Supported data management and retrieval processes, improving overall office efficiency",
-      "Adhered to data privacy standards, ensuring the confidentiality of sensitive information",
+      "Managed and organized office records",
+      "Assisted in data management operations",
+      "Maintained data privacy protocols",
     ],
-    projects: [
-      "Contributed to the digitization of case files and other records into the office's database system",
-      "Collaborated with the team to implement data validation processes for improved accuracy",
+    technicalDetails: [
+      "Digitized case files and records",
+      "Implemented data validation processes",
     ],
     relevantSkills: [
-      "Data Entry and Encoding",
-      "Attention to Detail",
+      "Data Entry",
       "Database Management",
-      "Data Privacy and Confidentiality",
+      "Data Privacy",
+      "Office Administration",
     ],
   },
-  // Education
+  // Education - Current
   {
     type: "education",
     period: "August 2024 - Present",
-    degree: "Bachelor of Science in Computer Science",
+    title: "Bachelor of Science in Computer Science",
     organization: "STI College - Marikina Campus",
     logo: stiCollegeMarikina,
     achievements: [
-      "Active participant in coding events",
-      "Collaborated in multi-disciplinary tech teams on real-world projects",
-      "Gained hands-on experience in problem-solving and algorithm design",
+      "Active in coding competitions",
+      "Participated in tech project teams",
+      "Focused on practical programming skills",
     ],
-    projects: [
-      "Developed a mobile app for student services",
-      "Designed and implemented a database management system for a mock business",
-      "Contributed to the creation of an open source library platform as part of a team project",
+    technicalDetails: [
+      "Mobile app development projects",
+      "Database system design",
+      "Team-based development work",
     ],
     relevantSkills: [
-      "Mobile App Development (Android Studio, Java)",
-      "Database Management (SQL, Firebase)",
-      "Team Collaboration (Git, Agile Methodologies)",
-      "Problem Solving and Algorithm Design",
+      "Mobile Development",
+      "Database Management",
+      "Team Collaboration",
+      "Problem Solving",
     ],
   },
+  // Previous Education
   {
     type: "education",
     period: "November 2022 - July 2024",
-    degree: "IT in Mobile App and Web Development",
+    title: "IT in Mobile App and Web Development",
     organization: "STI College - Marikina Campus",
     logo: stiCollegeMarikina,
     achievements: [
-      "Mastered front-end and back-end technologies in web development",
-      "Demonstrated strong project management and leadership skills in group projects",
-      "Gained proficiency in building responsive websites and mobile applications",
+      "Learned full-stack development",
+      "Led group coding projects",
+      "Built responsive web applications",
     ],
-    projects: [
-      "Developed and deployed a fully functional website for a local business",
-      "Collaborated in creating a system",
-      "Created interactive web features with JavaScript, HTML, and CSS",
+    technicalDetails: [
+      "Web development projects",
+      "System development",
+      "Frontend and backend integration",
     ],
     relevantSkills: [
-      "Web Development (HTML, CSS, JavaScript, React.js, Node.js)",
-      "Mobile App Development (Java)",
-      "Database Management (MySQL)",
-      "Project Management (ClickUp)",
+      "Web Development",
+      "Mobile Development",
+      "Database Management",
+      "Project Management",
     ],
   },
   {
     type: "education",
     period: "January 2017 - June 2022",
-    degree: "High School Diploma",
+    title: "High School Diploma",
     organization: "Fortune High School",
     logo: fortuneHighSchool,
     achievements: [
-      "Active involvement in school clubs",
-      "Consistent academic performance",
-      "Developed critical thinking and research skills",
+      "Participated in tech clubs",
+      "Maintained good academic standing",
+      "Developed foundation skills",
     ],
-    projects: [
-      "Participated in the Science Fair and conducted an experiment on plant growth.",
-      "Organized a Recycling Campaign in the community, collecting over 500 pounds of recyclables.",
-      "Delivered a Public Presentation on environmental conservation to the school assembly.",
+    technicalDetails: [
+      "Basic programming concepts",
+      "Computer literacy",
+      "Problem-solving skills",
     ],
-    relevantSkills: [
-      "Research and Analytical Skills",
-      "Public Speaking and Presentation",
-      "Team Leadership and Collaboration",
-    ],
+    relevantSkills: ["Basic Programming", "Computer Skills", "Teamwork"],
   },
 ];
 
