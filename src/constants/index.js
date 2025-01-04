@@ -128,7 +128,7 @@ export const timelineData = [
     type: "work",
     period: "September 2024 - December 2024",
     title: "Gym Management System",
-    organization: "Fitness Center Management",
+    organization: "JMNID Gym",
     description:
       "Developed comprehensive gym management system handling membership and workout tracking for JMNID Gym.",
     logo: gym_system_logo,
