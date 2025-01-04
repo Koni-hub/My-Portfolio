@@ -133,8 +133,9 @@ export const timelineData = [
       "Developed comprehensive gym management system handling membership and workout tracking for JMNID Gym.",
     logo: gym_system_logo,
     achievements: [
-      "Built multi-role access system supporting Admin, Principal, and Personnel user types.",
-      "Implemented dynamic personnel tracking system with unique identifier generation.",
+      "Developed a multi-role access system enabling distinct functionalities for Admin and User roles.",
+      "Implemented a system to efficiently track work tasks and meal plans.",
+      "Designed and implemented a schedule planning system to organize tasks and activities efficiently.",
     ],
     technicalDetails: [
       "Full Stack: MERN (MongoDB, Express.js, React.js, Node.js)",
