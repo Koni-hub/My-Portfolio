@@ -71,8 +71,8 @@ export const timelineData = [
     logo: tesda_region_logo,
     achievements: [
       "Developed and implemented a document tracking system with role-based access control, improving document processing workflow efficiency.",
-      "Create an audit logging system to track user actions and maintain document history.",
-      "Developed dashboard analytics for monitoring documents status (completed, pending, rejected).",
+      "Created an audit logging system to track user actions and maintain document history.",
+      "Developed dashboard analytics for monitoring document status (completed, pending, rejected).",
       "Built user-friendly interfaces for document creation, updating, and status management.",
     ],
     technicalDetails: [
@@ -86,8 +86,11 @@ export const timelineData = [
       "MySQL",
       "API Development",
       "User Authentication",
+      "Role-Based Access Control",
+      "Dashboard Analytics",
     ],
   },
+
   // Human Information System
   {
     type: "work",
@@ -98,14 +101,14 @@ export const timelineData = [
       "Developed HR Management Solutions, a human information system designed to enhance efficiency, accuracy, and automation across various human resource processes",
     logo: human_information_logo,
     achievements: [
-      "Implemented dynamic personnel tracking system with unique identifier generation",
+      "Implemented dynamic personnel tracking system with unique identifier generation.",
       "Built multi-role access system supporting Admin, Principal, and Personnel user types.",
       "Implemented automated PDF generation for Personnel Data Form (PDF) and Personal Data Sheet (PDS).",
-      "Built secure employee data management system",
+      "Built secure employee data management system.",
     ],
     technicalDetails: [
       "Frontend: Tailwind CSS for responsive design optimized for mobile users.",
-      "Database: MySQL with optimized queries",
+      "Database: MySQL with optimized queries.",
       "Backend: Laravel PHP framework for robust system architecture.",
       "Database: MySQL for efficient personnel data management.",
     ],
@@ -115,8 +118,11 @@ export const timelineData = [
       "Bootstrap",
       "jQuery",
       "API Development",
+      "PDF Generation",
+      "Multi-Role Access",
     ],
   },
+
   // Gym Management System
   {
     type: "work",
@@ -127,15 +133,21 @@ export const timelineData = [
       "Developed comprehensive gym management system handling membership and workout tracking for JMNID Gym.",
     logo: gym_system_logo,
     achievements: [
-      "Built multi-role access system supporting Admin, Principal, and Personnel user types",
+      "Built multi-role access system supporting Admin, Principal, and Personnel user types.",
       "Implemented dynamic personnel tracking system with unique identifier generation.",
     ],
     technicalDetails: [
       "Full Stack: MERN (MongoDB, Express.js, React.js, Node.js)",
       "Styling: Tailwind CSS for responsive design",
     ],
-    relevantSkills: ["MERN Stack", "Tailwind CSS", "UX/UI Design"],
+    relevantSkills: [
+      "MERN Stack",
+      "Tailwind CSS",
+      "UX/UI Design",
+      "User Access Management",
+    ],
   },
+
   // Apartment Management System
   {
     type: "work",
@@ -151,10 +163,16 @@ export const timelineData = [
     ],
     technicalDetails: [
       "Frontend: Tailwind CSS for responsive, mobile-friendly design.",
-      "Backend: PHP for server-side logic",
-      "Database: MySQL for data management",
+      "Backend: PHP for server-side logic.",
+      "Database: MySQL for data management.",
     ],
-    relevantSkills: ["PHP", "MySQL"],
+    relevantSkills: [
+      "PHP",
+      "MySQL",
+      "Tailwind CSS",
+      "Responsive Design",
+      "Database Management",
+    ],
   },
   // Work Immersion
   {
@@ -166,19 +184,22 @@ export const timelineData = [
       "Handled data encoding and management at the NBI Riverbanks Satellite Office in Marikina City",
     logo: nbi_logo,
     achievements: [
-      "Managed and organized office records",
-      "Assisted in data management operations",
-      "Maintained data privacy protocols",
+      "Processed and encoded over 500 applicant records with high accuracy.",
+      "Managed biometric data collection and verification processes.",
+      "Assisted applicants through clearance application procedures.",
+      "Maintained strict data privacy and confidentiality standards.",
     ],
     technicalDetails: [
-      "Digitized case files and records",
-      "Implemented data validation processes",
+      "Digitized case files and records, converting physical documents into digital formats for easier access and management.",
+      "Implemented data validation processes to ensure data accuracy and consistency by checking for errors.",
     ],
     relevantSkills: [
       "Data Entry",
       "Database Management",
       "Data Privacy",
       "Office Administration",
+      "Data Validation",
+      "Document Digitization",
     ],
   },
   // Education - Current
@@ -189,22 +210,27 @@ export const timelineData = [
     organization: "STI College - Marikina Campus",
     logo: stiCollegeMarikina,
     achievements: [
-      "Active in coding competitions",
-      "Participated in tech project teams",
-      "Focused on practical programming skills",
+      "Active in coding competitions, participating regularly to sharpen problem-solving and programming skills.",
+      "Participated in open-source tech project teams, contributing to collaborative development and innovation.",
+      "Focused on developing practical programming skills through hands-on projects and real-world applications.",
     ],
     technicalDetails: [
-      "Mobile app development projects",
-      "Database system design",
-      "Team-based development work",
+      "Developed mobile apps, focusing on functionality and performance.",
+      "Followed agile methodologies and Scrum practices for efficient project management and collaboration.",
+      "Collaborated on team-based development projects to achieve shared goals.",
     ],
     relevantSkills: [
       "Mobile Development",
-      "Database Management",
+      "Agile Methodology",
       "Team Collaboration",
       "Problem Solving",
+      "Software Development Life Cycle (SDLC)",
+      "Version Control (Git)",
+      "Cross-Platform Development",
+      "UI/UX Design",
     ],
   },
+
   // Previous Education
   {
     type: "education",
@@ -213,22 +239,26 @@ export const timelineData = [
     organization: "STI College - Marikina Campus",
     logo: stiCollegeMarikina,
     achievements: [
-      "Learned full-stack development",
-      "Led group coding projects",
-      "Built responsive web applications",
+      "Learned full-stack development, gaining skills in both front-end and back-end to build complete web applications.",
+      "Led group coding projects, coordinating tasks and ensuring effective collaboration to achieve project goals.",
+      "Built responsive web applications, ensuring they are optimized for various devices and screen sizes.",
     ],
     technicalDetails: [
-      "Web development projects",
-      "System development",
-      "Frontend and backend integration",
+      "Worked on web development projects, building dynamic and responsive websites.",
+      "Engaged in system development, designing and building software solutions to meet specific user needs.",
+      "Worked on frontend and backend integration, ensuring seamless communication between user interfaces and server-side functionality.",
     ],
     relevantSkills: [
-      "Web Development",
+      "Full-Stack Web Development",
       "Mobile Development",
-      "Database Management",
+      "Database Design and Management",
       "Project Management",
+      "Team Collaboration and Leadership",
+      "Frontend and Backend Integration",
+      "Cross-Platform Development",
     ],
   },
+
   {
     type: "education",
     period: "January 2017 - June 2022",
@@ -236,16 +266,21 @@ export const timelineData = [
     organization: "Fortune High School",
     logo: fortuneHighSchool,
     achievements: [
-      "Participated in tech clubs",
-      "Maintained good academic standing",
-      "Developed foundation skills",
+      "Participated in tech clubs, engaging in activities, discussions, and projects to enhance technical knowledge and skills.",
+      "Maintained good academic standing by consistently achieving high grades and meeting academic requirements.",
+      "Developed foundation skills by mastering key concepts and building a strong base for advanced learning.",
     ],
     technicalDetails: [
-      "Basic programming concepts",
-      "Computer literacy",
-      "Problem-solving skills",
+      "Mastered basic programming concepts, including variables, control structures, data types, and functions.",
+      "Possess strong computer literacy, including proficiency in software applications, troubleshooting, and understanding of computer systems.",
+      "Strong problem-solving skills, with the ability to analyze issues and develop effective solutions efficiently.",
     ],
-    relevantSkills: ["Basic Programming", "Computer Skills", "Teamwork"],
+    relevantSkills: [
+      "Basic Programming",
+      "Computer Skills",
+      "Teamwork",
+      "Problem Solving",
+    ],
   },
 ];
 
