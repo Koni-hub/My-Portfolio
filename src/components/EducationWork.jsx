@@ -181,7 +181,7 @@ const EducationWork = () => {
             data-aos-delay="200"
           >
             Explore my professional journey and educational background,
-            showcasing my skills and experiences.
+            showcasing my skills, achievements and experiences.
           </p>
 
           {/* Filter Buttons */}
