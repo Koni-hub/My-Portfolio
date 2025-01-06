@@ -123,7 +123,7 @@ const Navbar = () => {
                 </button>
 
                 {/* Dropdown */}
-                <div className="absolute right-0 mt-2 w-40 py-2 shadow-lg text-gray-600 dark:bg-gray-800 rounded-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+                <div className="absolute right-0 mt-2 w-40 py-2 shadow-lg bg-white text-gray-600 dark:bg-gray-800 rounded-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
                   {themeOptions.map((option) => (
                     <button
                       key={option.value}
