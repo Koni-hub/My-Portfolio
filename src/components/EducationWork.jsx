@@ -31,8 +31,10 @@ const TimelineContent = ({ item }) => {
       </p>
 
       <div
-        className={`space-y-4 transition-all duration-300 ${
-          isExpanded ? "block" : "hidden"
+        className={`space-y-4 transition-all duration-300  ${
+          isExpanded
+            ? "max-h-[500px] opacity-100"
+            : "max-h-0 opacity-0 overflow-hidden"
         }`}
       >
         {item.achievements && (
@@ -89,15 +91,16 @@ const TimelineContent = ({ item }) => {
 
       <button
         onClick={() => setIsExpanded(!isExpanded)}
-        className={`flex items-center gap-1 text-xs ${iconColor} hover:underline mt-2`}
+        className={`flex items-center gap-1 text-xs ${iconColor} hover:underline mt-2 transition-transform duration-300`}
       >
         {isExpanded ? (
           <>
-            View Less <ChevronUp size={14} />
+            View Less <ChevronUp className="w-4 h-4 animate-bounce" size={14} />
           </>
         ) : (
           <>
-            View More <ChevronDown size={14} />
+            View More{" "}
+            <ChevronDown className="w-4 h-4 animate-bounce" size={14} />
           </>
         )}
       </button>
@@ -186,7 +189,7 @@ const EducationWork = () => {
 
           {/* Filter Buttons */}
           <div
-            className="flex justify-center gap-2 sm:gap-4 mb-6 sm:mb-8"
+            className="flex flex-wrap sm:flex-col sm:mx-10 justify-center gap-2 mb-6"
             data-aos="fade-up"
             data-aos-duration="1000"
             data-aos-delay="400"
@@ -231,63 +234,65 @@ const EducationWork = () => {
         <div className="relative">
           <div className="absolute left-4 md:left-1/2 h-full w-0.5 bg-gradient-to-b from-purple-500/30 to-cyan-500/30" />
 
-          {visibleData.map((item, index) => (
-            <div
-              key={index}
-              data-aos={index % 2 === 0 ? "fade-up" : "fade-down"}
-              data-aos-duration="1000"
-              data-aos-delay={index * 200}
-              className={`relative mb-8 sm:mb-12 md:w-1/2 ${
-                index % 2 === 0
-                  ? "md:pr-8 lg:pr-12 ml-8 sm:ml-12 md:ml-auto"
-                  : "md:pl-8 lg:pl-12 ml-8 sm:ml-12 md:ml-0"
-              }`}
-            >
+          <div className="flex flex-col">
+            {visibleData.map((item, index) => (
               <div
-                className={`absolute top-0 ${
+                key={index}
+                data-aos={index % 2 === 0 ? "fade-up" : "fade-down"}
+                data-aos-duration="1000"
+                data-aos-delay={index * 200}
+                className={`relative mb-8 sm:mb-12 md:w-1/2 transition-all duration-500 ${
                   index % 2 === 0
-                    ? "-left-4 sm:-left-8 md:-left-3"
-                    : "-left-4 sm:-left-8 md:-left-3"
-                } w-4 sm:w-6 h-4 sm:h-6 bg-gray-50 dark:bg-gray-900 border-4 ${
-                  item.type === "education"
-                    ? "border-cyan-500"
-                    : "border-purple-500"
-                } rounded-full transform -translate-y-1/2`}
-              />
+                    ? "md:pr-8 lg:pr-12 ml-8 sm:ml-12 md:ml-auto"
+                    : "md:pl-8 lg:pl-12 ml-8 sm:ml-12 md:ml-0"
+                }`}
+              >
+                <div
+                  className={`absolute top-0 ${
+                    index % 2 === 0
+                      ? "-left-4 sm:-left-8 md:-left-3"
+                      : "-left-4 sm:-left-8 md:-left-3"
+                  } w-4 sm:w-6 h-4 sm:h-6 bg-gray-50 dark:bg-gray-900 border-4 ${
+                    item.type === "education"
+                      ? "border-cyan-500"
+                      : "border-purple-500"
+                  } rounded-full transform -translate-y-1/2`}
+                />
 
-              <div className="bg-white dark:bg-gray-800/30 shadow-lg dark:shadow-none rounded-lg p-4 sm:p-6 hover:bg-gray-50 dark:hover:bg-gray-800/40 transition-all duration-300">
-                <div className="flex items-start sm:items-center gap-3 sm:gap-4 mb-4">
-                  <img
-                    src={item.logo}
-                    alt={item.organization}
-                    className="w-12 h-12 sm:w-16 sm:h-16 rounded-lg object-cover"
-                  />
-                  <div>
-                    <div className="flex items-center gap-2">
-                      <TimelineIcon type={item.type} />
-                      <span className="text-xs sm:text-sm font-medium text-gray-500 dark:text-gray-400">
-                        {item.period}
-                      </span>
-                    </div>
-                    <h3 className="text-lg sm:text-xl font-semibold">
-                      {item.title}
-                    </h3>
-                    <div
-                      className={`text-xs sm:text-sm ${
-                        item.type === "education"
-                          ? "text-cyan-600 dark:text-cyan-400"
-                          : "text-purple-600 dark:text-purple-400"
-                      }`}
-                    >
-                      {item.organization}
+                <div className="bg-white dark:bg-gray-800/30 shadow-lg dark:shadow-none rounded-lg p-4 sm:p-6 hover:bg-gray-50 dark:hover:bg-gray-800/40 transition-all duration-300">
+                  <div className="flex flex-col sm:flex-row items-start gap-3 mb-4">
+                    <img
+                      src={item.logo}
+                      alt={item.organization}
+                      className="w-12 h-12 sm:w-16 sm:h-16 rounded-lg object-cover"
+                    />
+                    <div>
+                      <div className="flex items-center gap-2">
+                        <TimelineIcon type={item.type} />
+                        <span className="text-xs sm:text-sm font-medium text-gray-500 dark:text-gray-400">
+                          {item.period}
+                        </span>
+                      </div>
+                      <h3 className="text-lg sm:text-xl font-semibold">
+                        {item.title}
+                      </h3>
+                      <div
+                        className={`text-xs sm:text-sm ${
+                          item.type === "education"
+                            ? "text-cyan-600 dark:text-cyan-400"
+                            : "text-purple-600 dark:text-purple-400"
+                        }`}
+                      >
+                        {item.organization}
+                      </div>
                     </div>
                   </div>
-                </div>
 
-                <TimelineContent item={item} />
+                  <TimelineContent item={item} />
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
 
         {/* View More Button */}
@@ -297,7 +302,8 @@ const EducationWork = () => {
               onClick={handleViewMore}
               className="inline-flex items-center gap-2 px-4 py-2 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-300"
             >
-              View More <ChevronDown size={16} />
+              View More{" "}
+              <ChevronDown className="w-4 h-4 animate-bounce" size={16} />
             </button>
           </div>
         )}
