@@ -189,7 +189,7 @@ const EducationWork = () => {
 
           {/* Filter Buttons */}
           <div
-            className="flex flex-wrap sm:flex-col sm:mx-10 justify-center gap-2 mb-6"
+            className="flex flex-col sm:flex-row justify-center gap-2 mb-6"
             data-aos="fade-up"
             data-aos-duration="1000"
             data-aos-delay="400"
