@@ -27,13 +27,26 @@ export const aboutData = {
     "Code with passions, debug with patience, and celebrate every successful build",
 };
 
+// Programming languages with brief descriptions
 export const programming_lang = [
-  "Java",
-  "C++",
-  "Node.js",
-  "PHP",
-  "C#",
-  "JavaScript",
+  [
+    "Java",
+    "A versatile, object-oriented language for building robust applications",
+  ],
+  ["C++", "A powerful language for high-performance and system programming"],
+  [
+    "Node.js",
+    "A runtime environment for executing JavaScript on the server side",
+  ],
+  ["PHP", "A server-side scripting language designed for web development"],
+  [
+    "C#",
+    "A modern, object-oriented language developed by Microsoft for the .NET platform",
+  ],
+  [
+    "JavaScript",
+    "A dynamic language for creating interactive client-side web applications",
+  ],
 ];
 
 export const services = [
@@ -46,6 +59,44 @@ export const stats = [
   { label: "Projects Completed", value: "21+" },
   { label: "Happy Clients", value: "5+" },
   { label: "Countries Reached", value: "2+" },
+];
+
+export const initialTechResources = [
+  "HTML",
+  "The standard markup language for web pages",
+  "CSS",
+  "The styling language that describes the presentation of a document",
+  "Tailwind CSS",
+  "A utility-first CSS framework",
+];
+
+export const additionalTechResources = [
+  "Bootstrap",
+  "A popular CSS framework for building responsive websites",
+  "Spring Boot",
+  "A Java-based framework for creating stand-alone applications",
+  "React",
+  "A JavaScript library for building user interfaces",
+  "Firebase",
+  "A platform for web and mobile app development",
+  "MySQL",
+  "An open-source relational database management system",
+  "SQlite",
+  "A lightweight, serverless database engine",
+  "Docker",
+  "A platform for developing and deploying applications in containers",
+  "MongoDB",
+  "A NoSQL database for modern applications",
+  "Vue.js",
+  "A progressive JavaScript framework for building UIs",
+  "Express.js",
+  "A minimal and flexible Node.js web application framework",
+  "Git",
+  "A distributed version control system",
+  "GitHub",
+  "A platform for hosting and collaborating on Git repositories",
+  "Laravel",
+  "A PHP framework for web application development",
 ];
 
 // -----------------
