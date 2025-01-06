@@ -5,12 +5,15 @@ import {
   programming_lang,
   services,
   stats,
+  initialTechResources,
+  additionalTechResources,
 } from "../constants/index.js";
 import AOS from "aos";
 import "aos/dist/aos.css";
 
 const AboutMe = () => {
   const [mounted, setMounted] = useState(false);
+  const [isExpanded, setIsExpanded] = useState(false);
 
   useEffect(() => {
     setMounted(true);
@@ -44,7 +47,6 @@ const AboutMe = () => {
         data-aos="fade-up"
         data-aos-duration="1000"
       >
-        {/* Header */}
         <div
           className="text-center mb-8 sm:mb-12 lg:mb-16"
           data-aos="fade-up"
@@ -59,18 +61,14 @@ const AboutMe = () => {
           </p>
         </div>
 
-        {/* Main Content Grid */}
         <div className="grid lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 mb-8 sm:mb-12 lg:mb-16">
-          {/* Left Column - Introduction */}
           <div
             className="space-y-6 sm:space-y-8"
             data-aos="fade-up"
             data-aos-duration="1000"
             data-aos-delay="400"
           >
-            {/* Profile Info */}
             <div className="space-y-4">
-              {/* Quick Facts */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 bg-white dark:bg-gray-800/30 shadow-lg dark:shadow-none p-4 sm:p-6 rounded-xl">
                 <div className="space-y-1">
                   <p className="text-gray-500 dark:text-gray-400 text-xs sm:text-sm">
@@ -99,13 +97,11 @@ const AboutMe = () => {
               </div>
             </div>
 
-            {/* Bio Quote */}
             <blockquote className="text-lg italic text-gray-600 dark:text-gray-300 border-l-4 border-cyan-500 pl-4 py-2">
               {aboutData.quote}
             </blockquote>
 
-            {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 scroll-smooth">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
               <button
                 onClick={() => handleScroll("contact")}
                 className="w-full sm:w-auto flex items-center justify-center gap-2 bg-cyan-600 dark:bg-cyan-500 hover:bg-cyan-700 dark:hover:bg-cyan-600 text-white px-4 sm:px-6 py-2.5 sm:py-3 rounded-xl transition-colors text-sm sm:text-base"
@@ -116,7 +112,6 @@ const AboutMe = () => {
                 <Mail size={18} className="sm:w-5 sm:h-5" />
                 Get in Touch
               </button>
-
               <button
                 onClick={() => handleScroll("projects")}
                 className="w-full sm:w-auto flex items-center justify-center gap-2 border border-cyan-600 dark:border-cyan-500 text-cyan-600 dark:text-cyan-500 hover:bg-cyan-50 dark:hover:bg-cyan-500/10 px-4 sm:px-6 py-2.5 sm:py-3 rounded-xl transition-colors text-sm sm:text-base"
@@ -130,14 +125,12 @@ const AboutMe = () => {
             </div>
           </div>
 
-          {/* Right Column - Skills & Services */}
           <div
             className="space-y-6 sm:space-y-8"
             data-aos="fade-up"
             data-aos-duration="1000"
             data-aos-delay="600"
           >
-            {/* Skills */}
             <div className="space-y-4 sm:space-y-6">
               <h2 className="text-lg sm:text-xl font-semibold">
                 Programming Skills
@@ -145,15 +138,57 @@ const AboutMe = () => {
               <div className="flex flex-wrap gap-2 sm:gap-3">
                 {programming_lang.map((skill) => (
                   <span
-                    key={skill}
+                    key={skill[0]}
+                    title={skill[1]}
                     className="bg-cyan-50 dark:bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg text-xs sm:text-sm hover:bg-cyan-100 dark:hover:bg-cyan-500/20 transition-colors cursor-default"
                   >
-                    {skill}
+                    {skill[0]}
                   </span>
                 ))}
               </div>
             </div>
-            {/* Services */}
+
+            <div className="space-y-4 sm:space-y-6">
+              <h2 className="text-lg sm:text-xl font-semibold">
+                Resources Tools & Platforms
+              </h2>
+              <div className="space-y-4">
+                <div className="flex flex-wrap gap-2">
+                  {initialTechResources.map(
+                    (tool, index) =>
+                      index % 2 === 0 && (
+                        <span
+                          key={tool}
+                          title={initialTechResources[index + 1]}
+                          className="bg-cyan-50 dark:bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 px-3 py-1.5 rounded-lg text-xs hover:bg-cyan-100 dark:hover:bg-cyan-500/20 transition-colors cursor-default"
+                        >
+                          {tool}
+                        </span>
+                      )
+                  )}
+                  {isExpanded &&
+                    additionalTechResources.map(
+                      (tool, index) =>
+                        index % 2 === 0 && (
+                          <span
+                            key={tool}
+                            title={additionalTechResources[index + 1]}
+                            className="bg-cyan-50 dark:bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 px-3 py-1.5 rounded-lg text-xs hover:bg-cyan-100 dark:hover:bg-cyan-500/20 transition-colors cursor-default"
+                          >
+                            {tool}
+                          </span>
+                        )
+                    )}
+                </div>
+                <button
+                  onClick={() => setIsExpanded(!isExpanded)}
+                  className="flex items-center gap-1 text-xs text-cyan-600 dark:text-cyan-400 hover:text-cyan-700 dark:hover:text-cyan-300 transition-colors"
+                >
+                  {isExpanded ? "View Less" : "View More"}
+                </button>
+              </div>
+            </div>
+
             <div className="space-y-4 sm:space-y-6">
               <h2 className="text-lg sm:text-xl font-semibold">Services</h2>
               <div className="grid gap-3 sm:gap-4">
@@ -175,7 +210,6 @@ const AboutMe = () => {
           </div>
         </div>
 
-        {/* Stats Grid */}
         <div
           className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6"
           data-aos="fade-up"
