@@ -240,7 +240,7 @@ export const timelineData = [
   // Document Controller System
   {
     type: "work",
-    period: "July 2024 - Dec 2024",
+    period: "July 2024 - December 2024",
     title: "Document Controller System",
     organization: "TESDA Region 3",
     description:
