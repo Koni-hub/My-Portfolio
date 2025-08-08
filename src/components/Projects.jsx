@@ -5,69 +5,79 @@ import { useState, useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
 
-const ProjectCard = ({ project, index }) => (
-  <div
-    className="bg-white dark:bg-gray-800/30 shadow-lg dark:shadow-none rounded-xl p-4 lg:p-6 flex flex-col gap-3 lg:gap-4 hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors"
-    data-aos="fade-up"
-    data-aos-duration="1000"
-    data-aos-delay={200 + (index % 2) * 200}
-  >
-    <div className="relative aspect-video overflow-hidden rounded-lg">
-      <img
-        src={project.imageUrl}
-        alt={project.title}
-        className="w-full h-full object-cover"
-      />
-    </div>
+const ProjectCard = ({ project, index }) => {
+  const [isPortrait, setIsPortrait] = useState(false);
 
-    <div className="space-y-3 lg:space-y-4">
-      <h3 className="text-lg lg:text-xl font-semibold text-gray-900 dark:text-white">
-        {project.title}
-      </h3>
-      <p className="text-gray-600 dark:text-gray-400 text-sm">
-        {project.description}
-      </p>
-
-      <div className="flex flex-wrap gap-2">
-        {project.technologies.split(", ").map((tech) => (
-          <span
-            key={tech}
-            className="px-2 lg:px-3 py-1 bg-gray-100 dark:bg-gray-700/50 text-gray-600 dark:text-gray-300 rounded-full text-xs lg:text-sm"
-          >
-            {tech}
-          </span>
-        ))}
+  return (
+    <div
+      className="bg-white dark:bg-gray-800/30 shadow-lg dark:shadow-none rounded-xl p-4 lg:p-6 flex flex-col gap-3 lg:gap-4 hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors"
+      data-aos="fade-up"
+      data-aos-duration="1000"
+      data-aos-delay={200 + (index % 2) * 200}
+    >
+      <div className="relative aspect-video overflow-hidden rounded-lg">
+        <img
+          src={project.imageUrl}
+          alt={project.title}
+          className={`w-full h-full ${
+            isPortrait ? "object-contain" : "object-cover"
+          }`}
+          onLoad={(e) => {
+            const { naturalWidth, naturalHeight } = e.target;
+            setIsPortrait(naturalHeight > naturalWidth);
+          }}
+        />
       </div>
 
-      {project.links && (
-        <div className="flex flex-wrap gap-2 sm:gap-3 pt-2">
-          {project.links.source && (
-            <a
-              href={project.links.source}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-1 lg:gap-2 text-sm text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white transition-colors"
+      <div className="space-y-3 lg:space-y-4">
+        <h3 className="text-lg lg:text-xl font-semibold text-gray-900 dark:text-white">
+          {project.title}
+        </h3>
+        <p className="text-gray-600 dark:text-gray-400 text-sm">
+          {project.description}
+        </p>
+
+        <div className="flex flex-wrap gap-2">
+          {project.technologies.split(", ").map((tech) => (
+            <span
+              key={tech}
+              className="px-2 lg:px-3 py-1 bg-gray-100 dark:bg-gray-700/50 text-gray-600 dark:text-gray-300 rounded-full text-xs lg:text-sm"
             >
-              <Github size={16} />
-              Source
-            </a>
-          )}
-          {project.links.website && (
-            <a
-              href={project.links.website}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-1 lg:gap-2 text-sm text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white transition-colors"
-            >
-              <Globe size={16} />
-              Website
-            </a>
-          )}
+              {tech}
+            </span>
+          ))}
         </div>
-      )}
+
+        {project.links && (
+          <div className="flex flex-wrap gap-2 sm:gap-3 pt-2">
+            {project.links.source && (
+              <a
+                href={project.links.source}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-1 lg:gap-2 text-sm text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white transition-colors"
+              >
+                <Github size={16} />
+                Source
+              </a>
+            )}
+            {project.links.website && (
+              <a
+                href={project.links.website}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-1 lg:gap-2 text-sm text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white transition-colors"
+              >
+                <Globe size={16} />
+                Website
+              </a>
+            )}
+          </div>
+        )}
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 const Projects = () => {
   const [displayCount, setDisplayCount] = useState(4);

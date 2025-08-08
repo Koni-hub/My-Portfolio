@@ -47,17 +47,22 @@ export const programming_lang = [
     "JavaScript",
     "A dynamic language for creating interactive client-side web applications",
   ],
+  [
+    "GDScript",
+    "A high-level, dynamically typed programming language used in Godot Engine",
+  ],
 ];
 
 export const services = [
   { text: "Mobile/App Development" },
+  { text: "AR/VR App Development" },
   { text: "Game Development" },
 ];
 
 export const stats = [
   { label: "Entry Level", value: "Junior" },
-  { label: "Projects Completed", value: "21+" },
-  { label: "Happy Clients", value: "5+" },
+  { label: "Projects Completed", value: "24+" },
+  { label: "Happy Clients", value: "8+" },
   { label: "Countries Reached", value: "2+" },
 ];
 
@@ -109,8 +114,129 @@ import tesda_region_logo from "../assets/project-logo/tesda-reg-III.png";
 import gym_system_logo from "../assets/project-logo/gym-system.png";
 import shermelle_logo from "../assets/project-logo/sharlogs.png";
 import human_information_logo from "../assets/project-logo/human-info-system.jpg";
+import ph_lore_game_logo from "../assets/project-logo/ph_lore.png";
+import arise_logo from "../assets/project-logo/arise_logo.jpg";
+import naviguide_logp from "../assets/project-logo/naviguide.png";
+import bridgeXSign_logo from "../assets/project-logo/bridgeXsign.jpg";
 
 export const timelineData = [
+  {
+    type: "work",
+    period: "July 2025 – Aug 2025",
+    title: "BridgeXSign: ML-Based Sign Language Translator",
+    organization: "Independent Mobile App Development",
+    description:
+      "Developed a mobile application enabling real-time translation between speech, text, and sign language with quick-access tools for translation, community connection, and sign language references.",
+    logo: bridgeXSign_logo,
+    achievements: [
+      "Implemented speech-to-text and text-to-speech translation for accessibility.",
+      "Developed camera-based sign language recognition using machine learning.",
+      "Integrated quick shortcuts for translation modes, community access, and sign references.",
+    ],
+    technicalDetails: [
+      "Languages: Java, Python",
+      "Platform: Android",
+      "Tools & Frameworks: Android Studio, TensorFlow, Firebase, Camera API, Speech Recognition API",
+      "Features: Speech-to-text, Sign-to-speech, Community tab, Sign language info tab",
+    ],
+    relevantSkills: [
+      "Android Development",
+      "Machine Learning",
+      "TensorFlow",
+      "Speech Recognition",
+      "Camera API Integration",
+      "Mobile UI/UX Design",
+      "Firebase",
+    ],
+  },
+
+  // Naviguide
+  {
+    type: "work",
+    period: "June 2025 - July 2025",
+    title: "NaviGuide: Aircraft Marshalling Gesture Trainer",
+    organization: "Independent VR/AR Development",
+    description:
+      "Developed a VR training app for learning proper aircraft marshalling gestures with real-time feedback.",
+    logo: naviguide_logp,
+    achievements: [
+      "Used MediaPipe for pose detection and gesture recognition in Unity.",
+      "Implemented interactive VR guides with visual cues for correct signal execution.",
+    ],
+    technicalDetails: [
+      "Engine: Unity (C# scripting).",
+      "Pose Detection: MediaPipe for real-time landmark tracking.",
+      "Platform: Android (built and deployed via Unity).",
+      "Features: Gesture recognition, VR training environment, real-time visual feedback.",
+    ],
+    relevantSkills: [
+      "Unity",
+      "MediaPipe",
+      "VR Development",
+      "Gesture Recognition",
+      "Android Deployment",
+    ],
+  },
+  // ARISE
+  {
+    type: "work",
+    period: "June 2025 - July 2025",
+    title: "ARISE: AR PC Assembly/Disassembly",
+    organization: "Independent Mobile AR Development",
+    description:
+      "Designed and developed an Android augmented reality application for interactive computer assembly and disassembly training, leveraging image recognition and 3D visualization.",
+    logo: arise_logo,
+    achievements: [
+      "Built an AR-based Android application using Unity and Vuforia for marker-based component recognition.",
+      "Implemented interactive 3D models of PC components with guided step-by-step assembly and disassembly instructions.",
+      "Integrated SceneView for real-time rendering of 3D parts and animations.",
+      "Optimized asset performance for mobile devices with adaptive UI layouts and responsive touch controls.",
+    ],
+    technicalDetails: [
+      "Engine: Unity (C# scripting for AR interactions and UI logic).",
+      "Platform: Android (deployed via Unity Android build pipeline).",
+      "Features: Vuforia image tracking, 3D component interaction, guided assembly animations, mobile touch UI.",
+    ],
+    relevantSkills: [
+      "Unity",
+      "Vuforia AR",
+      "Mobile AR Development",
+      "3D Modeling Integration",
+      "UI/UX Design",
+      "C# Programming",
+      "Android Deployment",
+    ],
+  },
+  // PH Lore: Mini RPG Mobile Game
+  {
+    type: "work",
+    period: "March 2025 - April 2025",
+    title: "PH Lore: Mini RPG Mobile Game",
+    organization: "Independent Game Development",
+    description:
+      "Designed and developed a mobile game exploring Philippine folklore, combining interactive storytelling with engaging gameplay mechanics.",
+    logo: ph_lore_game_logo,
+    achievements: [
+      "Developed a 2D mobile game built on Godot Engine centered on creatures and myths from Philippine folklore.",
+      "Implemented a branching narrative system featuring quests based on regional myths (e.g., Manananggal, Kapre, Tikbalang).",
+      "Created hand-drawn style assets and animations optimized for mobile performance.",
+      "Deployed the game on Android with adaptive UI and scalable control schemes for various screen sizes.",
+    ],
+    technicalDetails: [
+      "Engine: Godot (GDScript and visual scripting for gameplay logic).",
+      "Platform: Android (exported via Godot mobile templates).",
+      "Features: Dialogue system, quest tracking, inventory system, mobile touch UI.",
+    ],
+    relevantSkills: [
+      "Godot Engine",
+      "Mobile Game Development",
+      "2D Animation",
+      "UI/UX Design",
+      "Narrative Design",
+      "GDScript",
+      "Game Publishing (Android)",
+    ],
+  },
   // Document Controller System
   {
     type: "work",
@@ -347,8 +473,60 @@ import bookManagementSystemImg from "../assets/projects/online-book-management-s
 import bookSummaryImg from "../assets/projects/static-book-summary.png";
 import nexProxyImg from "../assets/projects/static-nex-proxy.png";
 import cakeStoreImg from "../assets/projects/static-cake-store.png";
+import phLoreMiniRPGImg from "../assets/projects/ph_lore.png";
+import arPcAssemblyImg from "../assets/projects/arise.jpg";
+import naviGuideImg from "../assets/projects/naviguide.jpg";
+import bridgeXSignImg from "../assets/projects/bridgeXsign.jpg";
 
 export const projects = [
+  {
+    title: "BridgeXSign: ML-Based Sign Language Translator",
+    description:
+      "A mobile application enabling real-time translation between speech, text, and sign language, featuring quick-access tools for translation, community engagement, and sign language references.",
+    technologies:
+      "Java, Android Studio, Firebase, Machine Learning, Camera API, Speech Recognition API",
+    imageUrl: bridgeXSignImg,
+    links: {
+      source: "#",
+      website: "#",
+    },
+  },
+  {
+    title: "NaviGuide: Aircraft Marshalling Gesture Trainer",
+    description:
+      "An Android-based VR training application for guided learning of proper aircraft marshalling gestures, using Unity and MediaPipe for real-time pose detection and interactive guidance.",
+    technologies:
+      "Unity, MediaPipe, VR Development, Gesture Recognition, Android Deployment",
+    imageUrl: naviGuideImg,
+    links: {
+      source: "#",
+      website: "#",
+    },
+  },
+  {
+    title: "AR PC Assembly/Disassembly",
+    description:
+      "An Android augmented reality app for interactive PC component assembly and disassembly, featuring marker-based recognition and step-by-step 3D guides.",
+    technologies:
+      "Unity, Vuforia AR, C# Programming, 3D Modeling Integration, Android Deployment",
+    imageUrl: arPcAssemblyImg,
+    links: {
+      source: "#",
+      website: "#",
+    },
+  },
+  {
+    title: "PH LORE: Mini RPG Mobile Game",
+    description:
+      "A mobile RPG game that immerses players in Filipino folklore through short quests, creature encounters, and lore-based dialogue, designed and optimized for Android devices.",
+    technologies:
+      "Godot Engine (GDScript), 2D Animation, Mobile UI/UX, Android Export",
+    imageUrl: phLoreMiniRPGImg,
+    links: {
+      source: "#",
+      website: "#",
+    },
+  },
   {
     title: "Online Ordering System",
     description:

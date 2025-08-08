@@ -64,7 +64,7 @@ const Home = () => {
         <Contact />
 
         {/* New Year Count */}
-        <NewYearCountdown />
+        {/* <NewYearCountdown /> */}
 
         {/* Footer Section */}
         <Footer />
