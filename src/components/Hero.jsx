@@ -1,7 +1,7 @@
 import { Github, Linkedin, Mail, FileDown } from "lucide-react";
 import { useState, useEffect } from "react";
 import { heroData } from "../constants/index.js";
-// import Resume from "../assets/resume/Argie-Delgado_Resume.pdf";
+import Resume from "../assets/resume/ARGIE_P._DELGADO_RESUME.pdf";
 import AOS from "aos";
 import "aos/dist/aos.css";
 
@@ -74,13 +74,13 @@ const Hero = () => {
             data-aos="fade-up"
             data-aos-delay="600"
           >
-            {/* <button
+            <button
               className="shadow-lg text-gray-500 group flex items-center gap-2 px-6 py-2 rounded-full bg-white/10 hover:bg-white/20 transition-all duration-300"
               onClick={() => window.open(Resume, "_blank")}
             >
               <FileDown size={20} className="text-cyan-400" />
               <span>Resume</span>
-            </button> */}
+            </button>
 
             <div className="flex items-center gap-6">
               <a
