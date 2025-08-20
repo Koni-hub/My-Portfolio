@@ -22,9 +22,8 @@ export const aboutData = {
   experience: 3,
   exp_freelance: "1+",
   work: "Full Stack Developer",
-  age: "18",
-  quote:
-    "Code with passions, debug with patience, and celebrate every successful build",
+  age: "19",
+  quote: "I code with passion, debug with patience, and deliver results.",
 };
 
 // Programming languages with brief descriptions
@@ -54,8 +53,8 @@ export const programming_lang = [
 ];
 
 export const services = [
-  { text: "Mobile/App Development" },
-  { text: "AR/VR App Development" },
+  { text: "Web/App Development" },
+  { text: "AR App Development" },
   { text: "Game Development" },
 ];
 
@@ -76,32 +75,30 @@ export const initialTechResources = [
 ];
 
 export const additionalTechResources = [
+  "React.js",
+  "A JavaScript library for building interactive user interfaces",
+  "Node.js",
+  "A JavaScript runtime for building scalable server-side applications",
+  "Laravel",
+  "A PHP framework for modern web application development",
+  "HTML5",
+  "The latest version of the markup language for structuring web content",
+  "CSS3",
+  "A style sheet language for designing responsive and modern web pages",
   "Bootstrap",
-  "A popular CSS framework for building responsive websites",
-  "Spring Boot",
-  "A Java-based framework for creating stand-alone applications",
-  "React",
-  "A JavaScript library for building user interfaces",
-  "Firebase",
-  "A platform for web and mobile app development",
+  "A popular CSS framework for responsive, mobile-first design",
+  "Tailwind CSS",
+  "A utility-first CSS framework for rapid UI development",
+  "RESTful API Development",
+  "A standard approach to designing and consuming APIs using HTTP methods",
   "MySQL",
   "An open-source relational database management system",
-  "SQlite",
-  "A lightweight, serverless database engine",
-  "Docker",
-  "A platform for developing and deploying applications in containers",
   "MongoDB",
-  "A NoSQL database for modern applications",
-  "Vue.js",
-  "A progressive JavaScript framework for building UIs",
-  "Express.js",
-  "A minimal and flexible Node.js web application framework",
-  "Git",
-  "A distributed version control system",
-  "GitHub",
-  "A platform for hosting and collaborating on Git repositories",
-  "Laravel",
-  "A PHP framework for web application development",
+  "A NoSQL document-oriented database for flexible data storage",
+  "Firebase",
+  "A Google-backed platform for web and mobile app development",
+  "phpMyAdmin",
+  "A web-based interface for managing MySQL databases",
 ];
 
 // -----------------
@@ -136,17 +133,16 @@ export const timelineData = [
     technicalDetails: [
       "Languages: Java, Python",
       "Platform: Android",
-      "Tools & Frameworks: Android Studio, TensorFlow, Firebase, Camera API, Speech Recognition API",
+      "Tools & Frameworks: Android Studio, TensorFlowLite, Firebase, Camera API, Speech Recognition API",
       "Features: Speech-to-text, Sign-to-speech, Community tab, Sign language info tab",
     ],
     relevantSkills: [
       "Android Development",
       "Machine Learning",
-      "TensorFlow",
+      "TensorFlowLite",
       "Speech Recognition",
       "Camera API Integration",
       "Mobile UI/UX Design",
-      "Firebase",
     ],
   },
 
@@ -155,24 +151,24 @@ export const timelineData = [
     type: "work",
     period: "June 2025 - July 2025",
     title: "NaviGuide: Aircraft Marshalling Gesture Trainer",
-    organization: "Independent VR/AR Development",
+    organization: "Independent AR Development",
     description:
-      "Developed a VR training app for learning proper aircraft marshalling gestures with real-time feedback.",
+      "Developed a AR training app for learning proper aircraft marshalling gestures with real-time feedback.",
     logo: naviguide_logp,
     achievements: [
       "Used MediaPipe for pose detection and gesture recognition in Unity.",
-      "Implemented interactive VR guides with visual cues for correct signal execution.",
+      "Implemented interactive guides with visual cues for correct signal execution.",
     ],
     technicalDetails: [
       "Engine: Unity (C# scripting).",
       "Pose Detection: MediaPipe for real-time landmark tracking.",
       "Platform: Android (built and deployed via Unity).",
-      "Features: Gesture recognition, VR training environment, real-time visual feedback.",
+      "Features: Gesture recognition, AR training environment, real-time visual feedback.",
     ],
     relevantSkills: [
       "Unity",
       "MediaPipe",
-      "VR Development",
+      "AR Development",
       "Gesture Recognition",
       "Android Deployment",
     ],
@@ -188,14 +184,14 @@ export const timelineData = [
     logo: arise_logo,
     achievements: [
       "Built an AR-based Android application using Unity and Vuforia for marker-based component recognition.",
-      "Implemented interactive 3D models of PC components with guided step-by-step assembly and disassembly instructions.",
+      "Implemented interactive 3D models of PC components and disassembly instructions.",
       "Integrated SceneView for real-time rendering of 3D parts and animations.",
       "Optimized asset performance for mobile devices with adaptive UI layouts and responsive touch controls.",
     ],
     technicalDetails: [
       "Engine: Unity (C# scripting for AR interactions and UI logic).",
       "Platform: Android (deployed via Unity Android build pipeline).",
-      "Features: Vuforia image tracking, 3D component interaction, guided assembly animations, mobile touch UI.",
+      "Features: Vuforia image tracking, 3D component interaction, mobile touch UI.",
     ],
     relevantSkills: [
       "Unity",
@@ -218,7 +214,7 @@ export const timelineData = [
     logo: ph_lore_game_logo,
     achievements: [
       "Developed a 2D mobile game built on Godot Engine centered on creatures and myths from Philippine folklore.",
-      "Implemented a branching narrative system featuring quests based on regional myths (e.g., Manananggal, Kapre, Tikbalang).",
+      "Implemented a branching narrative system featuring quests based on regional myths.",
       "Created hand-drawn style assets and animations optimized for mobile performance.",
       "Deployed the game on Android with adaptive UI and scalable control schemes for various screen sizes.",
     ],
@@ -337,7 +333,7 @@ export const timelineData = [
     logo: shermelle_logo,
     achievements: [
       "Developed an intuitive and responsive user interface using Tailwind CSS, enabling seamless navigation and interaction for users.",
-      "Built a secure and scalable backend with PHP and MySQL, ensuring reliable storage and efficient retrieval of property and tenant data.",
+      "Built a secure and scalable backend with PHP and PHPMyAdmin, ensuring reliable storage and efficient retrieval of property and tenant data.",
     ],
     technicalDetails: [
       "Frontend: Tailwind CSS for responsive, mobile-friendly design.",
