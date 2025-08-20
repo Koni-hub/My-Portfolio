@@ -283,7 +283,7 @@ const EducationWork = () => {
                             : "text-purple-600 dark:text-purple-400"
                         }`}
                       >
-                        {item.organization}
+                        {item.position}
                       </div>
                     </div>
                   </div>

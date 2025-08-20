@@ -119,6 +119,7 @@ import bridgeXSign_logo from "../assets/project-logo/bridgeXsign.jpg";
 export const timelineData = [
   {
     type: "work",
+    position: "Contract Developer",
     period: "July 2025 – Aug 2025",
     title: "BridgeXSign: ML-Based Sign Language Translator",
     organization: "Independent Mobile App Development",
@@ -149,6 +150,7 @@ export const timelineData = [
   // Naviguide
   {
     type: "work",
+    position: "Contract Developer",
     period: "June 2025 - July 2025",
     title: "NaviGuide: Aircraft Marshalling Gesture Trainer",
     organization: "Independent AR Development",
@@ -176,6 +178,7 @@ export const timelineData = [
   // ARISE
   {
     type: "work",
+    position: "Contract Developer",
     period: "June 2025 - July 2025",
     title: "ARISE: AR PC Assembly/Disassembly",
     organization: "Independent Mobile AR Development",
@@ -206,6 +209,7 @@ export const timelineData = [
   // PH Lore: Mini RPG Mobile Game
   {
     type: "work",
+    position: "Contract Developer",
     period: "March 2025 - April 2025",
     title: "PH Lore: Mini RPG Mobile Game",
     organization: "Independent Game Development",
@@ -236,6 +240,7 @@ export const timelineData = [
   // Document Controller System
   {
     type: "work",
+    position: "Contract Developer",
     period: "July 2024 - December 2024",
     title: "Document Controller System",
     organization: "TESDA Region 3",
@@ -267,6 +272,7 @@ export const timelineData = [
   // Human Information System
   {
     type: "work",
+    position: "Contract Developer",
     period: "August 2024 - November 2024",
     title: "Human Information System",
     organization: "HR Management Solutions",
@@ -299,6 +305,7 @@ export const timelineData = [
   // Gym Management System
   {
     type: "work",
+    position: "Contract Developer",
     period: "September 2024 - December 2024",
     title: "Gym Management System",
     organization: "JMNID Gym",
@@ -325,6 +332,7 @@ export const timelineData = [
   // Apartment Management System
   {
     type: "work",
+    position: "Contract Developer",
     period: "August 2024 - September 2024",
     title: "Apartment Management System",
     organization: "Shermelle Properties",
@@ -351,6 +359,7 @@ export const timelineData = [
   // Work Immersion
   {
     type: "work",
+    position: "Contract Developer",
     period: "February 2024 - June 2024",
     title: "Work Immersion - Data Encoder",
     organization: "NBI Riverbanks Satellite Office",
