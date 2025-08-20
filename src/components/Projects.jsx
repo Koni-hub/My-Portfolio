@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { Globe, Github, ChevronDown } from "lucide-react";
+import { ChevronDown, Youtube } from "lucide-react";
 import { projects } from "../constants/index.js";
 import { useState, useEffect } from "react";
 import AOS from "aos";
@@ -57,19 +57,8 @@ const ProjectCard = ({ project, index }) => {
                 rel="noopener noreferrer"
                 className="flex items-center gap-1 lg:gap-2 text-sm text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white transition-colors"
               >
-                <Github size={16} />
-                Source
-              </a>
-            )}
-            {project.links.website && (
-              <a
-                href={project.links.website}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-1 lg:gap-2 text-sm text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white transition-colors"
-              >
-                <Globe size={16} />
-                Website
+                <Youtube size={16} />
+                Demo
               </a>
             )}
           </div>
