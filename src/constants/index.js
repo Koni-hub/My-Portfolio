@@ -180,7 +180,7 @@ export const timelineData = [
     type: "work",
     position: "Contract Developer",
     period: "June 2025 - July 2025",
-    title: "ARISE: AR PC Assembly/Disassembly",
+    title: "ARISE: AR PC Unit",
     organization: "Independent Mobile AR Development",
     description:
       "Designed and developed an Android augmented reality application for interactive computer assembly and disassembly training, leveraging image recognition and 3D visualization.",

@@ -84,11 +84,12 @@ const Navbar = () => {
     <>
       <nav
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 
-          ${
-            isScrolled
-              ? "dark:bg-slate-900/80 backdrop-blur-sm shadow-lg"
-              : "dark:bg-slate-900/60 backdrop-blur-sm"
-          }`}
+    ${
+      isScrolled
+        ? "dark:bg-slate-900/90 backdrop-blur-md shadow-lg"
+        : "dark:bg-slate-900/70 backdrop-blur-sm"
+    }
+  `}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
@@ -99,14 +100,14 @@ const Navbar = () => {
               </span>
             </div>
 
-            {/* Desktop Navigation */}
+            {/* Desktop Nav */}
             <div className="hidden md:flex md:items-center md:space-x-8">
               {navLinks.map((link) => (
                 <a
                   key={link.href}
                   href={link.href}
-                  className="text-gray-600 hover:text-gray-600 transition-colors duration-200 text-sm font-medium"
                   onClick={(e) => handleNavClick(e, link.href)}
+                  className="text-gray-600 dark:text-gray-300 hover:text-cyan-500 dark:hover:text-cyan-400 transition-colors duration-200 text-sm font-medium"
                 >
                   {link.label}
                 </a>
@@ -114,24 +115,21 @@ const Navbar = () => {
 
               {/* Theme Switcher */}
               <div className="relative group">
-                <button className="flex items-center gap-2 px-3 py-1.5 rounded-lg shadow-lg text-gray-600 dark:bg-gray-800/50 hover:text-gray-600 transition-colors">
+                <button className="flex items-center gap-2 px-3 py-1.5 rounded-lg shadow-md text-gray-600 dark:text-gray-300 dark:bg-slate-800/60 hover:text-cyan-500 transition-colors">
                   {theme === "light" && <Sun size={16} />}
                   {theme === "dark" && <Moon size={16} />}
-                  <span className="text-sm">
-                    {theme.charAt(0).toUpperCase() + theme.slice(1)}
-                  </span>
+                  <span className="text-sm capitalize">{theme}</span>
                 </button>
 
-                {/* Dropdown */}
-                <div className="absolute right-0 mt-2 w-40 py-2 shadow-lg bg-white text-gray-600 dark:bg-gray-800 rounded-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+                <div className="absolute right-0 mt-2 w-40 py-2 shadow-lg bg-white text-gray-600 dark:bg-slate-800 rounded-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
                   {themeOptions.map((option) => (
                     <button
                       key={option.value}
                       onClick={() => handleThemeChange(option.value)}
-                      className={`w-full px-4 py-2 text-left flex items-center gap-2 text-gray-600 dark:hover:bg-gray-700/50 transition-colors ${
+                      className={`w-full px-4 py-2 text-left flex items-center gap-2 transition-colors ${
                         theme === option.value
                           ? "text-cyan-400"
-                          : "text-gray-600"
+                          : "text-gray-600 dark:text-gray-300 dark:hover:bg-slate-700/50"
                       }`}
                     >
                       {option.icon}
@@ -142,15 +140,14 @@ const Navbar = () => {
               </div>
             </div>
 
-            {/* Mobile menu button */}
+            {/* Mobile Toggle */}
             <div className="md:hidden flex items-center gap-4">
-              {/* Mobile Theme Button */}
               <button
                 onClick={() => {
                   const nextTheme = theme === "light" ? "dark" : "light";
                   handleThemeChange(nextTheme);
                 }}
-                className="p-2 text-gray-300 hover:text-gray-300"
+                className="p-2 text-gray-600 dark:text-gray-300 hover:text-cyan-500"
               >
                 {theme === "light" && <Sun size={20} />}
                 {theme === "dark" && <Moon size={20} />}
@@ -159,7 +156,7 @@ const Navbar = () => {
 
               <button
                 onClick={() => setIsOpen(!isOpen)}
-                className="text-gray-300 hover:text-gray-300 p-2"
+                className="text-gray-600 dark:text-gray-300 hover:text-cyan-500 p-2"
                 aria-label="Toggle menu"
               >
                 {isOpen ? <X size={24} /> : <Menu size={24} />}
@@ -169,9 +166,9 @@ const Navbar = () => {
         </div>
       </nav>
 
-      {/* Mobile Navigation Overlay */}
+      {/* Mobile Overlay */}
       {isOpen && (
-        <div className="fixed inset-0 z-40 md:hidden bg-white dark:bg-gradient-to-b from-slate-900/95 to-slate-950/95 backdrop-blur-sm">
+        <div className="fixed inset-0 z-40 md:hidden bg-white dark:bg-gradient-to-b dark:from-slate-900/95 dark:to-slate-950/95 backdrop-blur-md">
           <div className="pt-20 p-4">
             <div className="flex flex-col space-y-8">
               {navLinks.map((link) => (
@@ -179,7 +176,7 @@ const Navbar = () => {
                   key={link.href}
                   href={link.href}
                   onClick={(e) => handleNavClick(e, link.href)}
-                  className="text-gray-300 hover:text-cyan-500 text-lg font-medium transition-colors duration-200 text-center animate-fade-left"
+                  className="text-gray-600 dark:text-gray-300 hover:text-cyan-500 text-lg font-medium transition-colors text-center"
                 >
                   {link.label}
                 </a>
