@@ -44,20 +44,21 @@ const Hero = () => {
               <div className="absolute -inset-1 bg-gradient-to-r from-blue-400 via-indigo-400 to-blue-500 dark:from-gray-600 dark:via-gray-500 dark:to-gray-700 rounded-full blur-lg opacity-30 group-hover:opacity-50 transition-opacity duration-500"></div>
 
               {/* Avatar container with NEW ring behavior */}
-              <div className="relative animate-[float_8s_ease-in-out_infinite] rounded-full p-1">
-                <img
-                  className="rounded-full object-cover w-32 h-32 sm:w-40 sm:h-40 md:w-44 md:h-44 lg:w-48 lg:h-48 shadow-2xl transition-transform duration-700 ease-out group-hover:scale-105"
-                  src={heroData.image}
-                  alt="Profile"
-                />
-                {/* Optional hover state image */}
-                {heroData.image_shades && (
+              <div className="relative animate-[float_8s_ease-in-out_infinite] rounded-full">
+                <div className="relative group">
                   <img
-                    className="absolute inset-0 rounded-full object-cover w-32 h-32 sm:w-40 sm:h-40 md:w-44 md:h-44 lg:w-48 lg:h-48 opacity-0 group-hover:opacity-100 transition-opacity duration-700"
-                    src={heroData.image_shades}
-                    alt="Profile with Glasses"
+                    className="rounded-full object-cover w-32 h-32 sm:w-40 sm:h-40 md:w-44 md:h-44 lg:w-48 lg:h-48 shadow-2xl transition-opacity duration-700 group-hover:opacity-0"
+                    src={heroData.image}
+                    alt="Profile"
                   />
-                )}
+                  {heroData.image_shades && (
+                    <img
+                      className="absolute inset-0 rounded-full object-cover w-32 h-32 sm:w-40 sm:h-40 md:w-44 md:h-44 lg:w-48 lg:h-48 opacity-0 group-hover:opacity-100 transition-opacity duration-700"
+                      src={heroData.image_shades}
+                      alt="Profile with Glasses"
+                    />
+                  )}
+                </div>
 
                 {/* Green Activity Dot */}
                 <span className="absolute bottom-2 right-2 w-5 h-5 bg-green-500 border-2 border-white rounded-full"></span>
