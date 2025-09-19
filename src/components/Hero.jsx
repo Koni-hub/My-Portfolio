@@ -63,9 +63,23 @@ const Hero = () => {
                 {/* Green Activity Dot */}
                 <span className="absolute bottom-2 right-2 w-5 h-5 bg-green-500 border-2 border-white rounded-full"></span>
                 {/* Bubble Note */}
-                <div className="absolute top-0 left-1/4 -translate-x-1/2 -translate-y-full bg-slate-800 dark:bg-slate-700 text-white px-5 py-3 rounded-xl shadow-xl text-xs sm:text-sm md:text-base max-w-[280px] text-center border border-slate-600 dark:border-slate-500 transition-all duration-300 ease-in-out">
+                <div
+                  className="absolute top-0 left-1/4 -translate-x-1/2 -translate-y-full 
+  bg-white text-slate-800 
+  dark:bg-slate-700 dark:text-white 
+  px-5 py-3 rounded-xl shadow-xl 
+  text-xs sm:text-sm md:text-base 
+  max-w-[280px] text-center 
+  border border-slate-300 dark:border-slate-500 
+  transition-all duration-300 ease-in-out"
+                >
                   Open for opportunities
-                  <div className="absolute left-1/2 -translate-x-1/2 top-full w-0 h-0 border-l-[10px] border-r-[10px] border-t-[10px] border-l-transparent border-r-transparent border-t-slate-800 dark:border-t-slate-700"></div>
+                  <div
+                    className="absolute left-1/2 -translate-x-1/2 top-full w-0 h-0 
+    border-l-[10px] border-r-[10px] border-t-[10px] 
+    border-l-transparent border-r-transparent 
+    border-t-white dark:border-t-slate-700"
+                  ></div>
                 </div>
               </div>
             </div>
