@@ -1,7 +1,7 @@
 // -----------------
 // Hero Data
-import profile from "../assets/profile/ai-profile-removebg.png";
-import profile_shades from "../assets/profile/ai-profile-like-shades-removebg-preview.png";
+import profile from "../assets/profile/profile.png";
+import profile_shades from "../assets/profile/profile-upate.png";
 
 export const heroData = {
   title: "Full Stack Developer",
