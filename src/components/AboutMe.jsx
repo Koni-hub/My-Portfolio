@@ -148,7 +148,8 @@ const AboutMe = () => {
               </div>
             </div>
 
-            <div className="space-y-4 sm:space-y-6">
+            {/* Comment for this */}
+            {/* <div className="space-y-4 sm:space-y-6">
               <h2 className="text-lg sm:text-xl font-semibold">
                 Resources Tools & Platforms
               </h2>
@@ -187,7 +188,7 @@ const AboutMe = () => {
                   {isExpanded ? "View Less" : "View More"}
                 </button>
               </div>
-            </div>
+            </div> */}
 
             <div className="space-y-4 sm:space-y-6">
               <h2 className="text-lg sm:text-xl font-semibold">Services</h2>
