@@ -19,10 +19,9 @@ export const heroData = {
 export const aboutData = {
   name: "Argie",
   nickname: "Gie",
-  experience: 3,
-  exp_freelance: "1+",
+  exp_freelance: new Date().getFullYear() - 2024,
   work: "Full Stack Developer",
-  age: "19",
+  age: new Date().getFullYear() - new Date("2006-04-09").getFullYear(),
   quote: "I code with passion, debug with patience, and deliver results.",
 };
 
@@ -60,9 +59,9 @@ export const services = [
 
 export const stats = [
   { label: "Entry Level", value: "Junior" },
-  { label: "Projects Completed", value: "24+" },
-  { label: "Happy Clients", value: "8+" },
-  { label: "Countries Reached", value: "2+" },
+  { label: "Projects Completed", value: "25" },
+  { label: "Happy Clients", value: "9" },
+  { label: "Countries Reached", value: "2" },
 ];
 
 export const initialTechResources = [
@@ -115,8 +114,37 @@ import ph_lore_game_logo from "../assets/project-logo/ph_lore.png";
 import arise_logo from "../assets/project-logo/arise_logo.jpg";
 import naviguide_logp from "../assets/project-logo/naviguide.png";
 import bridgeXSign_logo from "../assets/project-logo/bridgeXsign.jpg";
+import Ingat_logo from "../assets/project-logo/ingat_logo.png";
 
 export const timelineData = [
+  {
+    type: "work",
+    position: "Contract Developer",
+    period: "Oct 2025 – Dec 2025",
+    title: "INGAT: Kidnapping Prevention Visual Novel (Philippines)",
+    organization: "Independent Game Development",
+    description:
+      "Developed a visual novel game that promotes awareness of kidnapping prevention in the Philippines through interactive storytelling and player-driven choices.",
+    logo: Ingat_logo,
+    achievements: [
+      "Designed branching narratives focused on real-world kidnapping prevention scenarios.",
+      "Implemented decision-based gameplay to reinforce player awareness and consequences.",
+      "Created immersive visual and UI elements to support storytelling.",
+    ],
+    technicalDetails: [
+      "Engine: Unity",
+      "Languages: C#, ShaderLab, HLSL, HTML",
+      "Platform: PC",
+      "Features: Branching dialogue, choice-based outcomes, narrative UI",
+    ],
+    relevantSkills: [
+      "Unity Game Development",
+      "C# Programming",
+      "Interactive Storytelling",
+      "Game UI/UX Design",
+      "Shader Development",
+    ],
+  },
   {
     type: "work",
     position: "Contract Developer",
@@ -482,8 +510,20 @@ import phLoreMiniRPGImg from "../assets/projects/ph_lore.png";
 import arPcAssemblyImg from "../assets/projects/arise.jpg";
 import naviGuideImg from "../assets/projects/naviguide.jpg";
 import bridgeXSignImg from "../assets/projects/bridgeXsign.jpg";
+import IngatImg from "../assets/projects/ingat.jpg";
 
 export const projects = [
+  {
+    title: "INGAT: Kidnapping Prevention Visual Novel Game (Philippines)",
+    description:
+      "A visual novel game that raises awareness about kidnapping prevention in the Philippines through interactive storytelling and decision-based gameplay.",
+    technologies: "Unity, C#, ShaderLab, High-Level Shader Language, HTML",
+    imageUrl: IngatImg,
+    links: {
+      source: "#",
+      website: "#",
+    },
+  },
   {
     title: "BridgeXSign: ML-Based Sign Language Translator",
     description:
