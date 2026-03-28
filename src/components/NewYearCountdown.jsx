@@ -2,10 +2,13 @@
 import { useState, useEffect } from "react";
 import { Clock } from "lucide-react";
 import { Fireworks } from "fireworks-js";
+import { useLanguage } from "../context/LanguageContext";
 import AOS from "aos";
 import "aos/dist/aos.css";
 
 const NewYearCountdown = () => {
+  const { language } = useLanguage();
+
   const [timeLeft, setTimeLeft] = useState({
     days: "00",
     hours: "00",
@@ -112,36 +115,62 @@ const NewYearCountdown = () => {
     });
   }, []);
 
+  const year = targetDate.getFullYear();
+
   const getDisplayContent = () => {
+    const isCN = language === "zh";
+
     switch (celebrationState) {
       case "celebrating":
         return {
-          status: "Celebrating the New Year!",
-          title: `🎆 Happy New Year ${targetDate.getFullYear()}! 🎆`,
-          message: `Celebrating the arrival of ${targetDate.getFullYear()}!`,
+          status: isCN ? "新年快乐！" : "Celebrating the New Year!",
+          title: isCN
+            ? `🎆 ${year} 年新年快乐！🎆`
+            : `🎆 Happy New Year ${year}! 🎆`,
+          message: isCN
+            ? `${year} 年已经到来！`
+            : `Celebrating the arrival of ${year}!`,
         };
       case "finished":
         return {
-          status: `Welcome to ${targetDate.getFullYear()}!`,
-          title: "Welcome to an amazing new year ahead!",
-          message: `Welcome to ${targetDate.getFullYear()}! Happy Coding </>`,
+          status: isCN ? `欢迎来到 ${year} 年！` : `Welcome to ${year}!`,
+          title: isCN
+            ? "愿新的一年精彩纷呈！"
+            : "Welcome to an amazing new year ahead!",
+          message: isCN
+            ? `欢迎来到 ${year} 年！编码快乐 </>`
+            : `Welcome to ${year}! Happy Coding </>`,
         };
       default:
         return {
-          status: "Come and welcome the new year",
-          title: "New Year Countdown",
-          message: `Time Remaining Until January 1st, ${targetDate.getFullYear()}`,
+          status: isCN ? "一起迎接新年吧" : "Come and welcome the new year",
+          title: isCN ? "新年倒计时" : "New Year Countdown",
+          message: isCN
+            ? `距 ${year} 年 1 月 1 日还有`
+            : `Time Remaining Until January 1st, ${year}`,
         };
     }
   };
 
   const content = getDisplayContent();
 
+  const countdownLabels =
+    language === "zh"
+      ? ["天", "时", "分", "秒"]
+      : ["Days", "Hours", "Minutes", "Seconds"];
+
+  const countdownItems = [
+    { label: countdownLabels[0], value: timeLeft.days },
+    { label: countdownLabels[1], value: timeLeft.hours },
+    { label: countdownLabels[2], value: timeLeft.minutes },
+    { label: countdownLabels[3], value: timeLeft.seconds },
+  ];
+
   return (
     <div
       id="newyear"
       className="py-24 min-h-screen flex items-center justify-center p-4 overflow-hidden relative transition-colors duration-300"
-      style={{ backgroundColor: "var(--color-bg-page)" }}
+      style={{ backgroundColor: "var(--color-bg-section)" }}
     >
       <div className="fireworks-container fixed inset-0 pointer-events-none" />
 
@@ -172,12 +201,7 @@ const NewYearCountdown = () => {
           {/* Countdown Grid */}
           {celebrationState === "countdown" && (
             <div className="grid grid-cols-1 sm:grid-cols-4 gap-4 sm:gap-6">
-              {[
-                { label: "Days", value: timeLeft.days },
-                { label: "Hours", value: timeLeft.hours },
-                { label: "Minutes", value: timeLeft.minutes },
-                { label: "Seconds", value: timeLeft.seconds },
-              ].map(({ label, value }) => (
+              {countdownItems.map(({ label, value }) => (
                 <div key={label} className="text-center">
                   <div
                     className="text-2xl sm:text-4xl font-light mb-2"

@@ -2,27 +2,20 @@
 import { Github, Linkedin, Mail, FileDown, MapPin } from "lucide-react";
 import { useState, useEffect } from "react";
 import { heroData } from "../constants/index.js";
+import { useLanguage } from "../context/LanguageContext";
 import Resume from "../assets/resume/ARGIE_P._DELGADO_RESUME.pdf";
 
 const Hero = () => {
   /* =======================
      HOOK LOGIC
   ======================= */
-  // mounted: prevents SSR flash by rendering nothing until client-side
-  // isVisible: triggers staggered entrance animations after a short delay
   const [mounted, setMounted] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
+  const { language, t } = useLanguage();
 
   useEffect(() => {
     setMounted(true);
-
-    // Small delay so CSS transitions actually play on first render
     const showTimer = setTimeout(() => setIsVisible(true), 100);
-
-    /* =======================
-       CLEANUP
-    ======================= */
-    // Clear the timer if the component unmounts before it fires
     return () => clearTimeout(showTimer);
   }, []);
 
@@ -31,11 +24,14 @@ const Hero = () => {
   /* =======================
      HELPERS
   ======================= */
-  // Reusable entrance transition classes — toggled by isVisible
-  const enterClass = (delay) =>
+  const enterClass = () =>
     `transform transition-all duration-1000 ease-out ${
       isVisible ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
     }`;
+
+  // Resolve bilingual field — supports { en, zh } objects or plain strings
+  const lang = (field) =>
+    field && typeof field === "object" ? (field[language] ?? field.en) : field;
 
   return (
     <section
@@ -46,12 +42,10 @@ const Hero = () => {
       {/* =======================
           FLOATING GRADIENT ORBS
       ======================= */}
-      {/* Left orb — slow float animation */}
       <div
         className="absolute top-1/3 left-1/4 w-72 h-72 rounded-full blur-3xl animate-[orbFloat_12s_ease-in-out_infinite]"
         style={{ background: "var(--color-orb-left)" }}
       />
-      {/* Right orb — slightly slower for depth effect */}
       <div
         className="absolute bottom-1/4 right-1/3 w-96 h-96 rounded-full blur-3xl animate-[orbFloat_18s_ease-in-out_infinite]"
         style={{ background: "var(--color-orb-right)" }}
@@ -84,7 +78,7 @@ const Hero = () => {
                     src={heroData.image}
                     alt="Profile"
                   />
-                  {/* Hover image (with shades) — swaps in on hover */}
+                  {/* Hover image (with shades) */}
                   {heroData.image_shades && (
                     <img
                       className="absolute inset-0 rounded-full object-cover w-32 h-32 sm:w-40 sm:h-40 md:w-44 md:h-44 lg:w-48 lg:h-48 opacity-0 group-hover:opacity-100 transition-opacity duration-700"
@@ -114,23 +108,21 @@ const Hero = () => {
             style={{ transitionDelay: "400ms" }}
           >
             <div className="space-y-2 sm:space-y-3">
-              {/* Greeting line with waving hand emoji */}
+              {/* Greeting line */}
               <p
                 className="text-base sm:text-lg md:text-xl font-light tracking-wide"
                 style={{ color: "var(--color-text-accent)" }}
               >
-                {/* Wave span: inline-block required for transform to work on text node.
-                    transformOrigin pivots from the wrist for a natural wave. */}
                 <span
                   className="inline-block animate-wave"
                   style={{ transformOrigin: "70% 70%" }}
                 >
                   ദ്ദി
                 </span>{" "}
-                Hello, I&apos;m
+                {t("hero.greeting")}
               </p>
 
-              {/* Full name with animated shimmer gradient */}
+              {/* Full name with shimmer gradient */}
               <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-tight">
                 <span
                   className="bg-clip-text text-transparent animate-[shimmer_12s_linear_infinite] bg-[length:200%_100%]"
@@ -143,7 +135,7 @@ const Hero = () => {
                     )`,
                   }}
                 >
-                  {heroData.fullName}
+                  {lang(heroData.fullName)}
                 </span>
               </h1>
             </div>
@@ -153,7 +145,7 @@ const Hero = () => {
               className="text-xl sm:text-2xl md:text-3xl font-light"
               style={{ color: "var(--color-text-secondary)" }}
             >
-              {heroData.title}
+              {lang(heroData.title)}
             </p>
 
             {/* Location */}
@@ -166,7 +158,7 @@ const Hero = () => {
                 className="sm:w-5 sm:h-5"
                 style={{ color: "var(--color-text-accent)" }}
               />
-              <span>Marikina City, Philippines</span>
+              <span>{lang(heroData.location)}</span>
             </div>
           </div>
 
@@ -195,7 +187,9 @@ const Hero = () => {
               />
               <div className="relative flex items-center justify-center gap-2">
                 <FileDown size={18} className="sm:w-5 sm:h-5" />
-                <span className="text-sm sm:text-base">Download Resume</span>
+                <span className="text-sm sm:text-base">
+                  {language === "zh" ? "下载简历" : "Download Resume"}
+                </span>
               </div>
             </button>
 
@@ -284,7 +278,7 @@ const Hero = () => {
               style={{ color: "var(--color-scroll-text)" }}
             >
               <span className="text-xs sm:text-sm font-light">
-                Scroll to explore
+                {language === "zh" ? "向下滚动探索" : "Scroll to explore"}
               </span>
               <div
                 className="w-5 h-8 sm:w-6 sm:h-10 border-2 rounded-full flex justify-center"
@@ -304,8 +298,6 @@ const Hero = () => {
 
       {/* =======================
           KEYFRAME ANIMATIONS
-          Defined inline since they are specific to this component.
-          Wave + aurora are defined globally in index.css.
       ======================= */}
       <style jsx>{`
         @keyframes float {

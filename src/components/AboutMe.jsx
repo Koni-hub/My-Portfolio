@@ -1,19 +1,19 @@
 import { useState, useEffect } from "react";
 import { Mail, FolderGit2, Code2 } from "lucide-react";
-import {
-  aboutData,
-  programming_lang,
-  services,
-  stats,
-  initialTechResources,
-  additionalTechResources,
-} from "../constants/index.js";
+import { aboutData, programming_lang, stats } from "../constants/index.js";
+import { useLanguage } from "../context/LanguageContext";
 import AOS from "aos";
 import "aos/dist/aos.css";
 
 const AboutMe = () => {
   const [mounted, setMounted] = useState(false);
-  const [isExpanded, setIsExpanded] = useState(false);
+  const { t, language } = useLanguage();
+
+  // Helper: resolves { en, zh } objects, or returns plain values as-is
+  const r = (field) =>
+    field && typeof field === "object" && ("en" in field || "zh" in field)
+      ? (field[language] ?? field.en)
+      : field;
 
   useEffect(() => {
     setMounted(true);
@@ -30,12 +30,35 @@ const AboutMe = () => {
   const handleScroll = (elementId) => {
     const element = document.getElementById(elementId);
     if (element) {
-      element.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      });
+      element.scrollIntoView({ behavior: "smooth", block: "start" });
     }
   };
+
+  // Stats resolved from translation keys (matching your translations object)
+  const resolvedStats = [
+    { label: t("stats.level"), value: t("stats.level_value") },
+    {
+      label: t("stats.projects"),
+      value:
+        stats.find((s) => s.label?.en === "Projects Completed")?.value ?? "25",
+    },
+    {
+      label: t("stats.clients"),
+      value: stats.find((s) => s.label?.en === "Happy Clients")?.value ?? "11",
+    },
+    {
+      label: t("stats.countries"),
+      value:
+        stats.find((s) => s.label?.en === "Countries Reached")?.value ?? "2",
+    },
+  ];
+
+  // Services from translation keys
+  const services = [
+    { key: "service.web" },
+    { key: "service.ar" },
+    { key: "service.game" },
+  ];
 
   return (
     <section
@@ -60,14 +83,14 @@ const AboutMe = () => {
         >
           <h2 className="text-xl sm:text-2xl font-light">
             <span style={{ color: "var(--color-text-secondary)" }}>
-              About Me
+              {t("about.title")}
             </span>
           </h2>
           <p
             className="text-sm sm:text-base mt-2"
             style={{ color: "var(--color-text-secondary)" }}
           >
-            Get to know more about me and what I do
+            {t("about.intro")}
           </p>
         </div>
 
@@ -90,10 +113,10 @@ const AboutMe = () => {
                   className="text-xs sm:text-sm"
                   style={{ color: "var(--color-text-secondary)" }}
                 >
-                  Age
+                  {t("about.age_label")}
                 </p>
                 <p className="font-medium text-sm sm:text-base">
-                  {aboutData.age} Years Old
+                  {aboutData.age}
                 </p>
               </div>
               <div className="space-y-1">
@@ -101,10 +124,10 @@ const AboutMe = () => {
                   className="text-xs sm:text-sm"
                   style={{ color: "var(--color-text-secondary)" }}
                 >
-                  Current Work
+                  {t("about.work_label")}
                 </p>
                 <p className="font-medium text-sm sm:text-base">
-                  {aboutData.work}
+                  {r(aboutData.work)}
                 </p>
               </div>
               <div className="space-y-1 sm:col-span-2">
@@ -112,10 +135,13 @@ const AboutMe = () => {
                   className="text-xs sm:text-sm"
                   style={{ color: "var(--color-text-secondary)" }}
                 >
-                  Freelancer Experience
+                  {/* No translation key for this yet — inline fallback */}
+                  {language === "zh" ? "自由职业经验" : "Freelancer Experience"}
                 </p>
                 <p className="font-medium text-sm sm:text-base">
-                  {aboutData.exp_freelance} years as a freelancer
+                  {language === "zh"
+                    ? `${aboutData.exp_freelance} 年自由职业经验`
+                    : `${aboutData.exp_freelance} year${aboutData.exp_freelance !== 1 ? "s" : ""} as a freelancer`}
                 </p>
               </div>
             </div>
@@ -125,10 +151,10 @@ const AboutMe = () => {
               className="text-lg italic pl-4 py-2 border-l-4"
               style={{
                 color: "var(--color-text-secondary)",
-                borderColor: "var(--color-gradient-to)" /* cyan-500 */,
+                borderColor: "var(--color-gradient-to)",
               }}
             >
-              {aboutData.quote}
+              {t("about.quote")}
             </blockquote>
 
             {/* CTA Buttons */}
@@ -151,7 +177,7 @@ const AboutMe = () => {
                 data-aos-delay="800"
               >
                 <Mail size={18} className="sm:w-5 sm:h-5" />
-                Get in Touch
+                {t("contact.send")}
               </button>
               <button
                 onClick={() => handleScroll("projects")}
@@ -173,7 +199,7 @@ const AboutMe = () => {
                 data-aos-delay="800"
               >
                 <FolderGit2 size={18} className="sm:w-5 sm:h-5" />
-                View Projects
+                {t("projects.title")}
               </button>
             </div>
           </div>
@@ -191,13 +217,13 @@ const AboutMe = () => {
                 className="text-lg sm:text-xl font-semibold"
                 style={{ color: "var(--color-text-primary)" }}
               >
-                Programming Skills
+                {t("about.skills")}
               </h2>
               <div className="flex flex-wrap gap-2 sm:gap-3">
                 {programming_lang.map((skill) => (
                   <span
                     key={skill[0]}
-                    title={skill[1]}
+                    title={r(skill[1])}
                     className="px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg text-xs sm:text-sm cursor-default transition-colors"
                     style={{
                       backgroundColor: "var(--color-icon-bg)",
@@ -224,12 +250,12 @@ const AboutMe = () => {
                 className="text-lg sm:text-xl font-semibold"
                 style={{ color: "var(--color-text-primary)" }}
               >
-                Services
+                {t("about.services")}
               </h2>
               <div className="grid gap-3 sm:gap-4">
                 {services.map((service) => (
                   <div
-                    key={service.text}
+                    key={service.key}
                     className="flex items-center gap-3 sm:gap-4"
                   >
                     <div
@@ -242,7 +268,7 @@ const AboutMe = () => {
                       className="text-sm sm:text-base"
                       style={{ color: "var(--color-text-secondary)" }}
                     >
-                      {service.text}
+                      {t(service.key)}
                     </span>
                   </div>
                 ))}
@@ -258,7 +284,7 @@ const AboutMe = () => {
           data-aos-duration="1000"
           data-aos-delay="800"
         >
-          {stats.map((stat) => (
+          {resolvedStats.map((stat) => (
             <div
               key={stat.label}
               className="p-4 sm:p-6 rounded-xl text-center transition-colors shadow-lg"

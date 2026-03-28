@@ -10,14 +10,13 @@ import {
   ChevronUp,
 } from "lucide-react";
 import { timelineData } from "../constants/index.js";
+import { useLanguage } from "../context/LanguageContext";
 import AOS from "aos";
 import "aos/dist/aos.css";
 
 /* =======================
    HELPERS
 ======================= */
-// Returns the CSS variable color string for each timeline type.
-// Centralizing this here means type-based color logic lives in one place.
 const typeColor = (type) =>
   type === "education"
     ? "var(--color-timeline-education)"
@@ -33,26 +32,30 @@ const typeBorder = (type) =>
     ? "var(--color-timeline-education-border)"
     : "var(--color-timeline-work-border)";
 
+// Resolves { en, zh } bilingual objects or returns plain strings as-is
+const lang = (field, language) =>
+  field && typeof field === "object" ? (field[language] ?? field.en) : field;
+
 /* =======================
    SUB-COMPONENT: TimelineContent
-   Renders description, expandable achievements,
-   technical details, and relevant skills for each item.
 ======================= */
 const TimelineContent = ({ item }) => {
-  // isExpanded: controls the accordion open/close state
   const [isExpanded, setIsExpanded] = useState(false);
+  const { language, t } = useLanguage();
+
+  // Resolve bilingual arrays or plain string arrays
+  const achievements = lang(item.achievements, language);
+  const technicalDetails = lang(item.technicalDetails, language);
 
   return (
     <div className="space-y-3">
       {/* Short description — always visible */}
       <p className="text-sm" style={{ color: "var(--color-text-secondary)" }}>
-        {item.description}
+        {lang(item.description, language)}
       </p>
 
       {/* =======================
           EXPANDABLE SECTION
-          max-h transition creates a smooth accordion effect.
-          overflow-hidden prevents content flash during collapse.
       ======================= */}
       <div
         className={`space-y-4 transition-all duration-300 ${
@@ -61,8 +64,8 @@ const TimelineContent = ({ item }) => {
             : "max-h-0 opacity-0 overflow-hidden"
         }`}
       >
-        {/* Achievements list */}
-        {item.achievements && (
+        {/* Achievements */}
+        {achievements?.length > 0 && (
           <div className="space-y-2">
             <h4
               className="text-sm sm:text-base font-medium flex items-center gap-2"
@@ -73,13 +76,13 @@ const TimelineContent = ({ item }) => {
                 className="sm:w-4 sm:h-4"
                 style={{ color: typeColor(item.type) }}
               />
-              Achievements
+              {t("timeline.achievements")}
             </h4>
             <ul
               className="space-y-1 ml-4 sm:ml-5"
               style={{ color: "var(--color-text-secondary)" }}
             >
-              {item.achievements.map((achievement, i) => (
+              {achievements.map((achievement, i) => (
                 <li key={i} className="list-disc text-xs sm:text-sm">
                   {achievement}
                 </li>
@@ -88,8 +91,8 @@ const TimelineContent = ({ item }) => {
           </div>
         )}
 
-        {/* Technical details list */}
-        {item.technicalDetails && (
+        {/* Technical Details */}
+        {technicalDetails?.length > 0 && (
           <div className="space-y-2">
             <h4
               className="text-sm sm:text-base font-medium flex items-center gap-2"
@@ -100,23 +103,23 @@ const TimelineContent = ({ item }) => {
                 className="sm:w-4 sm:h-4"
                 style={{ color: typeColor(item.type) }}
               />
-              Technical Details
+              {t("timeline.technical")}
             </h4>
             <ul
               className="space-y-1 ml-4 sm:ml-5"
               style={{ color: "var(--color-text-secondary)" }}
             >
-              {item.technicalDetails.map((technical, i) => (
+              {technicalDetails.map((detail, i) => (
                 <li key={i} className="list-disc text-xs sm:text-sm">
-                  {technical}
+                  {detail}
                 </li>
               ))}
             </ul>
           </div>
         )}
 
-        {/* Relevant skills pill badges */}
-        {item.relevantSkills && (
+        {/* Relevant Skills */}
+        {item.relevantSkills?.length > 0 && (
           <div className="space-y-2">
             <h4
               className="text-sm sm:text-base font-medium flex items-center gap-2"
@@ -127,7 +130,7 @@ const TimelineContent = ({ item }) => {
                 className="sm:w-4 sm:h-4"
                 style={{ color: typeColor(item.type) }}
               />
-              Relevant Skills
+              {t("timeline.skills")}
             </h4>
             <div className="flex flex-wrap gap-1.5 sm:gap-2">
               {item.relevantSkills.map((skill, i) => (
@@ -147,19 +150,20 @@ const TimelineContent = ({ item }) => {
         )}
       </div>
 
-      {/* Expand / collapse toggle button */}
+      {/* Expand / collapse toggle */}
       <button
-        onClick={() => setIsExpanded(!isExpanded)}
+        onClick={() => setIsExpanded((prev) => !prev)}
         className="flex items-center gap-1 text-xs hover:underline mt-2 transition-transform duration-300"
         style={{ color: typeColor(item.type) }}
       >
         {isExpanded ? (
           <>
-            View Less <ChevronUp className="w-4 h-4 animate-bounce" size={14} />
+            {language === "zh" ? "收起" : "View Less"}{" "}
+            <ChevronUp className="w-4 h-4 animate-bounce" size={14} />
           </>
         ) : (
           <>
-            View More{" "}
+            {language === "zh" ? "展开" : "View More"}{" "}
             <ChevronDown className="w-4 h-4 animate-bounce" size={14} />
           </>
         )}
@@ -170,26 +174,16 @@ const TimelineContent = ({ item }) => {
 
 /* =======================
    MAIN COMPONENT: EducationWork
-   Renders a filterable, paginated timeline of work and education items.
 ======================= */
 const EducationWork = () => {
-  /* =======================
-     HOOK LOGIC
-  ======================= */
-  // filter: "all" | "work" | "education" — controls which items are shown
-  // mounted: prevents SSR mismatch by skipping render until client-side
-  // visibleCount: how many items are currently shown (pagination)
-  // showMoreButton: hides the button when all items are visible
   const [filter, setFilter] = useState("all");
   const [mounted, setMounted] = useState(false);
   const [visibleCount, setVisibleCount] = useState(3);
   const [showMoreButton, setShowMoreButton] = useState(true);
+  const { language, t } = useLanguage();
 
   useEffect(() => {
     setMounted(true);
-
-    // AOS: scroll-triggered entrance animations
-    // once: true means each element only animates in once, not on re-scroll
     AOS.init({
       duration: 1000,
       offset: 100,
@@ -198,7 +192,7 @@ const EducationWork = () => {
     });
   }, []);
 
-  // Reset pagination whenever the filter tab changes
+  // Reset pagination on filter change
   useEffect(() => {
     setVisibleCount(3);
     setShowMoreButton(true);
@@ -209,7 +203,6 @@ const EducationWork = () => {
   /* =======================
      HELPERS
   ======================= */
-  // Inline icon component — picks icon based on timeline item type
   const TimelineIcon = ({ type }) =>
     type === "education" ? (
       <GraduationCap
@@ -225,25 +218,17 @@ const EducationWork = () => {
       />
     );
 
-  // Apply the active filter to the full dataset
   const filteredData = timelineData.filter((item) =>
     filter === "all" ? true : item.type === filter,
   );
-
-  // Slice to only the currently visible items
   const visibleData = filteredData.slice(0, visibleCount);
 
-  // Load 3 more items; hide the button if we've reached the end
   const handleViewMore = () => {
     const newCount = visibleCount + 3;
     setVisibleCount(newCount);
     if (newCount >= filteredData.length) setShowMoreButton(false);
   };
 
-  /* =======================
-     FILTER BUTTON HELPER
-     Returns inline styles for active vs inactive filter tab state.
-  ======================= */
   const filterBtnStyle = (type) => {
     const isActive = filter === type;
     return {
@@ -273,7 +258,7 @@ const EducationWork = () => {
             data-aos-delay="200"
             style={{ color: "var(--color-text-muted)" }}
           >
-            Experience &amp; Education
+            {t("timeline.title")}
           </h2>
 
           <p
@@ -283,8 +268,9 @@ const EducationWork = () => {
             data-aos-delay="200"
             style={{ color: "var(--color-text-secondary)" }}
           >
-            Explore my professional journey and educational background,
-            showcasing my skills, achievements and experiences.
+            {language === "zh"
+              ? "探索我的职业旅程和教育背景，展示我的技能、成就和经验。"
+              : "Explore my professional journey and educational background, showcasing my skills, achievements and experiences."}
           </p>
 
           {/* Filter tab buttons */}
@@ -301,7 +287,7 @@ const EducationWork = () => {
               style={filterBtnStyle("work")}
             >
               <Briefcase size={14} className="sm:w-4 sm:h-4" />
-              <span>Work</span>
+              <span>{t("timeline.work")}</span>
               <span className="text-xs sm:text-sm">
                 ({timelineData.filter((i) => i.type === "work").length})
               </span>
@@ -314,7 +300,7 @@ const EducationWork = () => {
               style={filterBtnStyle("education")}
             >
               <GraduationCap size={14} className="sm:w-4 sm:h-4" />
-              <span>Education</span>
+              <span>{t("timeline.education")}</span>
               <span className="text-xs sm:text-sm">
                 ({timelineData.filter((i) => i.type === "education").length})
               </span>
@@ -324,8 +310,6 @@ const EducationWork = () => {
 
         {/* =======================
             TIMELINE
-            The vertical line is a gradient from work color to education color.
-            Items alternate left/right on md+ screens.
         ======================= */}
         <div className="relative">
           {/* Vertical center line */}
@@ -350,7 +334,7 @@ const EducationWork = () => {
                     : "md:pl-8 lg:pl-12 ml-8 sm:ml-12 md:ml-0"
                 }`}
               >
-                {/* Timeline dot — color matches item type */}
+                {/* Timeline dot */}
                 <div
                   className="absolute top-0 -left-4 sm:-left-8 md:-left-3 w-4 sm:w-6 h-4 sm:h-6 rounded-full border-4 transform -translate-y-1/2"
                   style={{
@@ -362,9 +346,7 @@ const EducationWork = () => {
                 {/* Card */}
                 <div
                   className="shadow-lg rounded-lg p-4 sm:p-6 transition-all duration-300"
-                  style={{
-                    background: "var(--color-timeline-card-bg)",
-                  }}
+                  style={{ background: "var(--color-timeline-card-bg)" }}
                   onMouseEnter={(e) =>
                     (e.currentTarget.style.background =
                       "var(--color-timeline-card-hover)")
@@ -378,7 +360,7 @@ const EducationWork = () => {
                   <div className="flex flex-col sm:flex-row items-start gap-3 mb-4">
                     <img
                       src={item.logo}
-                      alt={item.organization}
+                      alt={lang(item.organization, language)}
                       className="w-12 h-12 sm:w-16 sm:h-16 rounded-lg object-cover"
                     />
                     <div>
@@ -395,13 +377,19 @@ const EducationWork = () => {
                         className="text-lg sm:text-xl font-semibold"
                         style={{ color: "var(--color-text-primary)" }}
                       >
-                        {item.title}
+                        {lang(item.title, language)}
                       </h3>
                       <div
                         className="text-xs sm:text-sm"
                         style={{ color: typeColor(item.type) }}
                       >
-                        {item.position}
+                        {lang(item.position, language)}
+                      </div>
+                      <div
+                        className="text-xs mt-0.5"
+                        style={{ color: "var(--color-text-muted)" }}
+                      >
+                        {lang(item.organization, language)}
                       </div>
                     </div>
                   </div>
@@ -416,7 +404,6 @@ const EducationWork = () => {
 
         {/* =======================
             VIEW MORE BUTTON
-            Only shown when there are more items beyond the visible slice.
         ======================= */}
         {showMoreButton && filteredData.length > visibleCount && (
           <div className="text-center mt-8">
@@ -436,7 +423,7 @@ const EducationWork = () => {
                   "var(--color-filter-btn-bg)")
               }
             >
-              View More{" "}
+              {language === "zh" ? "查看更多" : "View More"}{" "}
               <ChevronDown className="w-4 h-4 animate-bounce" size={16} />
             </button>
           </div>

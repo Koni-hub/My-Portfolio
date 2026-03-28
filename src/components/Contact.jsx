@@ -1,11 +1,19 @@
 import { Mail, MapPin } from "lucide-react";
 import { contactInfo } from "../constants/index.js";
+import { useLanguage } from "../context/LanguageContext";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { useEffect, useState } from "react";
 
 const Contact = () => {
   const [mounted, setMounted] = useState(false);
+  const { t, language } = useLanguage();
+
+  // Resolves { en, zh } objects or returns plain strings as-is
+  const r = (field) =>
+    field && typeof field === "object" && ("en" in field || "zh" in field)
+      ? (field[language] ?? field.en)
+      : field;
 
   useEffect(() => {
     setMounted(true);
@@ -34,16 +42,16 @@ const Contact = () => {
         >
           <h2 className="text-xl sm:text-2xl font-light">
             <span style={{ color: "var(--color-text-secondary)" }}>
-              Get In Touch
+              {t("contact.title")}
             </span>
           </h2>
           <p
             className="text-sm sm:text-base mt-2 max-w-2xl mx-auto"
             style={{ color: "var(--color-text-secondary)" }}
           >
-            Feel free to reach out. I&apos;m always open to discussing new
-            projects, creative ideas, or opportunities to be part of your
-            visions.
+            {language === "zh"
+              ? "随时与我联系。我很乐意讨论新项目、创意想法或成为您愿景的一部分。"
+              : "Feel free to reach out. I'm always open to discussing new projects, creative ideas, or opportunities to be part of your visions."}
           </p>
         </div>
 
@@ -62,7 +70,7 @@ const Contact = () => {
               }}
             >
               <iframe
-                title="location"
+                title={language === "zh" ? "位置" : "location"}
                 className="w-full h-full grayscale opacity-80 hover:opacity-100 hover:grayscale-0 transition-all duration-300"
                 src="https://www.openstreetmap.org/export/embed.html?bbox=121.0403%2C14.4909%2C121.1304%2C14.6704&amp;layer=mapnik&amp;marker=14.6077%2C121.1054"
               ></iframe>
@@ -102,7 +110,7 @@ const Contact = () => {
                     className="font-medium mb-0.5 sm:mb-1 text-sm sm:text-base"
                     style={{ color: "var(--color-text-primary)" }}
                   >
-                    Email
+                    {t("contact.email")}
                   </h3>
                   <p
                     className="text-sm sm:text-base break-all transition-colors"
@@ -141,13 +149,13 @@ const Contact = () => {
                     className="font-medium mb-0.5 sm:mb-1 text-sm sm:text-base"
                     style={{ color: "var(--color-text-primary)" }}
                   >
-                    Location
+                    {t("contact.location")}
                   </h3>
                   <p
                     className="text-sm sm:text-base"
                     style={{ color: "var(--color-text-secondary)" }}
                   >
-                    {contactInfo.location}
+                    {r(contactInfo.location)}
                   </p>
                 </div>
               </div>
@@ -164,8 +172,9 @@ const Contact = () => {
                 className="text-xs sm:text-sm"
                 style={{ color: "var(--color-text-accent)" }}
               >
-                Prefer email? Send me a message and I&apos;ll get back to you
-                within 24 hours.
+                {language === "zh"
+                  ? "更喜欢发邮件？给我发消息，我会在 24 小时内回复您。"
+                  : "Prefer email? Send me a message and I'll get back to you within 24 hours."}
               </p>
             </div>
           </div>

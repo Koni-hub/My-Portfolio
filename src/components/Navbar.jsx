@@ -1,15 +1,17 @@
-import { useState, useEffect } from "react";
-import { Menu, X, Sun, Moon, Monitor } from "lucide-react";
+import { useState, useEffect, useRef } from "react";
+import { Menu, X, Sun, Moon, Monitor, Languages } from "lucide-react";
+import { useLanguage } from "../context/LanguageContext";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [theme, setTheme] = useState("system");
+  const [showLangMenu, setShowLangMenu] = useState(false);
+  const { language, setLanguage, t } = useLanguage();
+  const langMenuRef = useRef(null);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
-    };
+    const handleScroll = () => setIsScrolled(window.scrollY > 20);
 
     const savedTheme = localStorage.getItem("theme") || "system";
     setTheme(savedTheme);
@@ -19,12 +21,19 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Close language dropdown on outside click
   useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "unset";
-    }
+    const handleClickOutside = (e) => {
+      if (langMenuRef.current && !langMenuRef.current.contains(e.target)) {
+        setShowLangMenu(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  useEffect(() => {
+    document.body.style.overflow = isOpen ? "hidden" : "unset";
   }, [isOpen]);
 
   const applyTheme = (newTheme) => {
@@ -49,28 +58,50 @@ const Navbar = () => {
     applyTheme(newTheme);
   };
 
+  const handleLanguageChange = (lang) => {
+    setLanguage(lang);
+    setShowLangMenu(false);
+    localStorage.setItem("language", lang);
+  };
+
   const navLinks = [
-    { href: "#home", label: "Home" },
-    { href: "#workeducation", label: "Timeline" },
-    { href: "#about", label: "About" },
-    { href: "#projects", label: "Projects" },
-    { href: "#contact", label: "Contact" },
-    // { href: "#newyear", label: "NY Countdown" },
+    { href: "#home", labelKey: "nav.home" },
+    { href: "#workeducation", labelKey: "nav.timeline" },
+    { href: "#about", labelKey: "nav.about" },
+    { href: "#projects", labelKey: "nav.projects" },
+    { href: "#contact", labelKey: "nav.contact" },
+    { href: "#newyear", labelKey: "nav.newyear" },
+  ];
+
+  const themeOptions = [
+    { value: "light", icon: <Sun size={16} />, label: t("theme.light") },
+    { value: "dark", icon: <Moon size={16} />, label: t("theme.dark") },
+  ];
+
+  const languageOptions = [
+    { value: "en", label: "EN", fullLabel: "English" },
+    { value: "zh", label: "中文", fullLabel: "中文 (Chinese)" },
   ];
 
   const handleNavClick = (e, href) => {
     e.preventDefault();
-    const targetElement = document.querySelector(href);
-    if (targetElement) {
-      targetElement.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
+    document
+      .querySelector(href)
+      ?.scrollIntoView({ behavior: "smooth", block: "start" });
     setIsOpen(false);
   };
 
-  const themeOptions = [
-    { value: "light", icon: <Sun size={16} />, label: "Light" },
-    { value: "dark", icon: <Moon size={16} />, label: "Dark" },
-  ];
+  /* =======================
+     SHARED STYLE HELPERS
+  ======================= */
+  const iconBtnStyle = {
+    color: "var(--color-text-secondary)",
+    backgroundColor: "var(--color-icon-bg)",
+  };
+  const onEnterAccent = (e) =>
+    (e.currentTarget.style.color = "var(--color-text-accent)");
+  const onLeaveSecondary = (e) =>
+    (e.currentTarget.style.color = "var(--color-text-secondary)");
 
   return (
     <>
@@ -86,7 +117,7 @@ const Navbar = () => {
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
-            {/* Logo */}
+            {/* ── Logo ── */}
             <div className="flex-shrink-0">
               <span
                 className="text-2xl font-bold"
@@ -96,7 +127,7 @@ const Navbar = () => {
               </span>
             </div>
 
-            {/* Desktop Nav */}
+            {/* ── Desktop Nav ── */}
             <div className="hidden md:flex md:items-center md:space-x-8">
               {navLinks.map((link) => (
                 <a
@@ -105,36 +136,77 @@ const Navbar = () => {
                   onClick={(e) => handleNavClick(e, link.href)}
                   className="text-sm font-medium transition-colors duration-200"
                   style={{ color: "var(--color-text-secondary)" }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.color = "var(--color-text-accent)";
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.color = "var(--color-text-secondary)";
-                  }}
+                  onMouseEnter={onEnterAccent}
+                  onMouseLeave={onLeaveSecondary}
                 >
-                  {link.label}
+                  {t(link.labelKey)}
                 </a>
               ))}
+
+              {/* Language Switcher */}
+              <div className="relative" ref={langMenuRef}>
+                <button
+                  onClick={() => setShowLangMenu((prev) => !prev)}
+                  className="flex items-center gap-2 px-3 py-1.5 rounded-lg shadow-md transition-colors"
+                  style={iconBtnStyle}
+                  onMouseEnter={onEnterAccent}
+                  onMouseLeave={onLeaveSecondary}
+                >
+                  <Languages size={16} />
+                  <span className="text-sm font-medium">
+                    {language === "en" ? "EN" : "中文"}
+                  </span>
+                </button>
+
+                {showLangMenu && (
+                  <div
+                    className="absolute right-0 mt-2 w-44 py-2 shadow-lg rounded-lg z-50"
+                    style={{ backgroundColor: "var(--color-bg-card)" }}
+                  >
+                    {languageOptions.map((option) => (
+                      <button
+                        key={option.value}
+                        onClick={() => handleLanguageChange(option.value)}
+                        className="w-full px-4 py-2 text-left flex items-center gap-2 transition-colors"
+                        style={{
+                          color:
+                            language === option.value
+                              ? "var(--color-text-accent)"
+                              : "var(--color-text-secondary)",
+                        }}
+                        onMouseEnter={(e) => {
+                          if (language !== option.value)
+                            e.currentTarget.style.backgroundColor =
+                              "var(--color-filter-btn-hover)";
+                        }}
+                        onMouseLeave={(e) => {
+                          e.currentTarget.style.backgroundColor = "transparent";
+                        }}
+                      >
+                        <span className="text-sm font-semibold w-8">
+                          {option.label}
+                        </span>
+                        <span className="text-sm">{option.fullLabel}</span>
+                      </button>
+                    ))}
+                  </div>
+                )}
+              </div>
 
               {/* Theme Switcher */}
               <div className="relative group">
                 <button
                   className="flex items-center gap-2 px-3 py-1.5 rounded-lg shadow-md transition-colors"
-                  style={{
-                    color: "var(--color-text-secondary)",
-                    backgroundColor: "var(--color-icon-bg)",
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.color = "var(--color-text-accent)";
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.color = "var(--color-text-secondary)";
-                  }}
+                  style={iconBtnStyle}
+                  onMouseEnter={onEnterAccent}
+                  onMouseLeave={onLeaveSecondary}
                 >
                   {theme === "light" && <Sun size={16} />}
                   {theme === "dark" && <Moon size={16} />}
                   {theme === "system" && <Monitor size={16} />}
-                  <span className="text-sm capitalize">{theme}</span>
+                  <span className="text-sm capitalize">
+                    {t(`theme.${theme}`) || theme}
+                  </span>
                 </button>
 
                 <div
@@ -169,37 +241,41 @@ const Navbar = () => {
               </div>
             </div>
 
-            {/* Mobile Toggle */}
-            <div className="md:hidden flex items-center gap-4">
+            {/* ── Mobile Controls ── */}
+            <div className="md:hidden flex items-center gap-3">
+              {/* Language toggle (cycles EN ↔ 中文) */}
               <button
-                onClick={() => {
-                  const nextTheme = theme === "light" ? "dark" : "light";
-                  handleThemeChange(nextTheme);
-                }}
+                onClick={() =>
+                  handleLanguageChange(language === "en" ? "zh" : "en")
+                }
+                className="px-2 py-1 rounded-md text-xs font-bold transition-colors"
+                style={iconBtnStyle}
+              >
+                {language === "en" ? "中文" : "EN"}
+              </button>
+
+              {/* Theme toggle */}
+              <button
+                onClick={() =>
+                  handleThemeChange(theme === "light" ? "dark" : "light")
+                }
                 className="p-2 transition-colors"
                 style={{ color: "var(--color-text-secondary)" }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.color = "var(--color-text-accent)";
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.color = "var(--color-text-secondary)";
-                }}
+                onMouseEnter={onEnterAccent}
+                onMouseLeave={onLeaveSecondary}
               >
                 {theme === "light" && <Sun size={20} />}
                 {theme === "dark" && <Moon size={20} />}
                 {theme === "system" && <Monitor size={20} />}
               </button>
 
+              {/* Hamburger */}
               <button
-                onClick={() => setIsOpen(!isOpen)}
+                onClick={() => setIsOpen((prev) => !prev)}
                 className="p-2 transition-colors"
                 style={{ color: "var(--color-text-secondary)" }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.color = "var(--color-text-accent)";
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.color = "var(--color-text-secondary)";
-                }}
+                onMouseEnter={onEnterAccent}
+                onMouseLeave={onLeaveSecondary}
                 aria-label="Toggle menu"
               >
                 {isOpen ? <X size={24} /> : <Menu size={24} />}
@@ -209,7 +285,7 @@ const Navbar = () => {
         </div>
       </nav>
 
-      {/* Mobile Overlay */}
+      {/* ── Mobile Overlay ── */}
       {isOpen && (
         <div
           className="fixed inset-0 z-40 md:hidden backdrop-blur-md"
@@ -227,14 +303,10 @@ const Navbar = () => {
                   onClick={(e) => handleNavClick(e, link.href)}
                   className="text-lg font-medium transition-colors text-center"
                   style={{ color: "var(--color-text-secondary)" }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.color = "var(--color-text-accent)";
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.color = "var(--color-text-secondary)";
-                  }}
+                  onMouseEnter={onEnterAccent}
+                  onMouseLeave={onLeaveSecondary}
                 >
-                  {link.label}
+                  {t(link.labelKey)}
                 </a>
               ))}
             </div>
