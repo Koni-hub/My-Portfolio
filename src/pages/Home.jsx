@@ -7,7 +7,6 @@ import Projects from "../components/Projects.jsx";
 import Contact from "../components/Contact.jsx";
 import Footer from "../components/Footer.jsx";
 import EducationWork from "../components/EducationWork.jsx";
-import NewYearCountdown from "../components/NewYearCountdown.jsx";
 
 const Home = () => {
   const [showScrollButton, setShowScrollButton] = useState(false);
@@ -29,44 +28,39 @@ const Home = () => {
   };
 
   return (
-    <div className="relative min-h-screen">
-      {/* Main Content */}
+    <div
+      className="relative min-h-screen transition-colors duration-300"
+      style={{ backgroundColor: "var(--color-bg-page)" }}
+    >
       <div className="relative z-10">
-        {/* Navbar */}
         <Navbar />
 
         {/* Scroll to Top Button */}
         <button
           onClick={scrollToTop}
-          className={`fixed bottom-8 right-8 p-3 bg-white dark:bg-gray-800 rounded-full shadow-lg dark:hover:bg-gray-700 transition-all duration-300 z-50 animate-bounce animate-infinite animate-duration-500 ${
+          className={`fixed bottom-8 right-8 p-3 rounded-full shadow-lg transition-all duration-300 z-50 animate-bounce animate-infinite animate-duration-500 ${
             showScrollButton
               ? "opacity-100 translate-y-0"
               : "opacity-0 translate-y-10 pointer-events-none"
           }`}
+          style={{ backgroundColor: "var(--color-bg-card)" }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.backgroundColor =
+              "var(--color-timeline-card-hover)";
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.backgroundColor = "var(--color-bg-card)";
+          }}
           aria-label="Scroll to top"
         >
-          <ArrowUp size={24} className=" text-gray-600 dark:text-cyan-600" />
+          <ArrowUp size={24} style={{ color: "var(--color-text-accent)" }} />
         </button>
 
-        {/* Hero Section */}
         <Hero />
-
-        {/* Education & Work Section */}
         <EducationWork />
-
-        {/* About Me Section */}
         <AboutMe />
-
-        {/* Projects Section */}
         <Projects />
-
-        {/* Contact Section */}
         <Contact />
-
-        {/* New Year Count */}
-        <NewYearCountdown />
-
-        {/* Footer Section */}
         <Footer />
       </div>
     </div>

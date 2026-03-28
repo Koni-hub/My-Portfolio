@@ -10,7 +10,15 @@ const ProjectCard = ({ project, index }) => {
 
   return (
     <div
-      className="bg-white dark:bg-gray-800/30 shadow-lg dark:shadow-none rounded-xl p-4 lg:p-6 flex flex-col gap-3 lg:gap-4 hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors"
+      className="rounded-xl p-4 lg:p-6 flex flex-col gap-3 lg:gap-4 transition-colors shadow-lg"
+      style={{ backgroundColor: "var(--color-bg-card)" }}
+      onMouseEnter={(e) => {
+        e.currentTarget.style.backgroundColor =
+          "var(--color-timeline-card-hover)";
+      }}
+      onMouseLeave={(e) => {
+        e.currentTarget.style.backgroundColor = "var(--color-bg-card)";
+      }}
       data-aos="fade-up"
       data-aos-duration="1000"
       data-aos-delay={200 + (index % 2) * 200}
@@ -30,10 +38,13 @@ const ProjectCard = ({ project, index }) => {
       </div>
 
       <div className="space-y-3 lg:space-y-4">
-        <h3 className="text-lg lg:text-xl font-semibold text-gray-900 dark:text-white">
+        <h3
+          className="text-lg lg:text-xl font-semibold"
+          style={{ color: "var(--color-text-primary)" }}
+        >
           {project.title}
         </h3>
-        <p className="text-gray-600 dark:text-gray-400 text-sm">
+        <p className="text-sm" style={{ color: "var(--color-text-secondary)" }}>
           {project.description}
         </p>
 
@@ -41,7 +52,11 @@ const ProjectCard = ({ project, index }) => {
           {project.technologies.split(", ").map((tech) => (
             <span
               key={tech}
-              className="px-2 lg:px-3 py-1 bg-gray-100 dark:bg-gray-700/50 text-gray-600 dark:text-gray-300 rounded-full text-xs lg:text-sm"
+              className="px-2 lg:px-3 py-1 rounded-full text-xs lg:text-sm"
+              style={{
+                backgroundColor: "var(--color-filter-btn-bg)",
+                color: "var(--color-text-secondary)",
+              }}
             >
               {tech}
             </span>
@@ -55,7 +70,14 @@ const ProjectCard = ({ project, index }) => {
                 href={project.links.source}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-1 lg:gap-2 text-sm text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white transition-colors"
+                className="flex items-center gap-1 lg:gap-2 text-sm transition-colors"
+                style={{ color: "var(--color-text-secondary)" }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.color = "var(--color-text-primary)";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.color = "var(--color-text-secondary)";
+                }}
               >
                 <Youtube size={16} />
                 Demo
@@ -88,7 +110,8 @@ const Projects = () => {
   return (
     <section
       id="projects"
-      className="py-12 lg:py-24 px-4 lg:px-6 min-h-screen bg-gray-50 dark:bg-gray-900 transition-colors duration-300"
+      className="py-12 lg:py-24 px-4 lg:px-6 min-h-screen transition-colors duration-300"
+      style={{ backgroundColor: "var(--color-bg-section)" }}
     >
       <div className="max-w-6xl mx-auto">
         <div
@@ -97,11 +120,14 @@ const Projects = () => {
           data-aos-duration="1000"
         >
           <h2 className="text-xl lg:text-2xl font-light">
-            <span className="text-gray-500 dark:text-gray-400">
+            <span style={{ color: "var(--color-text-secondary)" }}>
               My Projects
             </span>
           </h2>
-          <p className="text-gray-600 dark:text-gray-400 mt-2 text-sm lg:text-base">
+          <p
+            className="mt-2 text-sm lg:text-base"
+            style={{ color: "var(--color-text-secondary)" }}
+          >
             Explore some of my recent work and side projects
           </p>
         </div>
@@ -123,7 +149,18 @@ const Projects = () => {
               onClick={() =>
                 setDisplayCount((prev) => Math.min(prev + 4, projects.length))
               }
-              className="group flex items-center gap-2 px-4 lg:px-6 py-2 lg:py-3 bg-cyan-50 hover:bg-cyan-100 dark:bg-cyan-500/10 dark:hover:bg-cyan-500/20 text-cyan-600 dark:text-cyan-400 rounded-xl transition-colors duration-300 text-sm lg:text-base"
+              className="group flex items-center gap-2 px-4 lg:px-6 py-2 lg:py-3 rounded-xl transition-colors duration-300 text-sm lg:text-base"
+              style={{
+                backgroundColor: "var(--color-icon-bg)",
+                color: "var(--color-text-accent)",
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.backgroundColor =
+                  "var(--color-icon-bg-hover)";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.backgroundColor = "var(--color-icon-bg)";
+              }}
             >
               View More Projects
               <ChevronDown
@@ -135,7 +172,8 @@ const Projects = () => {
         )}
 
         <div
-          className="text-center mt-4 lg:mt-6 text-xs lg:text-sm text-gray-500 dark:text-gray-400"
+          className="text-center mt-4 lg:mt-6 text-xs lg:text-sm"
+          style={{ color: "var(--color-text-muted)" }}
           data-aos="fade-up"
           data-aos-duration="1000"
           data-aos-delay="600"

@@ -5,52 +5,86 @@ import { heroData } from "../constants/index.js";
 import Resume from "../assets/resume/ARGIE_P._DELGADO_RESUME.pdf";
 
 const Hero = () => {
+  /* =======================
+     HOOK LOGIC
+  ======================= */
+  // mounted: prevents SSR flash by rendering nothing until client-side
+  // isVisible: triggers staggered entrance animations after a short delay
   const [mounted, setMounted] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
     setMounted(true);
+
+    // Small delay so CSS transitions actually play on first render
     const showTimer = setTimeout(() => setIsVisible(true), 100);
 
-    return () => {
-      clearTimeout(showTimer);
-    };
+    /* =======================
+       CLEANUP
+    ======================= */
+    // Clear the timer if the component unmounts before it fires
+    return () => clearTimeout(showTimer);
   }, []);
 
   if (!mounted) return null;
 
+  /* =======================
+     HELPERS
+  ======================= */
+  // Reusable entrance transition classes — toggled by isVisible
+  const enterClass = (delay) =>
+    `transform transition-all duration-1000 ease-out ${
+      isVisible ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
+    }`;
+
   return (
     <section
       id="home"
-      className="relative min-h-screen overflow-hidden transition-all duration-700 bg-gradient-to-tr from-blue-50 via-indigo-100 to-white dark:bg-gradient-to-tr dark:from-slate-900 dark:via-slate-950 dark:to-gray-900 flex items-center justify-center animate-[aurora_20s_ease-in-out_infinite] bg-[length:300%_300%]"
+      className="relative min-h-screen overflow-hidden transition-all duration-700 flex items-center justify-center animate-[aurora_20s_ease-in-out_infinite] bg-[length:300%_300%]"
+      style={{ background: "var(--color-bg-page)" }}
     >
-      {/* Floating Gradient Orbs */}
-      <div className="absolute top-1/3 left-1/4 w-72 h-72 bg-blue-200/30 dark:bg-indigo-900/30 rounded-full blur-3xl animate-[orbFloat_12s_ease-in-out_infinite]"></div>
-      <div className="absolute bottom-1/4 right-1/3 w-96 h-96 bg-indigo-200/30 dark:bg-cyan-900/30 rounded-full blur-3xl animate-[orbFloat_18s_ease-in-out_infinite]"></div>
+      {/* =======================
+          FLOATING GRADIENT ORBS
+      ======================= */}
+      {/* Left orb — slow float animation */}
+      <div
+        className="absolute top-1/3 left-1/4 w-72 h-72 rounded-full blur-3xl animate-[orbFloat_12s_ease-in-out_infinite]"
+        style={{ background: "var(--color-orb-left)" }}
+      />
+      {/* Right orb — slightly slower for depth effect */}
+      <div
+        className="absolute bottom-1/4 right-1/3 w-96 h-96 rounded-full blur-3xl animate-[orbFloat_18s_ease-in-out_infinite]"
+        style={{ background: "var(--color-orb-right)" }}
+      />
 
       <div className="relative z-10 max-w-4xl mx-auto mt-10 px-4 sm:px-6 pt-28 pb-16">
         <div className="space-y-6 sm:space-y-8 text-center">
-          {/* Profile + Messenger Note */}
+          {/* =======================
+              AVATAR
+          ======================= */}
           <div
-            className={`relative inline-block transform transition-all duration-1000 ease-out ${
-              isVisible
-                ? "translate-y-0 opacity-100 scale-100"
-                : "translate-y-10 opacity-0 scale-95"
-            }`}
+            className={`relative inline-block scale-100 ${enterClass()}`}
             style={{ transitionDelay: "200ms" }}
           >
             <div className="relative group inline-block">
-              {/* Glow underlay */}
-              <div className="absolute -inset-1 bg-gradient-to-r from-blue-400 via-indigo-400 to-blue-500 dark:from-gray-600 dark:via-gray-500 dark:to-gray-700 rounded-full blur-lg opacity-30 group-hover:opacity-50 transition-opacity duration-500"></div>
+              {/* Glow ring behind avatar */}
+              <div
+                className="absolute -inset-1 rounded-full blur-lg opacity-30 group-hover:opacity-50 transition-opacity duration-500"
+                style={{
+                  background: `linear-gradient(to right, var(--color-avatar-ring-from), var(--color-avatar-ring-to))`,
+                }}
+              />
 
-              {/* Avatar container with NEW ring behavior */}
+              {/* Floating avatar wrapper */}
               <div className="relative animate-[float_8s_ease-in-out_infinite] rounded-full">
                 <div className="relative group">
+                  {/* Default profile image */}
                   <img
                     className="rounded-full object-cover w-32 h-32 sm:w-40 sm:h-40 md:w-44 md:h-44 lg:w-48 lg:h-48 shadow-2xl transition-opacity duration-700 group-hover:opacity-0"
                     src={heroData.image}
                     alt="Profile"
                   />
+                  {/* Hover image (with shades) — swaps in on hover */}
                   {heroData.image_shades && (
                     <img
                       className="absolute inset-0 rounded-full object-cover w-32 h-32 sm:w-40 sm:h-40 md:w-44 md:h-44 lg:w-48 lg:h-48 opacity-0 group-hover:opacity-100 transition-opacity duration-700"
@@ -60,113 +94,219 @@ const Hero = () => {
                   )}
                 </div>
 
-                {/* Green Activity Dot */}
-                <span className="absolute bottom-2 right-2 w-5 h-5 bg-green-500 border-2 border-white rounded-full"></span>
+                {/* Online activity dot */}
+                <span
+                  className="absolute bottom-2 right-2 w-5 h-5 rounded-full border-2"
+                  style={{
+                    background: "var(--color-dot-online)",
+                    borderColor: "var(--color-dot-border)",
+                  }}
+                />
               </div>
             </div>
           </div>
 
-          {/* Greeting and Name */}
+          {/* =======================
+              GREETING + NAME
+          ======================= */}
           <div
-            className={`space-y-3 sm:space-y-4 transform transition-all duration-1000 ease-out ${
-              isVisible
-                ? "translate-y-0 opacity-100"
-                : "translate-y-10 opacity-0"
-            }`}
+            className={`space-y-3 sm:space-y-4 ${enterClass()}`}
             style={{ transitionDelay: "400ms" }}
           >
             <div className="space-y-2 sm:space-y-3">
-              <p className="text-base sm:text-lg md:text-xl text-blue-600 dark:text-gray-300 font-light tracking-wide">
-                👋 Hello, I&apos;m
+              {/* Greeting line with waving hand emoji */}
+              <p
+                className="text-base sm:text-lg md:text-xl font-light tracking-wide"
+                style={{ color: "var(--color-text-accent)" }}
+              >
+                {/* Wave span: inline-block required for transform to work on text node.
+                    transformOrigin pivots from the wrist for a natural wave. */}
+                <span
+                  className="inline-block animate-wave"
+                  style={{ transformOrigin: "70% 70%" }}
+                >
+                  ദ്ദി
+                </span>{" "}
+                Hello, I&apos;m
               </p>
+
+              {/* Full name with animated shimmer gradient */}
               <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-tight">
-                <span className="bg-gradient-to-r from-indigo-700 via-blue-600 to-cyan-500 dark:from-white dark:via-gray-200 dark:to-gray-300 bg-clip-text text-transparent animate-[shimmer_12s_linear_infinite] bg-[length:200%_100%]">
+                <span
+                  className="bg-clip-text text-transparent animate-[shimmer_12s_linear_infinite] bg-[length:200%_100%]"
+                  style={{
+                    backgroundImage: `linear-gradient(
+                      to right,
+                      var(--color-gradient-from),
+                      var(--color-gradient-via),
+                      var(--color-gradient-to)
+                    )`,
+                  }}
+                >
                   {heroData.fullName}
                 </span>
               </h1>
             </div>
-            <p className="text-xl sm:text-2xl md:text-3xl text-slate-600 dark:text-gray-400 font-light">
+
+            {/* Job title */}
+            <p
+              className="text-xl sm:text-2xl md:text-3xl font-light"
+              style={{ color: "var(--color-text-secondary)" }}
+            >
               {heroData.title}
             </p>
-            <div className="flex items-center justify-center gap-2 text-slate-500 dark:text-gray-500 text-base sm:text-lg">
+
+            {/* Location */}
+            <div
+              className="flex items-center justify-center gap-2 text-base sm:text-lg"
+              style={{ color: "var(--color-text-muted)" }}
+            >
               <MapPin
                 size={16}
-                className="text-blue-500 dark:text-gray-400 sm:w-5 sm:h-5"
+                className="sm:w-5 sm:h-5"
+                style={{ color: "var(--color-text-accent)" }}
               />
               <span>Marikina City, Philippines</span>
             </div>
           </div>
 
-          {/* Actions */}
+          {/* =======================
+              ACTION BUTTONS
+          ======================= */}
           <div
-            className={`flex flex-col sm:flex-row flex-wrap justify-center items-center gap-4 sm:gap-6 transform transition-all duration-1000 ease-out ${
-              isVisible
-                ? "translate-y-0 opacity-100"
-                : "translate-y-10 opacity-0"
-            }`}
+            className={`flex flex-col sm:flex-row flex-wrap justify-center items-center gap-4 sm:gap-6 ${enterClass()}`}
             style={{ transitionDelay: "600ms" }}
           >
+            {/* Download Resume button */}
             <button
-              className="w-full sm:w-auto group relative px-6 sm:px-8 py-3 sm:py-4 rounded-full bg-gradient-to-r from-blue-500 to-indigo-500 hover:from-blue-400 hover:to-indigo-400 text-white font-medium shadow-lg hover:shadow-blue-400/50 transform hover:-translate-y-1 transition-all duration-300 ease-out"
+              className="w-full sm:w-auto group relative px-6 sm:px-8 py-3 sm:py-4 rounded-full font-medium shadow-lg transform hover:-translate-y-1 transition-all duration-300 ease-out"
+              style={{
+                background: `linear-gradient(to right, var(--color-btn-from), var(--color-btn-to))`,
+                color: "var(--color-btn-text)",
+              }}
               onClick={() => window.open(Resume, "_blank")}
             >
-              <div className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-300 to-indigo-300 opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
+              {/* Hover shimmer overlay */}
+              <div
+                className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-20 transition-opacity duration-300"
+                style={{
+                  background: `linear-gradient(to right, var(--color-btn-hover-from), var(--color-btn-hover-to))`,
+                }}
+              />
               <div className="relative flex items-center justify-center gap-2">
                 <FileDown size={18} className="sm:w-5 sm:h-5" />
                 <span className="text-sm sm:text-base">Download Resume</span>
               </div>
             </button>
 
+            {/* Social icon links */}
             <div className="flex items-center gap-4 sm:gap-6">
+              {/* LinkedIn */}
               <a
                 href={heroData.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group relative p-3 sm:p-4 rounded-full bg-slate-900/5 hover:bg-slate-900/10 dark:bg-gray-800/50 dark:hover:bg-gray-700/60 text-slate-500 hover:text-blue-500 dark:text-gray-400 dark:hover:text-gray-200 transition-all duration-300 ease-out hover:scale-110"
+                className="group relative p-3 sm:p-4 rounded-full transition-all duration-300 ease-out hover:scale-110"
+                style={{
+                  background: "var(--color-icon-bg)",
+                  color: "var(--color-icon-text)",
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.background =
+                    "var(--color-icon-bg-hover)";
+                  e.currentTarget.style.color = "var(--color-icon-linkedin)";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.background = "var(--color-icon-bg)";
+                  e.currentTarget.style.color = "var(--color-icon-text)";
+                }}
               >
                 <Linkedin size={20} className="relative z-10 sm:w-6 sm:h-6" />
               </a>
+
+              {/* GitHub */}
               <a
                 href={heroData.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group relative p-3 sm:p-4 rounded-full bg-slate-900/5 hover:bg-slate-900/10 dark:bg-gray-800/50 dark:hover:bg-gray-700/60 text-slate-500 hover:text-slate-800 dark:text-gray-400 dark:hover:text-gray-200 transition-all duration-300 ease-out hover:scale-110"
+                className="group relative p-3 sm:p-4 rounded-full transition-all duration-300 ease-out hover:scale-110"
+                style={{
+                  background: "var(--color-icon-bg)",
+                  color: "var(--color-icon-text)",
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.background =
+                    "var(--color-icon-bg-hover)";
+                  e.currentTarget.style.color = "var(--color-icon-github)";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.background = "var(--color-icon-bg)";
+                  e.currentTarget.style.color = "var(--color-icon-text)";
+                }}
               >
                 <Github size={20} className="relative z-10 sm:w-6 sm:h-6" />
               </a>
+
+              {/* Mail */}
               <a
                 href={`mailto:${heroData.email}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group relative p-3 sm:p-4 rounded-full bg-slate-900/5 hover:bg-slate-900/10 dark:bg-gray-800/50 dark:hover:bg-gray-700/60 text-slate-500 hover:text-red-500 dark:text-gray-400 dark:hover:text-red-400 transition-all duration-300 ease-out hover:scale-110"
+                className="group relative p-3 sm:p-4 rounded-full transition-all duration-300 ease-out hover:scale-110"
+                style={{
+                  background: "var(--color-icon-bg)",
+                  color: "var(--color-icon-text)",
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.background =
+                    "var(--color-icon-bg-hover)";
+                  e.currentTarget.style.color = "var(--color-icon-mail)";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.background = "var(--color-icon-bg)";
+                  e.currentTarget.style.color = "var(--color-icon-text)";
+                }}
               >
                 <Mail size={20} className="relative z-10 sm:w-6 sm:h-6" />
               </a>
             </div>
           </div>
 
-          {/* Scroll Indicator */}
+          {/* =======================
+              SCROLL INDICATOR
+          ======================= */}
           <div
-            className={`pt-8 sm:pt-12 transform transition-all duration-1000 ease-out ${
-              isVisible
-                ? "translate-y-0 opacity-100"
-                : "translate-y-10 opacity-0"
-            }`}
+            className={`pt-8 sm:pt-12 ${enterClass()}`}
             style={{ transitionDelay: "800ms" }}
           >
-            <div className="flex flex-col items-center space-y-2 text-slate-400 dark:text-gray-600">
+            <div
+              className="flex flex-col items-center space-y-2"
+              style={{ color: "var(--color-scroll-text)" }}
+            >
               <span className="text-xs sm:text-sm font-light">
                 Scroll to explore
               </span>
-              <div className="w-5 h-8 sm:w-6 sm:h-10 border-2 border-gradient-to-b from-blue-400 to-indigo-400 dark:from-gray-500 dark:to-gray-600 rounded-full flex justify-center">
-                <div className="w-1 h-2 sm:h-3 bg-gradient-to-b from-blue-500 to-indigo-500 dark:from-gray-400 dark:to-gray-500 rounded-full animate-bounce mt-2"></div>
+              <div
+                className="w-5 h-8 sm:w-6 sm:h-10 border-2 rounded-full flex justify-center"
+                style={{ borderColor: "var(--color-scroll-text)" }}
+              >
+                <div
+                  className="w-1 h-2 sm:h-3 rounded-full animate-bounce mt-2"
+                  style={{
+                    background: `linear-gradient(to bottom, var(--color-scroll-bar-from), var(--color-scroll-bar-to))`,
+                  }}
+                />
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Keyframes */}
+      {/* =======================
+          KEYFRAME ANIMATIONS
+          Defined inline since they are specific to this component.
+          Wave + aurora are defined globally in index.css.
+      ======================= */}
       <style jsx>{`
         @keyframes float {
           0%,

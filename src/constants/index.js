@@ -1,7 +1,7 @@
 // -----------------
 // Hero Data
-import profile from "../assets/profile/profile.png";
-import profile_shades from "../assets/profile/profile.png";
+import profile from "../assets/profile/profile_x.png";
+import profile_shades from "../assets/profile/profile_shades.png";
 
 export const heroData = {
   title: "Full Stack Developer",
@@ -21,7 +21,18 @@ export const aboutData = {
   nickname: "Gie",
   exp_freelance: new Date().getFullYear() - 2024,
   work: "Full Stack Developer",
-  age: new Date().getFullYear() - new Date("2006-04-09").getFullYear(),
+  age: (() => {
+    const today = new Date(),
+      b = new Date("2006-09-04");
+    return (
+      today.getFullYear() -
+      b.getFullYear() -
+      (today.getMonth() < b.getMonth() ||
+      (today.getMonth() === b.getMonth() && today.getDate() < b.getDate())
+        ? 1
+        : 0)
+    );
+  })(),
   quote: "I code with passion, debug with patience, and deliver results.",
 };
 
@@ -49,6 +60,10 @@ export const programming_lang = [
     "GDScript",
     "A high-level, dynamically typed programming language used in Godot Engine",
   ],
+  [
+    "Unreal Engine Visual Scripting",
+    "A node-based scripting system in Unreal Engine for creating gameplay mechanics without coding",
+  ],
 ];
 
 export const services = [
@@ -60,7 +75,7 @@ export const services = [
 export const stats = [
   { label: "Entry Level", value: "Junior" },
   { label: "Projects Completed", value: "25" },
-  { label: "Happy Clients", value: "9" },
+  { label: "Happy Clients", value: "11" },
   { label: "Countries Reached", value: "2" },
 ];
 
@@ -115,13 +130,99 @@ import arise_logo from "../assets/project-logo/arise_logo.jpg";
 import naviguide_logp from "../assets/project-logo/naviguide.png";
 import bridgeXSign_logo from "../assets/project-logo/bridgeXsign.jpg";
 import Ingat_logo from "../assets/project-logo/ingat_logo.png";
+import Rooche_logo from "../assets/project-logo/rooche_logo.png";
+import unreal_logo from "../assets/project-logo/unreal_logo.jpg";
 
 export const timelineData = [
   {
     type: "work",
     position: "Contract Developer",
+    period: "Feb 2026 - Present",
+    title: "Narrative Mystery Game",
+    organization: "Freelance / Independent",
+    description:
+      "Developed a 2.5D narrative-driven mystery game with interactive storytelling and player-choice consequences, focusing on dynamic decision-making and gameplay systems.",
+    logo: unreal_logo,
+    achievements: [
+      "Implemented gameplay systems including NPC behavior, dialogue, inventory, and decision-based outcomes using visual scripting.",
+      "Built player interaction mechanics to support branching choices and narrative progression.",
+    ],
+    technicalDetails: [
+      "Engine: Unreal Engine (Visual Scripting)",
+      "Languages: C#",
+      "Platform: PC (Windows)",
+      "Features: Interactive storytelling, branching choices, NPC interactions, inventory systems",
+    ],
+    relevantSkills: [
+      "Unreal Engine Development",
+      "Visual Scripting",
+      "C# Programming",
+      "Narrative & Gameplay Systems Design",
+      "Interactive Storytelling",
+      "UI/UX Design",
+    ],
+  },
+  {
+    type: "work",
+    position: "Contract Developer",
+    period: "Feb 2026 - Present",
+    title: "Rogue Combat Game",
+    organization: "Freelance / Independent",
+    description:
+      "Developed a 2.5D rogue game with adaptive gameplay systems, focusing on combat mechanics, player progression, and replayable challenges.",
+    logo: unreal_logo,
+    achievements: [
+      "Designed and implemented adaptive gameplay systems including combat and fatigue mechanics using visual scripting.",
+      "Built UI and progression tracking systems to enhance replayability and player engagement.",
+    ],
+    technicalDetails: [
+      "Engine: Unreal Engine (Visual Scripting)",
+      "Languages: C#",
+      "Platform: PC (Windows)",
+      "Features: Adaptive combat systems, progression tracking, fatigue mechanics, UI systems",
+    ],
+    relevantSkills: [
+      "Unreal Engine Development",
+      "Visual Scripting",
+      "C# Programming",
+      "Game Systems Design",
+      "Gameplay Programming",
+      "UI/UX Design",
+    ],
+  },
+  {
+    type: "work",
+    position: "Contract Developer",
+    period: "Sept 2025 – Jan 2026",
+    title: "Mobile App & Web Developer",
+    organization: "Rooche Digital Company",
+    description:
+      "Developed and maintained a mobile application using React Native and managed a WordPress website, ensuring functionality, performance, and up-to-date content.",
+    logo: Rooche_logo,
+    achievements: [
+      "Built and maintained a cross-platform mobile application using React Native.",
+      "Managed and updated WordPress website content and structure.",
+      "Ensured responsive design and smooth user experience across platforms.",
+    ],
+    technicalDetails: [
+      "Framework: React Native",
+      "Web Platform: WordPress",
+      "Languages: JavaScript, PHP (WordPress), HTML, CSS",
+      "Platform: Mobile (Android/iOS), Web",
+    ],
+    relevantSkills: [
+      "React Native Development",
+      "JavaScript Programming",
+      "WordPress Management",
+      "Mobile App Development",
+      "Web Development",
+    ],
+  },
+  {
+    type: "work",
+    position: "Contract Developer",
     period: "Oct 2025 – Dec 2025",
-    title: "INGAT: Kidnapping Prevention Visual Novel (Philippines)",
+    title: "INGAT: Kidnapping Prevention Visual Novel Game",
     organization: "Independent Game Development",
     description:
       "Developed a visual novel game that promotes awareness of kidnapping prevention in the Philippines through interactive storytelling and player-driven choices.",
@@ -511,8 +612,31 @@ import arPcAssemblyImg from "../assets/projects/arise.jpg";
 import naviGuideImg from "../assets/projects/naviguide.jpg";
 import bridgeXSignImg from "../assets/projects/bridgeXsign.jpg";
 import IngatImg from "../assets/projects/ingat.jpg";
+import unrealImg from "../assets/projects/unreal.jpg";
 
 export const projects = [
+  {
+    title: "Narrative Mystery Game",
+    description:
+      "Developed a 2.5D narrative-driven mystery game with interactive storytelling and player-choice consequences. Implemented gameplay systems including NPC behavior, dialogue, inventory, and decision-based outcomes.",
+    technologies: "Unreal Engine, C#, ShaderLab, High-Level Shader Language",
+    imageUrl: unrealImg,
+    links: {
+      source: "#",
+      website: "#",
+    },
+  },
+  {
+    title: "Rogue Combat Game",
+    description:
+      "Developed a 2.5D rogue game with adaptive gameplay systems, including combat, progression tracking, and player-driven difficulty. Built UI systems to support replayability and risk-reward challenges.",
+    technologies: "Unreal Engine, C#, ShaderLab, High-Level Shader Language",
+    imageUrl: unrealImg,
+    links: {
+      source: "#",
+      website: "#",
+    },
+  },
   {
     title: "INGAT: Kidnapping Prevention Visual Novel Game (Philippines)",
     description:

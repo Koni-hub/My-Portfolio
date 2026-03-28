@@ -14,7 +14,7 @@ const NewYearCountdown = () => {
   });
   const [celebrationState, setCelebrationState] = useState("countdown"); // countdown, celebrating, or finished
   const [targetDate, setTargetDate] = useState(
-    new Date(`January 1, ${new Date().getFullYear() + 1} 00:00:00`)
+    new Date(`January 1, ${new Date().getFullYear() + 1} 00:00:00`),
   );
 
   const getTrueNumber = (num) => (num < 10 ? `0${num}` : num.toString());
@@ -30,20 +30,20 @@ const NewYearCountdown = () => {
         setTimeout(() => {
           setCelebrationState("countdown");
           setTargetDate(
-            new Date(`January 1, ${targetDate.getFullYear() + 1} 00:00:00`)
+            new Date(`January 1, ${targetDate.getFullYear() + 1} 00:00:00`),
           );
-        }, 60000); // Reset after welcome message
-      }, 60000); // Switch to welcome message after fireworks
+        }, 60000);
+      }, 60000);
       return;
     }
 
     setTimeLeft({
       days: getTrueNumber(Math.floor(remainingTime / (1000 * 60 * 60 * 24))),
       hours: getTrueNumber(
-        Math.floor((remainingTime % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
+        Math.floor((remainingTime % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
       ),
       minutes: getTrueNumber(
-        Math.floor((remainingTime % (1000 * 60 * 60)) / (1000 * 60))
+        Math.floor((remainingTime % (1000 * 60 * 60)) / (1000 * 60)),
       ),
       seconds: getTrueNumber(Math.floor((remainingTime % (1000 * 60)) / 1000)),
     });
@@ -140,25 +140,36 @@ const NewYearCountdown = () => {
   return (
     <div
       id="newyear"
-      className="py-24 min-h-screen bg-white dark:bg-gray-900 flex items-center justify-center p-4 overflow-hidden relative"
+      className="py-24 min-h-screen flex items-center justify-center p-4 overflow-hidden relative transition-colors duration-300"
+      style={{ backgroundColor: "var(--color-bg-page)" }}
     >
       <div className="fireworks-container fixed inset-0 pointer-events-none" />
+
       <div
-        className="bg-white/10 backdrop-blur-md rounded-lg p-6 sm:p-12 w-full max-w-3xl shadow-2xl relative z-10"
+        className="backdrop-blur-md rounded-lg p-6 sm:p-12 w-full max-w-3xl shadow-2xl relative z-10"
+        style={{ backgroundColor: "var(--color-bg-card)" }}
         data-aos="fade-up"
         data-aos-duration="1000"
         data-aos-delay="200"
       >
         <div className="text-center space-y-8 sm:space-y-10">
+          {/* Status & Title */}
           <div>
-            <p className="text-cyan-500 text-sm tracking-widest uppercase mb-2">
+            <p
+              className="text-sm tracking-widest uppercase mb-2"
+              style={{ color: "var(--color-text-accent)" }}
+            >
               {content.status}
             </p>
-            <h1 className="text-2xl sm:text-4xl font-light text-cyan-500 dark:text-white tracking-wide">
+            <h1
+              className="text-2xl sm:text-4xl font-light tracking-wide"
+              style={{ color: "var(--color-text-primary)" }}
+            >
               {content.title}
             </h1>
           </div>
 
+          {/* Countdown Grid */}
           {celebrationState === "countdown" && (
             <div className="grid grid-cols-1 sm:grid-cols-4 gap-4 sm:gap-6">
               {[
@@ -168,10 +179,16 @@ const NewYearCountdown = () => {
                 { label: "Seconds", value: timeLeft.seconds },
               ].map(({ label, value }) => (
                 <div key={label} className="text-center">
-                  <div className="text-2xl sm:text-4xl font-light text-cyan-500 dark:text-white mb-2">
+                  <div
+                    className="text-2xl sm:text-4xl font-light mb-2"
+                    style={{ color: "var(--color-text-accent)" }}
+                  >
                     {value}
                   </div>
-                  <div className="text-xs text-cyan-900 uppercase tracking-wider">
+                  <div
+                    className="text-xs uppercase tracking-wider"
+                    style={{ color: "var(--color-text-muted)" }}
+                  >
                     {label}
                   </div>
                 </div>
@@ -179,9 +196,16 @@ const NewYearCountdown = () => {
             </div>
           )}
 
-          <div className="pt-4 border-t border-dark/10 dark:border-white/10">
-            <div className="flex items-center justify-center text-cyan-900">
-              <Clock className="w-4 h-4 mr-2" />
+          {/* Footer Message */}
+          <div
+            className="pt-4 border-t"
+            style={{ borderColor: "var(--color-icon-bg-hover)" }}
+          >
+            <div
+              className="flex items-center justify-center gap-2"
+              style={{ color: "var(--color-text-secondary)" }}
+            >
+              <Clock className="w-4 h-4" />
               <p className="text-sm tracking-wide">{content.message}</p>
             </div>
           </div>

@@ -1,8 +1,217 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+/* =======================
+   BASE
+======================= */
 :root {
-  font-family: "Inter", sans-serif;
+  font-family: "Montserrat", sans-serif;
+}
+
+h1,
+h2,
+h3,
+.portfolio-title {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 700; /* bold for titles */
+  letter-spacing: 0.05em; /* adds clean spacing between letters */
+  text-transform: uppercase; /* optional, matches portfolio style */
+}
+
+/* Body text */
+body,
+p,
+span {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 400; /* regular for body */
+  line-height: 1.6;
+  letter-spacing: 0.02em;
+}
+
+/* =======================
+   COLOR PALETTE — LIGHT MODE
+   Pure black & white minimalism. No color — only tone.
+   Accent is pure black on light, pure white on dark.
+   To retheme the entire site, only edit values here.
+   Nothing in JSX needs to change.
+======================= */
+:root {
+  /* --- Backgrounds --- */
+  --color-bg-page: #fafafa; /* near-white     — page / Hero bg      */
+  --color-bg-section: #f2f2f2; /* light gray     — section surfaces    */
+  --color-bg-card: #ffffff; /* pure white     — cards, modals       */
+
+  /* --- Orb / glow accents (Hero floating blobs) --- */
+  --color-orb-left: #0000000a; /* black at 4%                         */
+  --color-orb-right: #00000006; /* black at 2.4%                       */
+
+  /* --- Text --- */
+  --color-text-primary: #0d0d0d; /* near-black     — headings         */
+  --color-text-secondary: #444444; /* dark gray      — body, subtitles  */
+  --color-text-muted: #999999; /* mid gray       — captions, hints  */
+  --color-text-accent: #0d0d0d; /* black          — icons, links     */
+
+  /* --- Name gradient (monochrome, left to right) --- */
+  --color-gradient-from: #0d0d0d; /* near-black                         */
+  --color-gradient-via: #444444; /* dark gray                          */
+  --color-gradient-to: #888888; /* mid gray                           */
+
+  /* --- Primary button --- */
+  --color-btn-from: #0d0d0d; /* near-black                         */
+  --color-btn-to: #222222; /* soft black                         */
+  --color-btn-hover-from: #333333;
+  --color-btn-hover-to: #444444;
+  --color-btn-text: #ffffff;
+  --color-btn-shadow: #0000001a; /* black at 10%                       */
+
+  /* --- Social icon buttons --- */
+  --color-icon-bg: #0d0d0d0d; /* black at 5%                      */
+  --color-icon-bg-hover: #0d0d0d1a; /* black at 10%                     */
+  --color-icon-text: #888888;
+  --color-icon-linkedin: #0d0d0d;
+  --color-icon-github: #0d0d0d;
+  --color-icon-mail: #0d0d0d;
+
+  /* --- Avatar glow ring --- */
+  --color-avatar-ring-from: #444444;
+  --color-avatar-ring-to: #0d0d0d;
+
+  /* --- Online activity dot --- */
+  --color-dot-online: #444444; /* dark gray dot                      */
+  --color-dot-border: #fafafa; /* matches page bg                    */
+
+  /* --- Scroll indicator --- */
+  --color-scroll-bar-from: #0d0d0d;
+  --color-scroll-bar-to: #444444;
+  --color-scroll-text: #999999;
+
+  /* --- Timeline — Work (dark) --- */
+  --color-timeline-work: #0d0d0d;
+  --color-timeline-work-bg: #f0f0f0;
+  --color-timeline-work-border: #444444;
+
+  /* --- Timeline — Education (mid gray) --- */
+  --color-timeline-education: #444444;
+  --color-timeline-education-bg: #f5f5f5;
+  --color-timeline-education-border: #888888;
+
+  /* --- Timeline cards --- */
+  --color-timeline-card-bg: #ffffff;
+  --color-timeline-card-hover: #fafafa;
+
+  /* --- Filter buttons (Work / Education tabs) --- */
+  --color-filter-btn-bg: #f0f0f0;
+  --color-filter-btn-hover: #e4e4e4;
+}
+
+/* =======================
+   COLOR PALETTE — DARK MODE
+   Professional deep black. Cards are lifted #1A1A1A.
+   Borders are barely-visible #2A2A2A.
+   Accent is pure white — stark, confident.
+======================= */
+.dark {
+  /* --- Backgrounds --- */
+  --color-bg-page: #0a0a0a; /* true black     — Hero bg             */
+  --color-bg-section: #111111; /* deep black     — section bg          */
+  --color-bg-card: #1a1a1a; /* lifted black   — cards               */
+
+  /* --- Orbs --- */
+  --color-orb-left: #ffffff08; /* white at 3%                          */
+  --color-orb-right: #ffffff05; /* white at 2%                          */
+
+  /* --- Text --- */
+  --color-text-primary: #f0f0f0; /* near-white                       */
+  --color-text-secondary: #888888; /* mid gray                         */
+  --color-text-muted: #444444; /* dark gray                        */
+  --color-text-accent: #f0f0f0; /* near-white — accent on dark       */
+
+  /* --- Name gradient --- */
+  --color-gradient-from: #ffffff;
+  --color-gradient-via: #cccccc;
+  --color-gradient-to: #888888;
+
+  /* --- Primary button (inverted — white on dark) --- */
+  --color-btn-from: #ffffff;
+  --color-btn-to: #e0e0e0;
+  --color-btn-hover-from: #f0f0f0;
+  --color-btn-hover-to: #cccccc;
+  --color-btn-text: #0a0a0a;
+  --color-btn-shadow: #ffffff14; /* white at 8%                      */
+
+  /* --- Social icon buttons --- */
+  --color-icon-bg: #ffffff0d; /* white at 5%                      */
+  --color-icon-bg-hover: #ffffff1a; /* white at 10%                     */
+  --color-icon-text: #666666;
+  --color-icon-linkedin: #f0f0f0;
+  --color-icon-github: #f0f0f0;
+  --color-icon-mail: #f0f0f0;
+
+  /* --- Avatar glow ring --- */
+  --color-avatar-ring-from: #444444;
+  --color-avatar-ring-to: #888888;
+
+  /* --- Activity dot border matches dark page bg --- */
+  --color-dot-border: #0a0a0a;
+  --color-dot-online: #aaaaaa;
+
+  /* --- Scroll indicator --- */
+  --color-scroll-bar-from: #888888;
+  --color-scroll-bar-to: #444444;
+  --color-scroll-text: #444444;
+
+  /* --- Timeline — Work (light on dark) --- */
+  --color-timeline-work: #cccccc;
+  --color-timeline-work-bg: #1e1e1e;
+  --color-timeline-work-border: #444444;
+
+  /* --- Timeline — Education (mid on dark) --- */
+  --color-timeline-education: #888888;
+  --color-timeline-education-bg: #161616;
+  --color-timeline-education-border: #333333;
+
+  /* --- Timeline cards --- */
+  --color-timeline-card-bg: #1a1a1a;
+  --color-timeline-card-hover: #222222;
+
+  /* --- Filter buttons --- */
+  --color-filter-btn-bg: #1e1e1e;
+  --color-filter-btn-hover: #2a2a2a;
+}
+
+/* =======================
+   WAVE ANIMATION
+======================= */
+@keyframes wave {
+  0% {
+    transform: rotate(0deg);
+  }
+  10% {
+    transform: rotate(14deg);
+  }
+  20% {
+    transform: rotate(-8deg);
+  }
+  30% {
+    transform: rotate(14deg);
+  }
+  40% {
+    transform: rotate(-4deg);
+  }
+  50% {
+    transform: rotate(10deg);
+  }
+  60% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+.animate-wave {
+  animation: wave 2.5s ease-in-out infinite;
 }
