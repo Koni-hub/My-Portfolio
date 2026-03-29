@@ -9,12 +9,15 @@ const Hero = () => {
   /* =======================
      HOOK LOGIC
   ======================= */
+  // mounted — prevents SSR flash by deferring render until client is ready
   const [mounted, setMounted] = useState(false);
+  // isVisible — drives the staggered entrance animation (translate + opacity)
   const [isVisible, setIsVisible] = useState(false);
   const { language, t } = useLanguage();
 
   useEffect(() => {
     setMounted(true);
+    // Small delay so the initial paint lands before the reveal transition fires
     const showTimer = setTimeout(() => setIsVisible(true), 100);
     return () => clearTimeout(showTimer);
   }, []);
@@ -24,6 +27,7 @@ const Hero = () => {
   /* =======================
      HELPERS
   ======================= */
+  // Returns Tailwind transition classes for the staggered entrance effect
   const enterClass = () =>
     `transform transition-all duration-1000 ease-out ${
       isVisible ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
@@ -61,7 +65,49 @@ const Hero = () => {
             style={{ transitionDelay: "200ms" }}
           >
             <div className="relative group inline-block">
-              {/* Glow ring behind avatar */}
+              {/* -------------------------------------------------------
+                  PULSE RINGS
+                  Three concentric divs absolutely positioned behind the
+                  avatar. Each scales outward from 1x to ~2x and fades
+                  to opacity-0 on a staggered delay, creating a sonar /
+                  "live presence" ripple effect.
+                  Hidden when prefers-reduced-motion is active.
+              ------------------------------------------------------- */}
+              {/* Ring 1 — outermost, 2px border, most opaque start */}
+              <div
+                className="absolute inset-0 rounded-full motion-reduce:hidden"
+                style={{
+                  background: "transparent",
+                  border: "2px solid var(--color-avatar-ring-from)",
+                  animation:
+                    "pulseRing1 2.4s cubic-bezier(0.215,0.61,0.355,1) infinite",
+                  animationDelay: "0s",
+                }}
+              />
+              {/* Ring 2 — mid reach, slightly thinner */}
+              <div
+                className="absolute inset-0 rounded-full motion-reduce:hidden"
+                style={{
+                  background: "transparent",
+                  border: "1.5px solid var(--color-avatar-ring-from)",
+                  animation:
+                    "pulseRing2 2.4s cubic-bezier(0.215,0.61,0.355,1) infinite",
+                  animationDelay: "0.4s",
+                }}
+              />
+              {/* Ring 3 — closest, thinnest, subtlest */}
+              <div
+                className="absolute inset-0 rounded-full motion-reduce:hidden"
+                style={{
+                  background: "transparent",
+                  border: "1px solid var(--color-avatar-ring-from)",
+                  animation:
+                    "pulseRing3 2.4s cubic-bezier(0.215,0.61,0.355,1) infinite",
+                  animationDelay: "0.8s",
+                }}
+              />
+
+              {/* Soft glow ring blurred behind avatar */}
               <div
                 className="absolute -inset-1 rounded-full blur-lg opacity-30 group-hover:opacity-50 transition-opacity duration-500"
                 style={{
@@ -69,16 +115,23 @@ const Hero = () => {
                 }}
               />
 
-              {/* Floating avatar wrapper */}
+              {/* -------------------------------------------------------
+                  AVATAR WRAPPER
+                  Outer div: float animation — gentle vertical levitation.
+                  Inner div: heartbeat animation — subtle double-beat scale
+                  that gives the avatar a living, breathing quality.
+                  motion-reduce:animate-none disables heartbeat for users
+                  who prefer reduced motion.
+              ------------------------------------------------------- */}
               <div className="relative animate-[float_8s_ease-in-out_infinite] rounded-full">
-                <div className="relative group">
+                <div className="relative group animate-[heartbeat_2.4s_ease-in-out_infinite] motion-reduce:animate-none">
                   {/* Default profile image */}
                   <img
                     className="rounded-full object-cover w-32 h-32 sm:w-40 sm:h-40 md:w-44 md:h-44 lg:w-48 lg:h-48 shadow-2xl transition-opacity duration-700 group-hover:opacity-0"
                     src={heroData.image}
                     alt="Profile"
                   />
-                  {/* Hover image (with shades) */}
+                  {/* Hover image (with shades) — swaps in on hover */}
                   {heroData.image_shades && (
                     <img
                       className="absolute inset-0 rounded-full object-cover w-32 h-32 sm:w-40 sm:h-40 md:w-44 md:h-44 lg:w-48 lg:h-48 opacity-0 group-hover:opacity-100 transition-opacity duration-700"
@@ -87,15 +140,6 @@ const Hero = () => {
                     />
                   )}
                 </div>
-
-                {/* Online activity dot */}
-                <span
-                  className="absolute bottom-2 right-2 w-5 h-5 rounded-full border-2"
-                  style={{
-                    background: "var(--color-dot-online)",
-                    borderColor: "var(--color-dot-border)",
-                  }}
-                />
               </div>
             </div>
           </div>
@@ -114,7 +158,7 @@ const Hero = () => {
                 style={{ color: "var(--color-text-accent)" }}
               >
                 <span
-                  className="inline-block animate-wave"
+                  className="inline-block animate-[animate-wave_12s_linear_infinite]"
                   style={{ transformOrigin: "70% 70%" }}
                 >
                   ദ്ദി
@@ -295,49 +339,6 @@ const Hero = () => {
           </div>
         </div>
       </div>
-
-      {/* =======================
-          KEYFRAME ANIMATIONS
-      ======================= */}
-      <style jsx>{`
-        @keyframes float {
-          0%,
-          100% {
-            transform: translateY(0);
-          }
-          50% {
-            transform: translateY(-12px);
-          }
-        }
-        @keyframes orbFloat {
-          0%,
-          100% {
-            transform: translate(0, 0) scale(1);
-          }
-          50% {
-            transform: translate(20px, -30px) scale(1.05);
-          }
-        }
-        @keyframes aurora {
-          0% {
-            background-position: 0% 50%;
-          }
-          50% {
-            background-position: 100% 50%;
-          }
-          100% {
-            background-position: 0% 50%;
-          }
-        }
-        @keyframes shimmer {
-          0% {
-            background-position: -200% 0;
-          }
-          100% {
-            background-position: 200% 0;
-          }
-        }
-      `}</style>
     </section>
   );
 };

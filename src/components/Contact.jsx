@@ -63,10 +63,9 @@ const Contact = () => {
             data-aos-delay="400"
           >
             <div
-              className="w-full h-[300px] sm:h-[400px] rounded-xl overflow-hidden shadow-lg ring-1"
+              className="w-full h-[300px] sm:h-[400px] rounded-xl overflow-hidden shadow-lg"
               style={{
                 backgroundColor: "var(--color-bg-card)",
-                ringColor: "var(--color-icon-bg-hover)",
               }}
             >
               <iframe

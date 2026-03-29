@@ -16,9 +16,12 @@ h2,
 h3,
 .portfolio-title {
   font-family: "Montserrat", sans-serif;
-  font-weight: 700; /* bold for titles */
-  letter-spacing: 0.05em; /* adds clean spacing between letters */
-  text-transform: uppercase; /* optional, matches portfolio style */
+  font-weight: 700;
+  /* bold for titles */
+  letter-spacing: 0.05em;
+  /* adds clean spacing between letters */
+  text-transform: uppercase;
+  /* optional, matches portfolio style */
 }
 
 /* Body text */
@@ -26,7 +29,8 @@ body,
 p,
 span {
   font-family: "Montserrat", sans-serif;
-  font-weight: 400; /* regular for body */
+  font-weight: 400;
+  /* regular for body */
   line-height: 1.6;
   letter-spacing: 0.02em;
 }
@@ -40,36 +44,53 @@ span {
 ======================= */
 :root {
   /* --- Backgrounds --- */
-  --color-bg-page: #fafafa; /* near-white     — page / Hero bg      */
-  --color-bg-section: #f2f2f2; /* light gray     — section surfaces    */
-  --color-bg-card: #ffffff; /* pure white     — cards, modals       */
+  --color-bg-page: #fafafa;
+  /* near-white     — page / Hero bg      */
+  --color-bg-section: #f2f2f2;
+  /* light gray     — section surfaces    */
+  --color-bg-card: #ffffff;
+  /* pure white     — cards, modals       */
 
   /* --- Orb / glow accents (Hero floating blobs) --- */
-  --color-orb-left: #0000000a; /* black at 4%                         */
-  --color-orb-right: #00000006; /* black at 2.4%                       */
+  --color-orb-left: #0000000a;
+  /* black at 4%                         */
+  --color-orb-right: #00000006;
+  /* black at 2.4%                       */
 
   /* --- Text --- */
-  --color-text-primary: #0d0d0d; /* near-black     — headings         */
-  --color-text-secondary: #444444; /* dark gray      — body, subtitles  */
-  --color-text-muted: #999999; /* mid gray       — captions, hints  */
-  --color-text-accent: #0d0d0d; /* black          — icons, links     */
+  --color-text-primary: #0d0d0d;
+  /* near-black     — headings         */
+  --color-text-secondary: #444444;
+  /* dark gray      — body, subtitles  */
+  --color-text-muted: #999999;
+  /* mid gray       — captions, hints  */
+  --color-text-accent: #0d0d0d;
+  /* black          — icons, links     */
 
   /* --- Name gradient (monochrome, left to right) --- */
-  --color-gradient-from: #0d0d0d; /* near-black                         */
-  --color-gradient-via: #444444; /* dark gray                          */
-  --color-gradient-to: #888888; /* mid gray                           */
+  --color-gradient-from: #0d0d0d;
+  /* near-black                         */
+  --color-gradient-via: #444444;
+  /* dark gray                          */
+  --color-gradient-to: #888888;
+  /* mid gray                           */
 
   /* --- Primary button --- */
-  --color-btn-from: #0d0d0d; /* near-black                         */
-  --color-btn-to: #222222; /* soft black                         */
+  --color-btn-from: #0d0d0d;
+  /* near-black                         */
+  --color-btn-to: #222222;
+  /* soft black                         */
   --color-btn-hover-from: #333333;
   --color-btn-hover-to: #444444;
   --color-btn-text: #ffffff;
-  --color-btn-shadow: #0000001a; /* black at 10%                       */
+  --color-btn-shadow: #0000001a;
+  /* black at 10%                       */
 
   /* --- Social icon buttons --- */
-  --color-icon-bg: #0d0d0d0d; /* black at 5%                      */
-  --color-icon-bg-hover: #0d0d0d1a; /* black at 10%                     */
+  --color-icon-bg: #0d0d0d0d;
+  /* black at 5%                      */
+  --color-icon-bg-hover: #0d0d0d1a;
+  /* black at 10%                     */
   --color-icon-text: #888888;
   --color-icon-linkedin: #0d0d0d;
   --color-icon-github: #0d0d0d;
@@ -78,10 +99,6 @@ span {
   /* --- Avatar glow ring --- */
   --color-avatar-ring-from: #444444;
   --color-avatar-ring-to: #0d0d0d;
-
-  /* --- Online activity dot --- */
-  --color-dot-online: #444444; /* dark gray dot                      */
-  --color-dot-border: #fafafa; /* matches page bg                    */
 
   /* --- Scroll indicator --- */
   --color-scroll-bar-from: #0d0d0d;
@@ -115,19 +132,28 @@ span {
 ======================= */
 .dark {
   /* --- Backgrounds --- */
-  --color-bg-page: #0a0a0a; /* true black     — Hero bg             */
-  --color-bg-section: #111111; /* deep black     — section bg          */
-  --color-bg-card: #1a1a1a; /* lifted black   — cards               */
+  --color-bg-page: #0a0a0a;
+  /* true black     — Hero bg             */
+  --color-bg-section: #111111;
+  /* deep black     — section bg          */
+  --color-bg-card: #1a1a1a;
+  /* lifted black   — cards               */
 
   /* --- Orbs --- */
-  --color-orb-left: #ffffff08; /* white at 3%                          */
-  --color-orb-right: #ffffff05; /* white at 2%                          */
+  --color-orb-left: #ffffff08;
+  /* white at 3%                          */
+  --color-orb-right: #ffffff05;
+  /* white at 2%                          */
 
   /* --- Text --- */
-  --color-text-primary: #f0f0f0; /* near-white                       */
-  --color-text-secondary: #888888; /* mid gray                         */
-  --color-text-muted: #444444; /* dark gray                        */
-  --color-text-accent: #f0f0f0; /* near-white — accent on dark       */
+  --color-text-primary: #f0f0f0;
+  /* near-white                       */
+  --color-text-secondary: #888888;
+  /* mid gray                         */
+  --color-text-muted: #444444;
+  /* dark gray                        */
+  --color-text-accent: #f0f0f0;
+  /* near-white — accent on dark       */
 
   /* --- Name gradient --- */
   --color-gradient-from: #ffffff;
@@ -140,11 +166,14 @@ span {
   --color-btn-hover-from: #f0f0f0;
   --color-btn-hover-to: #cccccc;
   --color-btn-text: #0a0a0a;
-  --color-btn-shadow: #ffffff14; /* white at 8%                      */
+  --color-btn-shadow: #ffffff14;
+  /* white at 8%                      */
 
   /* --- Social icon buttons --- */
-  --color-icon-bg: #ffffff0d; /* white at 5%                      */
-  --color-icon-bg-hover: #ffffff1a; /* white at 10%                     */
+  --color-icon-bg: #ffffff0d;
+  /* white at 5%                      */
+  --color-icon-bg-hover: #ffffff1a;
+  /* white at 10%                     */
   --color-icon-text: #666666;
   --color-icon-linkedin: #f0f0f0;
   --color-icon-github: #f0f0f0;
@@ -182,36 +211,178 @@ span {
   --color-filter-btn-hover: #2a2a2a;
 }
 
-/* =======================
-   WAVE ANIMATION
-======================= */
-@keyframes wave {
+@keyframes animate-wave {
   0% {
     transform: rotate(0deg);
   }
+
   10% {
     transform: rotate(14deg);
   }
+
+  /* swing forward */
   20% {
     transform: rotate(-8deg);
   }
+
+  /* swing back */
   30% {
     transform: rotate(14deg);
   }
+
+  /* swing forward again */
   40% {
     transform: rotate(-4deg);
   }
+
+  /* slight back */
   50% {
     transform: rotate(10deg);
   }
-  60% {
-    transform: rotate(0deg);
-  }
+
+  /* settle forward */
+  60%,
   100% {
     transform: rotate(0deg);
   }
+
+  /* rest pause */
 }
 
-.animate-wave {
-  animation: wave 2.5s ease-in-out infinite;
+/* --- Existing: avatar levitation --- */
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+/* --- Existing: background orb drift --- */
+@keyframes orbFloat {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+
+  50% {
+    transform: translate(20px, -30px) scale(1.05);
+  }
+}
+
+/* --- Existing: background gradient shift --- */
+@keyframes aurora {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* --- Existing: name text shimmer --- */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* -------------------------------------------------------
+           NEW: HEARTBEAT
+           A two-beat pulse that mimics a real heartbeat rhythm.
+           Applied to the avatar image wrapper.
+           First beat (14%) is stronger; second beat (42%) softer.
+        ------------------------------------------------------- */
+@keyframes heartbeat {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  14% {
+    transform: scale(1.07);
+  }
+
+  28% {
+    transform: scale(1);
+  }
+
+  42% {
+    transform: scale(1.04);
+  }
+
+  56% {
+    transform: scale(1);
+  }
+}
+
+/* -------------------------------------------------------
+           NEW: PULSE RINGS (3 layers, staggered delay in JSX)
+           Each ring scales outward from its own inset-0 origin
+           and fades out — creates a sonar ripple behind avatar.
+           Ring 1: largest reach (2.1x), most opaque start (0.55)
+           Ring 2: mid reach  (1.85x), medium opacity (0.4)
+           Ring 3: closest    (1.6x),  subtlest       (0.3)
+        ------------------------------------------------------- */
+@keyframes pulseRing1 {
+  0% {
+    transform: scale(1);
+    opacity: 0.55;
+  }
+
+  100% {
+    transform: scale(2.1);
+    opacity: 0;
+  }
+}
+
+@keyframes pulseRing2 {
+  0% {
+    transform: scale(1);
+    opacity: 0.4;
+  }
+
+  100% {
+    transform: scale(1.85);
+    opacity: 0;
+  }
+}
+
+@keyframes pulseRing3 {
+  0% {
+    transform: scale(1);
+    opacity: 0.3;
+  }
+
+  100% {
+    transform: scale(1.6);
+    opacity: 0;
+  }
+}
+
+/* -------------------------------------------------------
+           REDUCED MOTION
+           Disables all decorative animations for users who have
+           enabled the prefers-reduced-motion OS setting.
+        ------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .motion-reduce\\:hidden {
+    display: none !important;
+  }
+
+  .motion-reduce\\:animate-none {
+    animation: none !important;
+  }
 }
