@@ -216,7 +216,7 @@ export const timelineData = [
     position: { en: "Contract Developer", zh: "合同开发工程师" },
     period: "Feb 2026 - Present",
     title: { en: "Narrative Mystery Game", zh: "叙事悬疑游戏" },
-    organization: { en: "Freelance / Independent", zh: "自由职业 / 独立" },
+    organization: { en: "Independent Game Development", zh: "独立游戏开发" },
     description: {
       en: "Developed a 2.5D narrative-driven mystery game with interactive storytelling and player-choice consequences, focusing on dynamic decision-making and gameplay systems.",
       zh: "开发了一款2.5D叙事驱动的悬疑游戏，具有互动故事情节和玩家选择后果，专注于动态决策和游戏系统。",
@@ -260,7 +260,7 @@ export const timelineData = [
     position: { en: "Contract Developer", zh: "合同开发工程师" },
     period: "Feb 2026 - Present",
     title: { en: "Rogue Combat Game", zh: "肉鸽战斗游戏" },
-    organization: { en: "Freelance / Independent", zh: "自由职业 / 独立" },
+    organization: { en: "Independent Game Development", zh: "独立游戏开发" },
     description: {
       en: "Developed a 2.5D rogue game with adaptive gameplay systems, focusing on combat mechanics, player progression, and replayable challenges.",
       zh: "开发了一款2.5D肉鸽游戏，具有自适应游戏系统，专注于战斗机制、玩家进展和可重玩的挑战。",
@@ -984,7 +984,7 @@ export const projects = [
   },
   {
     title: {
-      en: "INGAT: Kidnapping Prevention Visual Novel Game (Philippines)",
+      en: "INGAT: Kidnapping Prevention Visual Novel Game",
       zh: "INGAT：防绑架视觉小说游戏（菲律宾）",
     },
     description: {
