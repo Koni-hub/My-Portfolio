@@ -253,7 +253,10 @@ const EducationWork = () => {
         background: "var(--color-filter-btn-hover, rgba(120,120,120,0.15))",
         color: "var(--color-text-primary)",
       };
-    return { background: typeBg(key), color: typeColor(key) };
+    return {
+      background: "var(--color-filter-btn-hover, rgba(120,120,120,0.15))",
+      color: "var(--color-text-primary)",
+    };
   };
 
   const FILTERS = [

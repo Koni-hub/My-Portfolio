@@ -198,9 +198,9 @@ span {
   --color-timeline-work-border: #444444;
 
   /* --- Timeline — Education (mid on dark) --- */
-  --color-timeline-education: #888888;
-  --color-timeline-education-bg: #161616;
-  --color-timeline-education-border: #333333;
+  --color-timeline-education: #cccccc;
+  --color-timeline-education-bg: #1e1e1e;
+  --color-timeline-education-border: #444444;
 
   /* --- Timeline cards --- */
   --color-timeline-card-bg: #1a1a1a;
