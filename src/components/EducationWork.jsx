@@ -374,7 +374,7 @@ const EducationWork = () => {
               return (
                 <div
                   key={index}
-                  data-aos={side === "right" ? "fade-left" : "fade-right"}
+                  data-aos={side === "right" ? "fade-up" : "fade-down"}
                   data-aos-duration="800"
                   data-aos-delay={Math.min(index * 80, 400)}
                   className={[
