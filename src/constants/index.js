@@ -1073,7 +1073,7 @@ export const projects = [
     },
     technologies: "PHP, PhpMyAdmin, JavaScript",
     imageUrl: apartmentManagementSystemImg,
-    links: { source: "https://youtu.be/Kh9wC7sLZvc", website: "#" },
+    links: { source: "#", website: "#" },
   },
   {
     title: { en: "Fitness Gym System", zh: "健身房系统" },
@@ -1083,7 +1083,7 @@ export const projects = [
     },
     technologies: "MongoDB, NodeJS, ReactJS",
     imageUrl: fitnessGymSystemImg,
-    links: { source: "#", website: "#" },
+    links: { source: "https://youtu.be/Kh9wC7sLZvc", website: "#" },
   },
   {
     title: { en: "Human Information System", zh: "人力信息系统" },
