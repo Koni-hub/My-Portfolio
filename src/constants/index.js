@@ -1053,7 +1053,7 @@ export const projects = [
     },
     technologies: "MySQL, CSS, NodeJS, ReactJS",
     imageUrl: onlineOrderingSystemImg,
-    links: { source: "#", website: "#" },
+    links: { source: "https://youtu.be/mOXKZSJ0PVY", website: "#" },
   },
   {
     title: { en: "Document Controller System", zh: "文件控制系统" },
@@ -1063,7 +1063,7 @@ export const projects = [
     },
     technologies: "MySQL, NodeJS, ReactJS",
     imageUrl: documentControllerSystemImg,
-    links: { source: "#", website: "#" },
+    links: { source: "https://youtu.be/8iNircCXELo", website: "#" },
   },
   {
     title: { en: "Apartment Management System", zh: "公寓管理系统" },
@@ -1073,7 +1073,7 @@ export const projects = [
     },
     technologies: "PHP, PhpMyAdmin, JavaScript",
     imageUrl: apartmentManagementSystemImg,
-    links: { source: "#", website: "#" },
+    links: { source: "https://youtu.be/c0SnLSAaoOQ", website: "#" },
   },
   {
     title: { en: "Fitness Gym System", zh: "健身房系统" },
