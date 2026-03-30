@@ -1073,7 +1073,7 @@ export const projects = [
     },
     technologies: "PHP, PhpMyAdmin, JavaScript",
     imageUrl: apartmentManagementSystemImg,
-    links: { source: "#", website: "#" },
+    links: { source: "https://youtu.be/Kh9wC7sLZvc", website: "#" },
   },
   {
     title: { en: "Fitness Gym System", zh: "健身房系统" },
@@ -1093,7 +1093,7 @@ export const projects = [
     },
     technologies: "Laravel, Vue JS, PHP",
     imageUrl: humanInformationSystemImg,
-    links: { source: "#", website: "#" },
+    links: { source: "https://youtu.be/lS6fDsNkikI", website: "#" },
   },
   {
     title: { en: "Book Management System", zh: "图书管理系统" },
@@ -1103,7 +1103,7 @@ export const projects = [
     },
     technologies: "Java, Firebase",
     imageUrl: bookManagementSystemImg,
-    links: { source: "#", website: "#" },
+    links: { source: "https://youtu.be/vXhg1piY0jE", website: "#" },
   },
   {
     title: { en: "Book Summary", zh: "图书摘要" },
@@ -1113,7 +1113,10 @@ export const projects = [
     },
     technologies: "HTML, Tailwind, JS",
     imageUrl: bookSummaryImg,
-    links: { source: "#", website: "#" },
+    links: {
+      source: "#",
+      website: "https://koni-hub.github.io/StaticBookSummary/",
+    },
   },
   {
     title: { en: "Nex Proxy", zh: "Nex代理" },
@@ -1123,17 +1126,23 @@ export const projects = [
     },
     technologies: "HTML, CSS, JS",
     imageUrl: nexProxyImg,
-    links: { source: "#", website: "#" },
+    links: {
+      source: "#",
+      website: "https://koni-hub.github.io/StaticNexProxy/",
+    },
   },
   {
     title: { en: "Cake Store", zh: "蛋糕店" },
     description: {
-      en: "A system for managing cake orders, inventory, and delivery in bakeries.",
-      zh: "一套用于管理面包店蛋糕订单、库存和配送的系统。",
+      en: "A comprehensive system designed to streamline bakery operations by managing cake orders",
+      zh: "一个全面的系统，旨在通过管理蛋糕订单来优化面包店运营",
     },
     technologies: "HTML, Bootstrap, JS",
     imageUrl: cakeStoreImg,
-    links: { source: "#", website: "#" },
+    links: {
+      source: "#",
+      website: "https://koni-hub.github.io/StaticCakeStore/",
+    },
   },
 ];
 

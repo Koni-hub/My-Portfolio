@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { ChevronDown, Youtube } from "lucide-react";
+import { ChevronDown, ExternalLink, YoutubeIcon } from "lucide-react";
 import { projects } from "../constants/index.js";
 import { useState, useEffect } from "react";
 import { useLanguage } from "../context/LanguageContext";
@@ -94,7 +94,7 @@ const ProjectCard = ({ project, index, t, language }) => {
                   e.currentTarget.style.color = "var(--color-text-secondary)";
                 }}
               >
-                <Youtube size={16} />
+                <YoutubeIcon size={16} />
                 Demo
               </a>
             )}
@@ -112,6 +112,7 @@ const ProjectCard = ({ project, index, t, language }) => {
                   e.currentTarget.style.color = "var(--color-text-secondary)";
                 }}
               >
+                <ExternalLink size={16} />
                 {t("projects.visit")}
               </a>
             )}

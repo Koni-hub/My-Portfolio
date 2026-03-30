@@ -59,7 +59,7 @@ export const translations = {
     "projects.filter.game": "Game",
     "projects.filter.ar": "AR",
     "projects.source": "Source",
-    "projects.visit": "Visit",
+    "projects.visit": "Visit Site",
     "projects.technologies": "Technologies",
 
     // Contact
@@ -132,7 +132,7 @@ export const translations = {
     "projects.filter.game": "游戏",
     "projects.filter.ar": "增强现实",
     "projects.source": "源码",
-    "projects.visit": "访问",
+    "projects.visit": "访问站点",
     "projects.technologies": "技术栈",
 
     // Contact
