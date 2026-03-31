@@ -63,7 +63,7 @@ const AboutMe = () => {
   return (
     <section
       id="about"
-      className="py-24 sm:py-16 lg:py-24 px-4 sm:px-6 min-h-screen flex items-center justify-center transition-colors duration-300"
+      className="py-16 sm:py-20 lg:py-28 px-4 sm:px-6 lg:px-8 min-h-screen flex items-center justify-center transition-colors duration-300"
       style={{
         backgroundColor: "var(--color-bg-section)",
         color: "var(--color-text-primary)",

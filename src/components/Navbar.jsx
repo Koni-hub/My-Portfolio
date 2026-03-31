@@ -70,7 +70,7 @@ const Navbar = () => {
     { href: "#about", labelKey: "nav.about" },
     { href: "#projects", labelKey: "nav.projects" },
     { href: "#contact", labelKey: "nav.contact" },
-    { href: "#newyear", labelKey: "nav.newyear" },
+    // { href: "#newyear", labelKey: "nav.newyear" },
   ];
 
   const themeOptions = [

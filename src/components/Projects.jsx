@@ -150,7 +150,7 @@ const Projects = () => {
   return (
     <section
       id="projects"
-      className="py-12 lg:py-24 px-4 lg:px-6 min-h-screen transition-colors duration-300"
+      className="py-16 sm:py-20 lg:py-28 px-4 sm:px-6 lg:px-8 min-h-screen transition-colors duration-300"
       style={{ backgroundColor: "var(--color-bg-section)" }}
     >
       <div className="max-w-6xl mx-auto">

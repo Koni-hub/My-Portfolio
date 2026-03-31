@@ -62,7 +62,7 @@ const Home = () => {
         <AboutMe />
         <Projects />
         <Contact />
-        <NewYearCountdown />
+        {/* <NewYearCountdown /> */}
         <Footer />
       </div>
     </div>
