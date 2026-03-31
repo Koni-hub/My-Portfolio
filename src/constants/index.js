@@ -452,10 +452,13 @@ export const timelineData = [
       en: "NaviGuide: Aircraft Marshalling Gesture Trainer",
       zh: "NaviGuide：飞机引导手势训练器",
     },
-    organization: { en: "Independent AR Development", zh: "独立AR开发" },
+    organization: {
+      en: "Independent Mobile Development",
+      zh: "独立移动应用开发",
+    },
     description: {
-      en: "Developed a AR training app for learning proper aircraft marshalling gestures with real-time feedback.",
-      zh: "开发了一款AR训练应用程序，用于学习正确的飞机引导手势，提供实时反馈。",
+      en: "Developed a training app for learning proper aircraft marshalling gestures with real-time feedback.",
+      zh: "开发了一款移动训练应用程序，用于学习正确的飞机引导手势，提供实时反馈。",
     },
     logo: naviguide_logp,
     achievements: {
@@ -473,13 +476,13 @@ export const timelineData = [
         "Engine: Unity (C# scripting).",
         "Pose Detection: MediaPipe for real-time landmark tracking.",
         "Platform: Android (built and deployed via Unity).",
-        "Features: Gesture recognition, AR training environment, real-time visual feedback.",
+        "Features: Gesture recognition, training environment, real-time visual feedback.",
       ],
       zh: [
         "引擎：Unity（C#脚本）。",
         "姿势检测：MediaPipe用于实时地标跟踪。",
         "平台：Android（通过Unity构建和部署）。",
-        "功能：手势识别、AR训练环境、实时视觉反馈。",
+        "功能：手势识别、训练环境、实时视觉反馈。",
       ],
     },
     relevantSkills: [
@@ -1015,13 +1018,12 @@ export const projects = [
       zh: "NaviGuide：飞机引导手势训练器",
     },
     description: {
-      en: "An Android-based VR training application for guided learning of proper aircraft marshalling gestures, using Unity and MediaPipe for real-time pose detection and interactive guidance.",
-      zh: "一款基于Android的VR培训应用程序，用于指导学习正确的飞机引导手势，使用Unity和MediaPipe进行实时姿势检测和交互式指导。",
+      en: "An Android-based training application for guided learning of proper aircraft marshalling gestures, using Unity and MediaPipe for real-time pose detection and interactive guidance.",
+      zh: "一款基于Android的 培训应用程序，用于指导学习正确的飞机引导手势，使用Unity和MediaPipe进行实时姿势检测和交互式指导。",
     },
-    technologies:
-      "Unity, MediaPipe, VR Development, Gesture Recognition, Android Deployment",
+    technologies: "Unity, MediaPipe, Gesture Recognition, Android Deployment",
     imageUrl: naviGuideImg,
-    links: { source: "#", website: "#" },
+    links: { source: "https://youtu.be/4UZ5eAwuqfk", website: "#" },
   },
   {
     title: { en: "AR PC Assembly/Disassembly", zh: "AR电脑组装/拆卸" },
@@ -1032,7 +1034,7 @@ export const projects = [
     technologies:
       "Unity, Vuforia AR, C# Programming, 3D Modeling Integration, Android Deployment",
     imageUrl: arPcAssemblyImg,
-    links: { source: "#", website: "#" },
+    links: { source: "https://youtu.be/T1iV1YqTDN4", website: "#" },
   },
   {
     title: { en: "PH LORE: Mini RPG Mobile Game", zh: "PH民俗：迷你RPG手游" },
