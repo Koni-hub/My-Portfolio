@@ -1043,7 +1043,7 @@ export const projects = [
     technologies:
       "Godot Engine (GDScript), 2D Animation, Mobile UI/UX, Android Export",
     imageUrl: phLoreMiniRPGImg,
-    links: { source: "#", website: "#" },
+    links: { source: "https://youtu.be/T5xKT8mfGIc", website: "#" },
   },
   {
     title: { en: "Online Ordering System", zh: "在线订购系统" },
