@@ -1026,7 +1026,10 @@ export const projects = [
     links: { source: "https://youtu.be/4UZ5eAwuqfk", website: "#" },
   },
   {
-    title: { en: "AR PC Assembly/Disassembly", zh: "AR电脑组装/拆卸" },
+    title: {
+      en: "Arise: Augmented Reality PC Assembly/Disassembly",
+      zh: "Arise：增强现实电脑组装/拆卸",
+    },
     description: {
       en: "An Android augmented reality app for interactive PC component assembly and disassembly, featuring marker-based recognition and step-by-step 3D guides.",
       zh: "一款用于交互式PC组件组装和拆卸的Android增强现实应用程序，具有基于标记的识别和逐步3D指南。",
