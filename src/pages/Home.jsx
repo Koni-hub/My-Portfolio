@@ -7,7 +7,7 @@ import Projects from "../components/Projects.jsx";
 import Contact from "../components/Contact.jsx";
 import Footer from "../components/Footer.jsx";
 import EducationWork from "../components/EducationWork.jsx";
-import NewYearCountdown from "../components/NewYearCountdown.jsx";
+// import NewYearCountdown from "../components/NewYearCountdown.jsx";
 
 const Home = () => {
   const [showScrollButton, setShowScrollButton] = useState(false);

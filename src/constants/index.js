@@ -996,7 +996,7 @@ export const projects = [
     },
     technologies: "Unity, C#, ShaderLab, High-Level Shader Language, HTML",
     imageUrl: IngatImg,
-    links: { source: "#", website: "#" },
+    links: { source: "https://youtu.be/m0a-GA0Gdfk", website: "#" },
   },
   {
     title: {
@@ -1010,7 +1010,7 @@ export const projects = [
     technologies:
       "Java, Android Studio, Firebase, Machine Learning, Camera API, Speech Recognition API",
     imageUrl: bridgeXSignImg,
-    links: { source: "#", website: "#" },
+    links: { source: "https://youtu.be/q6gc7SaPXLw", website: "#" },
   },
   {
     title: {
